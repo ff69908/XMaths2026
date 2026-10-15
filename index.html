@@ -57,53 +57,67 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.8rem 4%;
+            padding: 1rem 4%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             z-index: 100;
             border-bottom: 1px solid var(--border-gold);
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         .logo {
             font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--red-festive);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             flex-shrink: 0;
         }
         
         .logo-img {
-            height: 48px;
+            height: 50px; /* Logo ingrandito */
             width: auto;  
             object-fit: contain;
         }
 
         .logo span {
             color: var(--text-light);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-family: 'Montserrat', sans-serif;
         }
 
         .nav-controls {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             flex-wrap: wrap;
             justify-content: flex-end;
+        }
+
+        /* Bottone Menu a tendina per Smartphone (nascosto su PC) */
+        .menu-toggle {
+            display: none;
+            background: var(--red-festive);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
         }
 
         .btn-nav-link {
             background: transparent;
             border: 1px solid var(--border-gold);
             color: var(--text-light);
-            padding: 6px 12px;
+            padding: 8px 14px;
             border-radius: 20px;
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 500;
             transition: all 0.3s ease;
         }
@@ -117,11 +131,11 @@
         .btn-nav-cta {
             background: var(--red-festive);
             color: white;
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             transition: background 0.3s ease;
             white-space: nowrap;
         }
@@ -138,7 +152,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 130px 20px 60px;
+            padding: 140px 20px 60px;
             background: radial-gradient(circle at center, rgba(192, 57, 43, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
         }
 
@@ -455,26 +469,43 @@
             color: var(--text-muted);
         }
 
+        /* --- Ottimizzazione Smartphone / Menu a Tendina --- */
         @media (max-width: 992px) {
             header {
-                padding: 0.6rem 3%;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 12px 5%;
+            }
+            .logo {
+                justify-content: space-between;
+                width: 100%;
             }
             .logo span {
                 display: none;
             }
             .logo-img {
-                height: 26px;
+                height: 45px; /* Logo grande anche su mobile */
             }
-            .btn-nav-link {
-                padding: 4px 8px;
-                font-size: 0.7rem;
-            }
-            .btn-nav-cta {
-                padding: 5px 10px;
-                font-size: 0.75rem;
+            .menu-toggle {
+                display: block; /* Mostra il tasto MENU su smartphone */
             }
             .nav-controls {
-                gap: 4px;
+                display: none; /* Di default i bottoni sono nascosti e si aprono con la tendina */
+                flex-direction: column;
+                width: 100%;
+                gap: 8px;
+                padding-top: 10px;
+                border-top: 1px solid var(--border-gold);
+                margin-top: 5px;
+            }
+            .nav-controls.active {
+                display: flex; /* Mostra il menu quando attivato */
+            }
+            .btn-nav-link, .btn-nav-cta {
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+                font-size: 0.9rem;
             }
         }
 
@@ -502,15 +533,20 @@
     <!-- Header Navigation -->
     <header>
         <div class="logo">
-            <img src="XMaths.png" alt="XMaths 2026" class="logo-img">
-            <span>| XMaths 2026</span>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="XMaths.png" alt="XMaths 2026" class="logo-img">
+                <span>| XMaths 2026</span>
+            </div>
+            <!-- Bottone tendina visibile solo su smartphone -->
+            <button class="menu-toggle" onclick="toggleMenu()">MENU ☰</button>
         </div>
-        <div class="nav-controls">
-            <a href="#agenda" class="btn-nav-link">Program</a>
-            <a href="#speakers" class="btn-nav-link">Speakers</a>
-            <a href="#organizers" class="btn-nav-link">Organizers</a>
-            <a href="#venue" class="btn-nav-link">Venue</a>
-            <a href="#register" class="btn-nav-cta">Registration</a>
+
+        <div class="nav-controls" id="nav-menu">
+            <a href="#agenda" class="btn-nav-link" onclick="toggleMenu()">Program</a>
+            <a href="#speakers" class="btn-nav-link" onclick="toggleMenu()">Speakers</a>
+            <a href="#organizers" class="btn-nav-link" onclick="toggleMenu()">Organizers</a>
+            <a href="#venue" class="btn-nav-link" onclick="toggleMenu()">Venue</a>
+            <a href="#register" class="btn-nav-cta" onclick="toggleMenu()">Registration</a>
         </div>
     </header>
 
@@ -691,6 +727,12 @@
 
     <!-- JavaScript Code -->
     <script>
+        // --- Funzione per aprire/chiudere il menu a tendina su smartphone ---
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('active');
+        }
+
         // --- Effetto Neve Temporaneo (5 secondi) ---
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
