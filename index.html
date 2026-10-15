@@ -92,6 +92,36 @@
             gap: 15px;
         }
 
+        /* Stile per i pulsanti di navigazione secondari */
+        .btn-nav-link {
+            background: transparent;
+            border: 1px solid var(--border-gold);
+            color: var(--text-light);
+            padding: 8px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav-link:hover {
+            background: rgba(192, 57, 43, 0.08);
+            border-color: var(--red-festive);
+            color: var(--red-festive);
+        }
+
+        /* Gestione per schermi più piccoli */
+        @media (max-width: 992px) {
+            .nav-controls {
+                gap: 5px;
+            }
+            .btn-nav-link {
+                padding: 6px 10px;
+                font-size: 0.75rem;
+            }
+        }
+
         .btn-snow-toggle {
             background: transparent;
             border: 1px solid var(--gold-accent);
@@ -481,14 +511,14 @@
     <div class="logo">
         <img src="XMaths.png" alt="XMaths 2026" class="logo-img">
         <span>| XMaths 2026</span>
-   <!-- Nuovi Link di Navigazione -->
-        <nav class="nav-links">
-            <a href="#agenda">Programma</a>
-            <a href="#speakers">Speaker</a>
-            <a href="#organizers">Organizzatori</a>
-            <a href="#venue">Venue</a>
-            <a href="#register">Registrazione</a>
-        </nav>
+   <div class="nav-controls">
+            <a href="#agenda" class="btn-nav-link">Program</a>
+            <a href="#speakers" class="btn-nav-link">Speakers</a>
+            <a href="#organizers" class="btn-nav-link">Organizers</a>
+            <a href="#venue" class="btn-nav-link">Venue</a>
+            <a href="#register" class="btn-nav-cta">Registration</a>
+        </div>
+    </header>
 
         <div class="nav-controls">
             <a href="#register" class="btn-nav-cta">Iscriviti Ora</a>
