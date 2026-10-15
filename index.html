@@ -15,10 +15,10 @@
             --bg-card: #FFF5F5; /* Sfondo delle card bianco con un subtilissimo riflesso rosato/caldo */
             --red-festive: #C0392B; /* Rosso natalizio principale */
             --red-dark: #962D22; /* Tonalità di rosso più scura per hover/dettagli */
-            --gold-accent: #C0392B; /* Sostituiamo l'oro con il rosso per mantenere il tema rigorosamente bianco/rosso */
+            --gold-accent: #C0392B; /* Rosso ripreso per coerenza grafica */
             --gold-hover: #962D22;
             --text-light: #2C3E50; /* Testo principale scuro per massima leggibilità su bianco */
-            --text-muted: #7F8C8D; /* Testo secondario grigio/muted */
+            --text-muted: #7F8C8D; /* Testo secondario grigio */
             --border-gold: rgba(192, 57, 43, 0.2); /* Bordi delicati sfumati di rosso */
         }
 
@@ -55,45 +55,45 @@
             left: 0;
             width: 100%;
             display: flex;
-            justify-content: space-between; /* Spinge il logo a sinistra e i controlli a destra */
+            justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
+            padding: 0.8rem 4%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             z-index: 100;
             border-bottom: 1px solid var(--border-gold);
+            gap: 15px;
         }
 
         .logo {
             font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--red-festive);
             display: flex;
             align-items: center;
-            gap: 10px;
-            flex-shrink: 0; /* Impedisce al logo di rimpicciolirsi o spostarsi */
+            gap: 8px;
+            flex-shrink: 0;
         }
         
-        /* ---> AGGIUNGI QUI SOTTO IL CSS PER IL LOGO <--- */
         .logo-img {
-            height: 40px; /* Modifica questo numero se vuoi renderlo più grande o più piccolo */
+            height: 32px;
             width: auto;  
             object-fit: contain;
         }
 
         .logo span {
-    color: var(--text-light); /* Testo accanto al logo scuro */
-    font-size: 0.9rem;
-    font-family: 'Montserrat', sans-serif;
-}
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-family: 'Montserrat', sans-serif;
+        }
 
         .nav-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
-            justify-content: flex-end; /* Allinea i bottoni a destra nel loro box */
+            justify-content: flex-end;
         }
 
         /* Stile per i pulsanti di navigazione secondari */
@@ -101,10 +101,10 @@
             background: transparent;
             border: 1px solid var(--border-gold);
             color: var(--text-light);
-            padding: 8px 14px;
+            padding: 6px 12px;
             border-radius: 20px;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             transition: all 0.3s ease;
         }
@@ -115,42 +115,16 @@
             color: var(--red-festive);
         }
 
-        /* Gestione per schermi più piccoli */
-        @media (max-width: 992px) {
-            .nav-controls {
-                gap: 5px;
-            }
-            .btn-nav-link {
-                padding: 6px 10px;
-                font-size: 0.75rem;
-            }
-        }
-
-        .btn-snow-toggle {
-            background: transparent;
-            border: 1px solid var(--gold-accent);
-            color: var(--gold-accent);
-            padding: 6px 14px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-snow-toggle:hover {
-            background: var(--gold-accent);
-            color: var(--bg-dark);
-        }
-
         .btn-nav-cta {
             background: var(--red-festive);
             color: white;
-            padding: 8px 18px;
+            padding: 6px 14px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             transition: background 0.3s ease;
+            white-space: nowrap;
         }
 
         .btn-nav-cta:hover {
@@ -159,29 +133,28 @@
 
         /* Hero Section */
         .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 120px 20px 60px;
-    /* Sfumatura delicata dal rosso natalizio molto leggero verso il bianco puro */
-    background: radial-gradient(circle at center, rgba(192, 57, 43, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
-}
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 130px 20px 60px;
+            background: radial-gradient(circle at center, rgba(192, 57, 43, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
+        }
 
         .badge-uni {
-    background: rgba(192, 57, 43, 0.08);
-    border: 1px solid var(--red-festive);
-    color: var(--red-festive);
-    padding: 6px 16px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
+            background: rgba(192, 57, 43, 0.08);
+            border: 1px solid var(--red-festive);
+            color: var(--red-festive);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
 
         .hero h1 {
             font-family: 'Cinzel', serif;
@@ -376,7 +349,7 @@
 
         /* Registration Form Section */
         .register-section {
-            background: linear-gradient(135deg, rgba(15, 34, 64, 0.9), rgba(192, 57, 43, 0.2));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(192, 57, 43, 0.05));
             border-radius: 20px;
             border: 1px solid var(--border-gold);
             padding: 40px;
@@ -401,8 +374,8 @@
             padding: 12px 15px;
             border-radius: 8px;
             border: 1px solid var(--border-gold);
-            background: rgba(10, 25, 47, 0.8);
-            color: white;
+            background: #FFFFFF;
+            color: var(--text-light);
             font-size: 0.95rem;
             outline: none;
             transition: border-color 0.3s;
@@ -414,8 +387,8 @@
 
         .btn-submit {
             width: 100%;
-            background: var(--gold-accent);
-            color: var(--bg-dark);
+            background: var(--red-festive);
+            color: white;
             padding: 14px;
             border: none;
             border-radius: 8px;
@@ -427,7 +400,7 @@
         }
 
         .btn-submit:hover {
-            background: var(--gold-hover);
+            background: var(--red-dark);
         }
 
         .info-note {
@@ -489,6 +462,30 @@
             color: var(--text-muted);
         }
 
+        /* Responsive per Smartphone / Dispositivi mobili */
+        @media (max-width: 992px) {
+            header {
+                padding: 0.6rem 3%;
+            }
+            .logo span {
+                display: none; /* Nasconde la scritta secondaria sul logo per risparmiare spazio */
+            }
+            .logo-img {
+                height: 26px;
+            }
+            .btn-nav-link {
+                padding: 4px 8px;
+                font-size: 0.7rem;
+            }
+            .btn-nav-cta {
+                padding: 5px 10px;
+                font-size: 0.75rem;
+            }
+            .nav-controls {
+                gap: 4px;
+            }
+        }
+
         @media (max-width: 768px) {
             .countdown-container {
                 gap: 8px;
@@ -512,20 +509,16 @@
 
     <!-- Header Navigation -->
     <header>
-    <div class="logo">
-        <img src="XMaths.png" alt="XMaths 2026" class="logo-img">
-        <span>| XMaths 2026</span>
-   <div class="nav-controls">
+        <div class="logo">
+            <img src="XMaths.png" alt="XMaths 2026" class="logo-img">
+            <span>| XMaths 2026</span>
+        </div>
+        <div class="nav-controls">
             <a href="#agenda" class="btn-nav-link">Program</a>
             <a href="#speakers" class="btn-nav-link">Speakers</a>
             <a href="#organizers" class="btn-nav-link">Organizers</a>
             <a href="#venue" class="btn-nav-link">Venue</a>
             <a href="#register" class="btn-nav-cta">Registration</a>
-        </div>
-    </header>
-
-        <div class="nav-controls">
-            <a href="#register" class="btn-nav-cta">Iscriviti Ora</a>
         </div>
     </header>
 
@@ -536,8 +529,8 @@
         <p class="subtitle">Un pomeriggio di seminari, dibattiti e networking natalizio organizzato per studenti e docenti. Partecipazione gratuita con rilascio attestato CFU.</p>
 
         <div class="event-meta">
-            <div class="meta-item">📅 <strong>Data:</strong> 18 Dicembre 2026</div>
-            <div class="meta-item">🕒 <strong>Ora:</strong> 15:00 - 18:30</div>
+            <div class="meta-item">📅 <strong>Data:</strong> 17 Dicembre 2026</div>
+            <div class="meta-item">🕒 <strong>Ora:</strong> 09:15 - 13:00</div>
             <div class="meta-item">📍 <strong>Luogo:</strong> Aula Magna - Polo Universitario</div>
         </div>
 
@@ -594,11 +587,11 @@
     <!-- Program Agenda Section -->
     <section id="agenda">
         <h2 class="section-title">Programma dell'Evento</h2>
-        <p class="section-subtitle">Pomeriggio di interventi accademici e brindisi di buone feste</p>
+        <p class="section-subtitle">Mattinata di interventi accademici e brindisi di buone feste</p>
 
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-time">15:00 - 15:30</div>
+                <div class="timeline-time">09:15 - 09:45</div>
                 <div class="timeline-content">
                     <h4>Accoglienza & Registrazione Partecipanti</h4>
                     <p>Check-in e consegna badge identificativo d'ingresso in Aula Magna.</p>
@@ -606,7 +599,7 @@
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-time">15:30 - 16:30</div>
+                <div class="timeline-time">09:45 - 11:00</div>
                 <div class="timeline-content">
                     <h4>Keynote: L'AI nel 2027 e le nuove professioni</h4>
                     <p>Intervento a cura della Prof.ssa Elena Rossi e dell'Ing. Marco Bianchi.</p>
@@ -614,7 +607,7 @@
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-time">16:30 - 17:15</div>
+                <div class="timeline-time">11:00 - 11:45</div>
                 <div class="timeline-content">
                     <h4>Tavola Rotonda: Etica e Sicurezza Informatica</h4>
                     <p>Sessione di discussione aperta con domande e risposte tra studenti e relatori.</p>
@@ -622,12 +615,30 @@
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-time">17:15 - 18:30</div>
+                <div class="timeline-time">11:45 - 13:00</div>
                 <div class="timeline-content">
                     <h4>🎄 Pandoro & Networking Time</h4>
                     <p>Brindisi di auguri natalizi offertoci dal Dipartimento con scambio di idee e contatti.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Organizers Section -->
+    <section id="organizers">
+        <h2 class="section-title">Organizzatori</h2>
+        <p class="section-subtitle">Il team accademico e studentesco dietro l'evento</p>
+        <div style="text-align: center; max-width: 700px; margin: 0 auto; color: var(--text-muted);">
+            <p>Evento organizzato dal Dipartimento di Informatica in collaborazione con il Consiglio degli Studenti e i rappresentanti d'istituto.</p>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section id="venue">
+        <h2 class="section-title">Venue & Location</h2>
+        <p class="section-subtitle">Come raggiungere l'Aula Magna</p>
+        <div style="text-align: center; max-width: 700px; margin: 0 auto; color: var(--text-muted);">
+            <p><strong>Aula Magna - Polo Universitario</strong><br>Via Campus Universitario, 1 - Edificio Informatica</p>
         </div>
     </section>
 
@@ -676,7 +687,7 @@
         <div class="modal-content">
             <h3>🎉 Iscrizione Confermata!</h3>
             <p>Grazie per la registrazione. Abbiamo inviato il pass d'ingresso e le indicazioni per l'Aula Magna al tuo indirizzo e-mail.</p>
-            <p style="margin-top: 15px; color: var(--gold-accent);">Ci vediamo il 18 Dicembre!</p>
+            <p style="margin-top: 15px; color: var(--red-festive);">Ci vediamo il 17 Dicembre!</p>
             <button class="close-modal" onclick="closeModal()">Chiudi</button>
         </div>
     </div>
@@ -686,97 +697,115 @@
         <p>© 2026 Università degli Studi - Dipartimento di Informatica. Evento organizzato dagli studenti.</p>
     </footer>
 
-    <!-- JavaScript code -->
+    <!-- JavaScript Code -->
     <script>
-    const canvas = document.getElementById('snow-canvas');
-    const ctx = canvas.getContext('2d');
-    let snowActive = true;
-    let flakes = [];
-    let animationId = null;
+        // --- Effetto Neve Temporaneo (5 secondi) ---
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        let snowActive = true;
+        let flakes = [];
+        let animationId = null;
 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    function createFlakes() {
-        flakes = [];
-        const count = Math.floor(window.innerWidth / 12);
-        for (let i = 0; i < count; i++) {
-            flakes.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 3 + 1,
-                speed: Math.random() * 1 + 0.5,
-                wind: Math.random() * 0.5 - 0.25
-            });
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
-    }
-    createFlakes();
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-    function drawSnow() {
-        if (!snowActive) return;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Fiocchi di colore rosso natalizio delicato
-        ctx.fillStyle = 'rgba(192, 57, 43, 0.35)'; 
-        ctx.beginPath();
-        
-        flakes.forEach(f => {
-            ctx.moveTo(f.x, f.y);
-            ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
-            f.y += f.speed;
-            f.x += f.wind;
-
-            if (f.y > canvas.height) {
-                f.y = -5;
-                f.x = Math.random() * canvas.width;
+        function createFlakes() {
+            flakes = [];
+            const count = Math.floor(window.innerWidth / 12);
+            for (let i = 0; i < count; i++) {
+                flakes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 3 + 1,
+                    speed: Math.random() * 1 + 0.5,
+                    wind: Math.random() * 0.5 - 0.25
+                });
             }
-        });
-        ctx.fill();
-        animationId = requestAnimationFrame(drawSnow);
-    }
-
-    drawSnow();
-
-    // Scompare automaticamente dopo 5 secondi
-    setTimeout(() => {
-        snowActive = false;
-        cancelAnimationFrame(animationId);
-        
-        canvas.style.transition = "opacity 1.5s ease";
-        canvas.style.opacity = "0";
-        
-        setTimeout(() => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            canvas.style.display = "none";
-        }, 1500);
-        
-    }, 5000);
-<script>
-    // --- Countdown Timer ---
-    const eventDate = new Date('December 18, 2026 15:00:00').getTime();
-
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const difference = eventDate - now;
-
-        if (difference > 0) {
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = String(days).padStart(2, '0');
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
         }
-    }
-    
-    // Aggiorna ogni secondo
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-</script>
+        createFlakes();
+
+        function drawSnow() {
+            if (!snowActive) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Fiocchi di colore rosso natalizio delicato
+            ctx.fillStyle = 'rgba(192, 57, 43, 0.35)'; 
+            ctx.beginPath();
+            
+            flakes.forEach(f => {
+                ctx.moveTo(f.x, f.y);
+                ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+                f.y += f.speed;
+                f.x += f.wind;
+
+                if (f.y > canvas.height) {
+                    f.y = -5;
+                    f.x = Math.random() * canvas.width;
+                }
+            });
+            ctx.fill();
+            animationId = requestAnimationFrame(drawSnow);
+        }
+
+        drawSnow();
+
+        // Scompare automaticamente dopo 5 secondi
+        setTimeout(() => {
+            snowActive = false;
+            cancelAnimationFrame(animationId);
+            
+            canvas.style.transition = "opacity 1.5s ease";
+            canvas.style.opacity = "0";
+            
+            setTimeout(() => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                canvas.style.display = "none";
+            }, 1500);
+            
+        }, 5000);
+
+        // --- Countdown Timer (17 Dicembre 2026 - 09:15) ---
+        const eventDate = new Date('December 17, 2026 09:15:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = eventDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            } else {
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+            }
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- Gestione Form e Modale ---
+        function handleRegister(event) {
+            event.preventDefault();
+            document.getElementById('success-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('success-modal').style.display = 'none';
+            document.getElementById('workshop-form').reset();
+        }
+    </script>
+</body>
+</html>
