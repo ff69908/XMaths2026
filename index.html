@@ -11,15 +11,15 @@
     
     <style>
         :root {
-            --bg-dark: #FFFFFF; /* Sfondo principale bianco pulito */
-            --bg-card: #FFF5F5; /* Sfondo delle card bianco con un subtilissimo riflesso rosato/caldo */
-            --red-festive: #C0392B; /* Rosso natalizio principale */
-            --red-dark: #962D22; /* Tonalità di rosso più scura per hover/dettagli */
-            --gold-accent: #C0392B; /* Rosso ripreso per coerenza grafica */
+            --bg-dark: #FFFFFF;
+            --bg-card: #FFF5F5;
+            --red-festive: #C0392B;
+            --red-dark: #962D22;
+            --gold-accent: #C0392B;
             --gold-hover: #962D22;
-            --text-light: #2C3E50; /* Testo principale scuro per massima leggibilità su bianco */
-            --text-muted: #7F8C8D; /* Testo secondario grigio */
-            --border-gold: rgba(192, 57, 43, 0.2); /* Bordi delicati sfumati di rosso */
+            --text-light: #2C3E50;
+            --text-muted: #7F8C8D;
+            --border-gold: rgba(192, 57, 43, 0.2);
         }
 
         * {
@@ -96,7 +96,6 @@
             justify-content: flex-end;
         }
 
-        /* Stile per i pulsanti di navigazione secondari */
         .btn-nav-link {
             background: transparent;
             border: 1px solid var(--border-gold);
@@ -223,7 +222,6 @@
             text-transform: uppercase;
         }
 
-        /* Common Section Layout */
         section {
             padding: 80px 8%;
             max-width: 1200px;
@@ -245,7 +243,6 @@
             font-size: 1rem;
         }
 
-        /* Speakers Grid */
         .speakers-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -297,7 +294,6 @@
             line-height: 1.5;
         }
 
-        /* Agenda Timeline */
         .timeline {
             max-width: 800px;
             margin: 0 auto;
@@ -347,7 +343,6 @@
             color: var(--text-muted);
         }
 
-        /* Registration Form Section */
         .register-section {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(192, 57, 43, 0.05));
             border-radius: 20px;
@@ -410,7 +405,6 @@
             margin-top: 15px;
         }
 
-        /* Confirmation Modal */
         .modal {
             display: none;
             position: fixed;
@@ -453,7 +447,6 @@
             font-weight: 600;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 30px;
@@ -462,13 +455,12 @@
             color: var(--text-muted);
         }
 
-        /* Responsive per Smartphone / Dispositivi mobili */
         @media (max-width: 992px) {
             header {
                 padding: 0.6rem 3%;
             }
             .logo span {
-                display: none; /* Nasconde la scritta secondaria sul logo per risparmiare spazio */
+                display: none;
             }
             .logo-img {
                 height: 26px;
@@ -732,7 +724,6 @@
             if (!snowActive) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Fiocchi di colore rosso natalizio delicato
             ctx.fillStyle = 'rgba(192, 57, 43, 0.35)'; 
             ctx.beginPath();
             
@@ -753,7 +744,6 @@
 
         drawSnow();
 
-        // Scompare automaticamente dopo 5 secondi
         setTimeout(() => {
             snowActive = false;
             cancelAnimationFrame(animationId);
