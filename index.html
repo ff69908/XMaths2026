@@ -89,7 +89,10 @@
         .nav-controls {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            margin-left: auto; /* Spinge tutto il blocco sulla destra */
+            flex-wrap: wrap;   /* Evita che escano dallo schermo se lo spazio è poco */
+            justify-content: flex-end;
         }
 
         /* Stile per i pulsanti di navigazione secondari */
