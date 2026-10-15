@@ -50,28 +50,30 @@
 
         /* Header & Nav */
         header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    background: rgba(255, 255, 255, 0.95); /* Header bianco luminoso */
-    backdrop-filter: blur(10px);
-    z-index: 100;
-    border-bottom: 1px solid var(--border-gold);
-}
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between; /* Spinge il logo a sinistra e i controlli a destra */
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border-gold);
+        }
 
         .logo {
-    font-family: 'Cinzel', serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--red-festive); /* Logo rosso */
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--red-festive);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0; /* Impedisce al logo di rimpicciolirsi o spostarsi */
+        }
         
         /* ---> AGGIUNGI QUI SOTTO IL CSS PER IL LOGO <--- */
         .logo-img {
@@ -90,9 +92,8 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-left: auto; /* Spinge tutto il blocco sulla destra */
-            flex-wrap: wrap;   /* Evita che escano dallo schermo se lo spazio è poco */
-            justify-content: flex-end;
+            flex-wrap: wrap;
+            justify-content: flex-end; /* Allinea i bottoni a destra nel loro box */
         }
 
         /* Stile per i pulsanti di navigazione secondari */
