@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workshop Natalizio Universitario | Innovazione & Creatività</title>
+    <title>XMaths Workshop | Universitario & Natalizio</title>
     <!-- Font Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,15 +11,14 @@
     
     <style>
         :root {
-            --bg-dark: #FFFFFF;
-            --bg-card: #FFF5F5;
+            --bg-dark: #0A192F;
+            --bg-card: rgba(15, 34, 64, 0.75);
             --red-festive: #C0392B;
-            --red-dark: #962D22;
-            --gold-accent: #C0392B;
-            --gold-hover: #962D22;
-            --text-light: #2C3E50;
-            --text-muted: #7F8C8D;
-            --border-gold: rgba(192, 57, 43, 0.2);
+            --gold-accent: #D4AF37;
+            --gold-hover: #F39C12;
+            --text-light: #F8F9FA;
+            --text-muted: #CBD5E1;
+            --border-gold: rgba(212, 175, 55, 0.3);
         }
 
         * {
@@ -52,92 +51,81 @@
         header {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 4%;
-            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            background: rgba(10, 25, 47, 0.85);
             backdrop-filter: blur(10px);
             z-index: 100;
             border-bottom: 1px solid var(--border-gold);
-            gap: 15px;
-            flex-wrap: wrap;
         }
 
         .logo {
             font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: var(--red-festive);
+            color: var(--gold-accent);
             display: flex;
             align-items: center;
             gap: 10px;
-            flex-shrink: 0;
-        }
-        
-        .logo-img {
-            height: 50px; /* Logo ingrandito */
-            width: auto;  
-            object-fit: contain;
         }
 
         .logo span {
             color: var(--text-light);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-family: 'Montserrat', sans-serif;
         }
 
         .nav-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
+            gap: 12px;
         }
 
-        /* Bottone Menu a tendina per Smartphone (nascosto su PC) */
-        .menu-toggle {
-            display: none;
-            background: var(--red-festive);
-            color: white;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .btn-nav-link {
+        .btn-nav-item {
             background: transparent;
             border: 1px solid var(--border-gold);
             color: var(--text-light);
-            padding: 8px 14px;
+            padding: 6px 14px;
             border-radius: 20px;
-            text-decoration: none;
+            cursor: pointer;
             font-size: 0.85rem;
-            font-weight: 500;
+            text-decoration: none;
             transition: all 0.3s ease;
         }
 
-        .btn-nav-link:hover {
-            background: rgba(192, 57, 43, 0.08);
-            border-color: var(--red-festive);
-            color: var(--red-festive);
+        .btn-nav-item:hover {
+            border-color: var(--gold-accent);
+            color: var(--gold-accent);
+        }
+
+        .btn-snow-toggle {
+            background: transparent;
+            border: 1px solid var(--gold-accent);
+            color: var(--gold-accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-snow-toggle:hover {
+            background: var(--gold-accent);
+            color: var(--bg-dark);
         }
 
         .btn-nav-cta {
             background: var(--red-festive);
             color: white;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             transition: background 0.3s ease;
-            white-space: nowrap;
         }
 
         .btn-nav-cta:hover {
@@ -152,14 +140,14 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 140px 20px 60px;
-            background: radial-gradient(circle at center, rgba(192, 57, 43, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
+            padding: 120px 20px 60px;
+            background: radial-gradient(circle at center, rgba(192, 57, 43, 0.15) 0%, rgba(10, 25, 47, 1) 70%);
         }
 
         .badge-uni {
-            background: rgba(192, 57, 43, 0.08);
-            border: 1px solid var(--red-festive);
-            color: var(--red-festive);
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--gold-accent);
+            color: var(--gold-accent);
             padding: 6px 16px;
             border-radius: 50px;
             font-size: 0.85rem;
@@ -236,6 +224,7 @@
             text-transform: uppercase;
         }
 
+        /* Common Section Layout */
         section {
             padding: 80px 8%;
             max-width: 1200px;
@@ -257,6 +246,74 @@
             font-size: 1rem;
         }
 
+        /* History Section Layout (Poster + Details) */
+        .history-edition-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            padding: 35px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 35px;
+            align-items: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .history-poster {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid var(--gold-accent);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .history-poster:hover {
+            transform: scale(1.03);
+        }
+
+        .history-content h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+        }
+
+        .history-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .history-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn-pdf {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 1px solid var(--gold-accent);
+            color: var(--gold-accent);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-pdf:hover {
+            background: var(--gold-accent);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Speakers Grid */
         .speakers-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -270,12 +327,11 @@
             overflow: hidden;
             text-align: center;
             padding: 25px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .speaker-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
         }
 
         .speaker-avatar {
@@ -288,77 +344,9 @@
             background-position: center;
         }
 
-        .speaker-card h3 {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 5px;
-        }
-
-        .speaker-card .role {
-            color: var(--gold-accent);
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .speaker-card p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            border-left: 2px solid var(--gold-accent);
-            padding-left: 30px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 35px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -37px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--red-festive);
-            border: 2px solid var(--gold-accent);
-        }
-
-        .timeline-time {
-            font-weight: 700;
-            color: var(--gold-accent);
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
-
-        .timeline-content {
-            background: var(--bg-card);
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid var(--border-gold);
-        }
-
-        .timeline-content h4 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .timeline-content p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
+        /* Registration Form Section */
         .register-section {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(192, 57, 43, 0.05));
+            background: linear-gradient(135deg, rgba(15, 34, 64, 0.9), rgba(192, 57, 43, 0.2));
             border-radius: 20px;
             border: 1px solid var(--border-gold);
             padding: 40px;
@@ -383,21 +371,16 @@
             padding: 12px 15px;
             border-radius: 8px;
             border: 1px solid var(--border-gold);
-            background: #FFFFFF;
-            color: var(--text-light);
+            background: rgba(10, 25, 47, 0.8);
+            color: white;
             font-size: 0.95rem;
             outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--gold-accent);
         }
 
         .btn-submit {
             width: 100%;
-            background: var(--red-festive);
-            color: white;
+            background: var(--gold-accent);
+            color: var(--bg-dark);
             padding: 14px;
             border: none;
             border-radius: 8px;
@@ -405,20 +388,13 @@
             font-size: 1rem;
             cursor: pointer;
             transition: background 0.3s ease;
-            margin-top: 10px;
         }
 
         .btn-submit:hover {
-            background: var(--red-dark);
+            background: var(--gold-hover);
         }
 
-        .info-note {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-align: center;
-            margin-top: 15px;
-        }
-
+        /* Confirmation Modal */
         .modal {
             display: none;
             position: fixed;
@@ -440,14 +416,6 @@
             padding: 35px;
             max-width: 500px;
             text-align: center;
-            position: relative;
-        }
-
-        .modal-content h3 {
-            font-family: 'Cinzel', serif;
-            color: var(--gold-accent);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
         }
 
         .close-modal {
@@ -461,6 +429,7 @@
             font-weight: 600;
         }
 
+        /* Footer */
         footer {
             text-align: center;
             padding: 30px;
@@ -469,59 +438,17 @@
             color: var(--text-muted);
         }
 
-        /* --- Ottimizzazione Smartphone / Menu a Tendina --- */
-        @media (max-width: 992px) {
-            header {
-                flex-direction: column;
-                align-items: stretch;
-                padding: 12px 5%;
-            }
-            .logo {
-                justify-content: space-between;
-                width: 100%;
-            }
-            .logo span {
-                display: none;
-            }
-            .logo-img {
-                height: 45px; /* Logo grande anche su mobile */
-            }
-            .menu-toggle {
-                display: block; /* Mostra il tasto MENU su smartphone */
-            }
-            .nav-controls {
-                display: none; /* Di default i bottoni sono nascosti e si aprono con la tendina */
-                flex-direction: column;
-                width: 100%;
-                gap: 8px;
-                padding-top: 10px;
-                border-top: 1px solid var(--border-gold);
-                margin-top: 5px;
-            }
-            .nav-controls.active {
-                display: flex; /* Mostra il menu quando attivato */
-            }
-            .btn-nav-link, .btn-nav-cta {
-                width: 100%;
+        @media (max-width: 850px) {
+            .history-edition-card {
+                grid-template-columns: 1fr;
                 text-align: center;
-                padding: 10px;
-                font-size: 0.9rem;
             }
-        }
-
-        @media (max-width: 768px) {
-            .countdown-container {
-                gap: 8px;
+            .history-poster {
+                max-width: 260px;
+                margin: 0 auto;
             }
-            .time-box {
-                min-width: 60px;
-                padding: 8px;
-            }
-            .time-box .num {
-                font-size: 1.3rem;
-            }
-            section {
-                padding: 60px 5%;
+            .history-buttons {
+                justify-content: center;
             }
         }
     </style>
@@ -533,52 +460,59 @@
     <!-- Header Navigation -->
     <header>
         <div class="logo">
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <img src="XMaths.png" alt="XMaths 2026" class="logo-img">
-                <span>| XMaths 2026</span>
-            </div>
-            <!-- Bottone tendina visibile solo su smartphone -->
-            <button class="menu-toggle" onclick="toggleMenu()">MENU ☰</button>
+            🎓 XMaths Workshop <span>| Edizione Natalizia</span>
         </div>
-
-        <div class="nav-controls" id="nav-menu">
-            <a href="#agenda" class="btn-nav-link" onclick="toggleMenu()">Program</a>
-            <a href="#speakers" class="btn-nav-link" onclick="toggleMenu()">Speakers</a>
-            <a href="#organizers" class="btn-nav-link" onclick="toggleMenu()">Organizers</a>
-            <a href="#venue" class="btn-nav-link" onclick="toggleMenu()">Venue</a>
-            <a href="#register" class="btn-nav-cta" onclick="toggleMenu()">Registration</a>
+        <div class="nav-controls">
+            <a href="#history" class="btn-nav-item">📜 History</a>
+            <button class="btn-snow-toggle" onclick="toggleSnow()">❄️ Neve: ON</button>
+            <a href="#register" class="btn-nav-cta">Iscriviti Ora</a>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="badge-uni">Dipartimento di Informatica & Innovazione</div>
-        <h1>Workshop Natalizio: <br><span>AI & Futuro Digitale</span></h1>
-        <p class="subtitle">Un pomeriggio di seminari, dibattiti e networking natalizio organizzato per studenti e docenti. Partecipazione gratuita con rilascio attestato CFU.</p>
+        <div class="badge-uni">Dipartimento di Matematica</div>
+        <h1>XMaths Workshop 2026: <br><span>Mathematics & Innovation</span></h1>
+        <p class="subtitle">Un incontro accademico e festivo dedicato alle ultime frontiere della matematica applicata. Partecipazione aperta a studenti, ricercatori e docenti.</p>
 
         <div class="event-meta">
-            <div class="meta-item">📅 <strong>Data:</strong> 17 Dicembre 2026</div>
-            <div class="meta-item">🕒 <strong>Ora:</strong> 09:15 - 13:00</div>
-            <div class="meta-item">📍 <strong>Luogo:</strong> Aula Magna - Polo Universitario</div>
+            <div class="meta-item">📅 <strong>Data:</strong> 18 Dicembre 2026</div>
+            <div class="meta-item">🕒 <strong>Ora:</strong> 15:00 - 18:30</div>
+            <div class="meta-item">📍 <strong>Luogo:</strong> Aula Magna - Dipartimento di Matematica</div>
         </div>
 
         <!-- Countdown Timer -->
         <div class="countdown-container">
-            <div class="time-box">
-                <span class="num" id="days">00</span>
-                <span class="label">Giorni</span>
-            </div>
-            <div class="time-box">
-                <span class="num" id="hours">00</span>
-                <span class="label">Ore</span>
-            </div>
-            <div class="time-box">
-                <span class="num" id="minutes">00</span>
-                <span class="label">Minuti</span>
-            </div>
-            <div class="time-box">
-                <span class="num" id="seconds">00</span>
-                <span class="label">Secondi</span>
+            <div class="time-box"><span class="num" id="days">00</span><span class="label">Giorni</span></div>
+            <div class="time-box"><span class="num" id="hours">00</span><span class="label">Ore</span></div>
+            <div class="time-box"><span class="num" id="minutes">00</span><span class="label">Minuti</span></div>
+            <div class="time-box"><span class="num" id="seconds">00</span><span class="label">Secondi</span></div>
+        </div>
+    </section>
+
+    <!-- History Section (Con locandina e PDF di XMaths Workshop 2024) -->
+    <section id="history">
+        <h2 class="section-title">History & Edizioni Passate</h2>
+        <p class="section-subtitle">Archivio dei programmi, abstract e materiale delle edizioni precedenti dell'XMaths Workshop</p>
+
+        <!-- Scheda Edizione 2024 -->
+        <div class="history-edition-card">
+            <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/hotel-form_orig.jpg" target="_blank">
+                <img src="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/hotel-form_orig.jpg" alt="Locandina XMaths 2024" class="history-poster">
+            </a>
+            
+            <div class="history-content">
+                <h3>XMaths Workshop 2024</h3>
+                <p>Edizione incentrata sui modelli matematici e le loro applicazioni. Consulta il programma ufficiale dell'evento e la raccolta completa degli abstract selezionati per le presentazioni.</p>
+                
+                <div class="history-buttons">
+                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/timetablexmaths2024_new.pdf" target="_blank" class="btn-pdf">
+                        📄 Programme (PDF)
+                    </a>
+                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/xmaths_workshop_2024_book_of_abstracts.pdf" target="_blank" class="btn-pdf">
+                        📚 Book of Abstracts (PDF)
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -586,94 +520,29 @@
     <!-- Speakers Section -->
     <section id="speakers">
         <h2 class="section-title">I Nostri Speaker</h2>
-        <p class="section-subtitle">Esperti del settore accademico e industriale condivideranno la loro visione</p>
+        <p class="section-subtitle">Interventi e seminari a cura di docenti e ricercatori ospitanti</p>
 
         <div class="speakers-grid">
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300');"></div>
                 <h3>Prof.ssa Elena Rossi</h3>
-                <span class="role">Docente di Intelligenza Artificiale</span>
-                <p>Specializzata in Modelli Generativi e impatto dell'AI sulla società del futuro.</p>
+                <span class="role">Docente di Analisi Matematica</span>
+                <p>Specializzata in Modelli Dinamici ed Equazioni Differenziali.</p>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300');"></div>
                 <h3>Ing. Marco Bianchi</h3>
-                <span class="role">Senior Tech Lead @ TechCorp</span>
-                <p>Guida lo sviluppo di architetture cloud scalabili ed etica del codice.</p>
+                <span class="role">Ricercatore in Matematica Applicata</span>
+                <p>Studio degli algoritmi di ottimizzazione per data science.</p>
             </div>
-
-            <div class="speaker-card">
-                <div class="speaker-avatar" style="background-image: url('https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300');"></div>
-                <h3>Dr.ssa Sofia Moretti</h3>
-                <span class="role">Ricercatrice in Cybersecurity</span>
-                <p>Esperta di protezione dati e sicurezza nei sistemi distribuiti moderni.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Program Agenda Section -->
-    <section id="agenda">
-        <h2 class="section-title">Programma dell'Evento</h2>
-        <p class="section-subtitle">Mattinata di interventi accademici e brindisi di buone feste</p>
-
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-time">09:15 - 09:45</div>
-                <div class="timeline-content">
-                    <h4>Accoglienza & Registrazione Partecipanti</h4>
-                    <p>Check-in e consegna badge identificativo d'ingresso in Aula Magna.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-time">09:45 - 11:00</div>
-                <div class="timeline-content">
-                    <h4>Keynote: L'AI nel 2027 e le nuove professioni</h4>
-                    <p>Intervento a cura della Prof.ssa Elena Rossi e dell'Ing. Marco Bianchi.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-time">11:00 - 11:45</div>
-                <div class="timeline-content">
-                    <h4>Tavola Rotonda: Etica e Sicurezza Informatica</h4>
-                    <p>Sessione di discussione aperta con domande e risposte tra studenti e relatori.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-time">11:45 - 13:00</div>
-                <div class="timeline-content">
-                    <h4>🎄 Pandoro & Networking Time</h4>
-                    <p>Brindisi di auguri natalizi offertoci dal Dipartimento con scambio di idee e contatti.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Organizers Section -->
-    <section id="organizers">
-        <h2 class="section-title">Organizzatori</h2>
-        <p class="section-subtitle">Il team accademico e studentesco dietro l'evento</p>
-        <div style="text-align: center; max-width: 700px; margin: 0 auto; color: var(--text-muted);">
-            <p>Evento organizzato dal Dipartimento di Informatica in collaborazione con il Consiglio degli Studenti e i rappresentanti d'istituto.</p>
-        </div>
-    </section>
-
-    <!-- Venue Section -->
-    <section id="venue">
-        <h2 class="section-title">Venue & Location</h2>
-        <p class="section-subtitle">Come raggiungere l'Aula Magna</p>
-        <div style="text-align: center; max-width: 700px; margin: 0 auto; color: var(--text-muted);">
-            <p><strong>Aula Magna - Polo Universitario</strong><br>Via Campus Universitario, 1 - Edificio Informatica</p>
         </div>
     </section>
 
     <!-- Registration Section -->
     <section id="register">
         <h2 class="section-title">Riserva il tuo Posto</h2>
-        <p class="section-subtitle">Posti limitati per la capienza dell'Aula Magna. Evento Gratuito.</p>
+        <p class="section-subtitle">Posti limitati in Aula Magna per l'edizione natalizia. Partecipazione Gratuita.</p>
 
         <div class="register-section">
             <form id="workshop-form" onsubmit="handleRegister(event)">
@@ -692,53 +561,32 @@
                     <input type="text" id="matricola" placeholder="Es. 123456">
                 </div>
 
-                <div class="form-group">
-                    <label for="course">Corso di Laurea / Ruolo</label>
-                    <select id="course" required>
-                        <option value="">Seleziona opzione...</option>
-                        <option value="triennale">Laurea Triennale</option>
-                        <option value="magistrale">Laurea Magistrale</option>
-                        <option value="dottorato">Dottorando / Ricercatore</option>
-                        <option value="docente">Docente / Personale Uni</option>
-                        <option value="esterno">Ospite Esterno</option>
-                    </select>
-                </div>
-
                 <button type="submit" class="btn-submit">Conferma Registrazione 🎄</button>
-                <p class="info-note">📜 Verrà inviata un'email di conferma con il Pass d'ingresso QR-Code.</p>
             </form>
         </div>
     </section>
 
-    <!-- Confirmation Modal -->
+    <!-- Modal -->
     <div id="success-modal" class="modal">
         <div class="modal-content">
             <h3>🎉 Iscrizione Confermata!</h3>
-            <p>Grazie per la registrazione. Abbiamo inviato il pass d'ingresso e le indicazioni per l'Aula Magna al tuo indirizzo e-mail.</p>
-            <p style="margin-top: 15px; color: var(--red-festive);">Ci vediamo il 17 Dicembre!</p>
+            <p>Grazie per la registrazione. Abbiamo inviato la conferma alla tua e-mail.</p>
             <button class="close-modal" onclick="closeModal()">Chiudi</button>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 Università degli Studi - Dipartimento di Informatica. Evento organizzato dagli studenti.</p>
+        <p>© 2026 XMaths Workshop - Dipartimento di Matematica. Tutti i diritti riservati.</p>
     </footer>
 
-    <!-- JavaScript Code -->
+    <!-- JavaScript -->
     <script>
-        // --- Funzione per aprire/chiudere il menu a tendina su smartphone ---
-        function toggleMenu() {
-            const menu = document.getElementById('nav-menu');
-            menu.classList.toggle('active');
-        }
-
-        // --- Effetto Neve Temporaneo (5 secondi) ---
+        // --- Snow Effect ---
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
         let snowActive = true;
         let flakes = [];
-        let animationId = null;
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -749,7 +597,7 @@
 
         function createFlakes() {
             flakes = [];
-            const count = Math.floor(window.innerWidth / 12);
+            const count = Math.floor(window.innerWidth / 10);
             for (let i = 0; i < count; i++) {
                 flakes.push({
                     x: Math.random() * canvas.width,
@@ -763,10 +611,12 @@
         createFlakes();
 
         function drawSnow() {
-            if (!snowActive) return;
+            if (!snowActive) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                return;
+            }
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = 'rgba(192, 57, 43, 0.35)'; 
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
             ctx.beginPath();
             
             flakes.forEach(f => {
@@ -781,28 +631,18 @@
                 }
             });
             ctx.fill();
-            animationId = requestAnimationFrame(drawSnow);
+            requestAnimationFrame(drawSnow);
         }
-
         drawSnow();
 
-        setTimeout(() => {
-            snowActive = false;
-            cancelAnimationFrame(animationId);
-            
-            canvas.style.transition = "opacity 1.5s ease";
-            canvas.style.opacity = "0";
-            
-            setTimeout(() => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                canvas.style.display = "none";
-            }, 1500);
-            
-        }, 5000);
+        function toggleSnow() {
+            snowActive = !snowActive;
+            document.querySelector('.btn-snow-toggle').innerText = snowActive ? '❄️ Neve: ON' : '❄️ Neve: OFF';
+            if (snowActive) drawSnow();
+        }
 
-        // --- Countdown Timer (17 Dicembre 2026 - 09:15) ---
-        const eventDate = new Date('December 17, 2026 09:15:00').getTime();
-
+        // --- Countdown ---
+        const eventDate = new Date('December 18, 2026 15:00:00').getTime();
         function updateCountdown() {
             const now = new Date().getTime();
             const difference = eventDate - now;
@@ -817,20 +657,14 @@
                 document.getElementById('hours').innerText = String(hours).padStart(2, '0');
                 document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
                 document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-            } else {
-                document.getElementById('days').innerText = "00";
-                document.getElementById('hours').innerText = "00";
-                document.getElementById('minutes').innerText = "00";
-                document.getElementById('seconds').innerText = "00";
             }
         }
-        
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- Gestione Form e Modale ---
-        function handleRegister(event) {
-            event.preventDefault();
+        // --- Modal ---
+        function handleRegister(e) {
+            e.preventDefault();
             document.getElementById('success-modal').style.display = 'flex';
         }
 
