@@ -481,11 +481,18 @@
     <div class="logo">
         <img src="XMaths.png" alt="XMaths 2026" class="logo-img">
         <span>| XMaths 2026</span>
-    </div>
-    <div class="nav-controls">
-        <button class="btn-snow-toggle" onclick="toggleSnow()">❄️ Neve: ON</button>
-        <a href="#register" class="btn-nav-cta">Iscriviti Ora</a>
-    </div>
+   <!-- Nuovi Link di Navigazione -->
+        <nav class="nav-links">
+            <a href="#agenda">Programma</a>
+            <a href="#speakers">Speaker</a>
+            <a href="#organizers">Organizzatori</a>
+            <a href="#venue">Venue</a>
+            <a href="#register">Registrazione</a>
+        </nav>
+
+        <div class="nav-controls">
+            <a href="#register" class="btn-nav-cta">Iscriviti Ora</a>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -647,65 +654,74 @@
 
     <!-- JavaScript code -->
     <script>
-        // --- Snow Effect ---
-        const canvas = document.getElementById('snow-canvas');
-        const ctx = canvas.getContext('2d');
-        let snowActive = true;
-        let flakes = [];
+    const canvas = document.getElementById('snow-canvas');
+    const ctx = canvas.getContext('2d');
+    let snowActive = true;
+    let flakes = [];
+    let animationId = null;
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-        function createFlakes() {
-            flakes = [];
-            const count = Math.floor(window.innerWidth / 10);
-            for (let i = 0; i < count; i++) {
-                flakes.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    radius: Math.random() * 3 + 1,
-                    speed: Math.random() * 1 + 0.5,
-                    wind: Math.random() * 0.5 - 0.25
-                });
-            }
-        }
-        createFlakes();
-
-        function drawSnow() {
-            if (!snowActive) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                return;
-            }
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(192, 57, 43, 0.25)';
-            ctx.beginPath();
-            
-            flakes.forEach(f => {
-                ctx.moveTo(f.x, f.y);
-                ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
-                f.y += f.speed;
-                f.x += f.wind;
-
-                if (f.y > canvas.height) {
-                    f.y = -5;
-                    f.x = Math.random() * canvas.width;
-                }
+    function createFlakes() {
+        flakes = [];
+        const count = Math.floor(window.innerWidth / 12);
+        for (let i = 0; i < count; i++) {
+            flakes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 3 + 1,
+                speed: Math.random() * 1 + 0.5,
+                wind: Math.random() * 0.5 - 0.25
             });
-            ctx.fill();
-            requestAnimationFrame(drawSnow);
         }
-        drawSnow();
+    }
+    createFlakes();
 
-        function toggleSnow() {
-            snowActive = !snowActive;
-            const btn = document.querySelector('.btn-snow-toggle');
-            btn.innerText = snowActive ? '❄️ Neve: ON' : '❄️ Neve: OFF';
-            if (snowActive) drawSnow();
-        }
+    function drawSnow() {
+        if (!snowActive) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Fiocchi di colore rosso natalizio delicato
+        ctx.fillStyle = 'rgba(192, 57, 43, 0.35)'; 
+        ctx.beginPath();
+        
+        flakes.forEach(f => {
+            ctx.moveTo(f.x, f.y);
+            ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+            f.y += f.speed;
+            f.x += f.wind;
+
+            if (f.y > canvas.height) {
+                f.y = -5;
+                f.x = Math.random() * canvas.width;
+            }
+        });
+        ctx.fill();
+        animationId = requestAnimationFrame(drawSnow);
+    }
+
+    drawSnow();
+
+    // Scompare automaticamente dopo 5 secondi
+    setTimeout(() => {
+        snowActive = false;
+        cancelAnimationFrame(animationId);
+        
+        canvas.style.transition = "opacity 1.5s ease";
+        canvas.style.opacity = "0";
+        
+        setTimeout(() => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            canvas.style.display = "none";
+        }, 1500);
+        
+    }, 5000);
+</script>
 
         // --- Countdown Timer ---
         const eventDate = new Date('December 18, 2026 15:00:00').getTime();
