@@ -50,28 +50,28 @@
 
         /* Header & Nav */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-            background: rgba(10, 25, 47, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            border-bottom: 1px solid var(--border-gold);
-        }
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: rgba(255, 255, 255, 0.95); /* Header bianco luminoso */
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid var(--border-gold);
+}
 
         .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--gold-accent);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--red-festive); /* Logo rosso */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
         
         /* ---> AGGIUNGI QUI SOTTO IL CSS PER IL LOGO <--- */
         .logo-img {
@@ -81,10 +81,10 @@
         }
 
         .logo span {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            font-family: 'Montserrat', sans-serif;
-        }
+    color: var(--text-light); /* Testo accanto al logo scuro */
+    font-size: 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+}
 
         .nav-controls {
             display: flex;
@@ -125,28 +125,29 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 120px 20px 60px;
-            background: radial-gradient(circle at center, rgba(192, 57, 43, 0.15) 0%, rgba(10, 25, 47, 1) 70%);
-        }
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 20px 60px;
+    /* Sfumatura delicata dal rosso natalizio molto leggero verso il bianco puro */
+    background: radial-gradient(circle at center, rgba(192, 57, 43, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
+}
 
         .badge-uni {
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid var(--gold-accent);
-            color: var(--gold-accent);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
+    background: rgba(192, 57, 43, 0.08);
+    border: 1px solid var(--red-festive);
+    color: var(--red-festive);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
 
         .hero h1 {
             font-family: 'Cinzel', serif;
@@ -680,7 +681,7 @@
                 return;
             }
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.fillStyle = 'rgba(192, 57, 43, 0.25)';
             ctx.beginPath();
             
             flakes.forEach(f => {
