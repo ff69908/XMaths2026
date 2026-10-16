@@ -256,70 +256,48 @@
             font-size: 1rem;
         }
 
-        /* History Section Styles */
-        .history-edition-card {
+        /* History Card Styles */
+        .history-card-box {
             background: var(--bg-card);
             border: 1px solid var(--border-gold);
             border-radius: 20px;
-            padding: 35px;
-            display: grid;
-            grid-template-columns: 260px 1fr;
-            gap: 35px;
-            align-items: center;
-            max-width: 900px;
+            padding: 40px;
+            max-width: 800px;
             margin: 0 auto;
+            text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
 
-        .history-poster {
-            width: 100%;
-            border-radius: 10px;
-            border: 2px solid var(--border-gold);
-            transition: transform 0.3s ease;
-        }
-
-        .history-poster:hover {
-            transform: scale(1.02);
-        }
-
-        .history-content h3 {
+        .history-card-box h3 {
             font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: var(--red-festive);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        .history-content p {
+        .history-card-box p {
             color: var(--text-muted);
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        .history-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .btn-pdf {
+        .btn-history-external {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: #FFFFFF;
-            border: 1px solid var(--red-festive);
-            color: var(--red-festive);
-            padding: 8px 16px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-pdf:hover {
             background: var(--red-festive);
             color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn-history-external:hover {
+            background: var(--red-dark);
         }
 
         .speakers-grid {
@@ -571,17 +549,6 @@
                 padding: 10px;
                 font-size: 0.9rem;
             }
-            .history-edition-card {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .history-poster {
-                max-width: 220px;
-                margin: 0 auto;
-            }
-            .history-buttons {
-                justify-content: center;
-            }
         }
 
         @media (max-width: 768px) {
@@ -661,170 +628,16 @@
 
     <!-- History Section -->
     <section id="history">
-        <h2 class="section-title">History </h2>
+        <h2 class="section-title">History</h2>
         <p class="section-subtitle">Archive and Past Editions</p>
-        <div class="history-edition-card">
-            <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/locandina-3_orig.png" target="_blank">
-                <img src="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/locandina-3_orig.png" alt="Locandina XMaths 2025" class="history-poster">
-            </a>
-            
-            <div class="history-content">
-                <h3>XMaths Workshop 2025</h3>
-    
-                
-                <div class="history-buttons">
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/timetable.pdf" target="_blank" class="btn-pdf">
-                        📄 Programme
-                    </a>
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/book_of_abstracts__3_.pdf" target="_blank" class="btn-pdf">
-                        📚 Book of abstracts
-                    </a>
-                </div>
-            </div>
-        </div>
         
-        <div class="history-edition-card">
-            <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/hotel-form_orig.jpg" target="_blank">
-                <img src="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/hotel-form_orig.jpg" alt="Locandina XMaths 2024" class="history-poster">
+        <div class="history-card-box">
+            <h3>Looking for previous editions?</h3>
+            <p>If you want to check the archive, programs, and materials from past editions, you can visit our previous historical website. <em>(Note: please remember to return to this current page if you wish to register for the upcoming 2026 edition).</em></p>
+            <a href="https://xmathsworkshop.weebly.com/" target="_blank" class="btn-history-external">
+                🌐 Visit Past Editions Archive (Weebly)
             </a>
-            
-            <div class="history-content">
-                <h3>XMaths Workshop 2024</h3>
-    
-                
-                <div class="history-buttons">
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/timetablexmaths2024_new.pdf" target="_blank" class="btn-pdf">
-                        📄 Programme
-                    </a>
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/xmaths_workshop_2024_book_of_abstracts.pdf" target="_blank" class="btn-pdf">
-                        📚 Book of abstracts
-                    </a>
-                </div>
-            </div>
         </div>
-        
-        <div class="history-edition-card">
-            <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/locandina-xmaths-def-page-0001-orig_orig.jpg" target="_blank">
-                <img src="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/locandina-xmaths-def-page-0001-orig_orig.jpg" alt="Locandina XMaths 2023" class="history-poster">
-            </a>
-            
-            <div class="history-content">
-                <h3>XMaths Workshop 2023</h3>
-    
-                
-                <div class="history-buttons">
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/timetablexmaths2023.pdf" target="_blank" class="btn-pdf">
-                        📄 Programme
-                    </a>
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/book-of-abstracts.pdf" target="_blank" class="btn-pdf">
-                        📚 Book of abstracts
-                    </a>
-                </div>
-            </div>
-        </div>
-
-            <div class="history-edition-card">
-            <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/editor/locandina-xmaths-2022-aula.png?1672661779" target="_blank">
-                <img src="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/editor/locandina-xmaths-2022-aula.png?1672661779" class="history-poster">
-            </a>
-            
-            <div class="history-content">
-                <h3>XMaths Workshop 2022</h3>
-    
-                
-                <div class="history-buttons">
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/schedule.pdf" target="_blank" class="btn-pdf">
-                        📄 Programme
-                    </a>
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/abstracts_xmaths_2022.pdf" target="_blank" class="btn-pdf">
-                        📚 Book of abstracts
-                    </a>
-                </div>
-            </div>
-        </div>
-
-            <div class="history-edition-card">
-            <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/editor/locandina-2_3.jpeg" target="_blank">
-                <img src="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/editor/locandina-2_3.jpeg" class="history-poster">
-            </a>
-            
-            <div class="history-content">
-                <h3>XMaths Workshop 2021</h3>
-    
-                
-                <div class="history-buttons">
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/schedule_xmaths-workshop-2021_1.pdf" target="_blank" class="btn-pdf">
-                        📄 Programme
-                    </a>
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/book-of-abstracts_xmaths-workshop-2021_1.pdf" target="_blank" class="btn-pdf">
-                        📚 Book of abstracts
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="history-edition-card">
-            <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/published/locandinaxmaths2020-2_1.jpg" target="_blank">
-                <img src="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/published/locandinaxmaths2020-2_1.jpg" class="history-poster">
-            </a>
-            
-            <div class="history-content">
-                <h3>XMaths Workshop 2020</h3>
-    
-                
-                <div class="history-buttons">
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/programma2020.pdf" target="_blank" class="btn-pdf">
-                        📄 Programme
-                    </a>
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/book_of_abstracts_1.pdf" target="_blank" class="btn-pdf">
-                        📚 Book of abstracts
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="history-edition-card">
-            <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/published/locandina-xmasth_1.png?1636278265" target="_blank">
-                <img src="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/published/locandina-xmasth_1.png?1636278265" class="history-poster">
-            </a>
-            
-            <div class="history-content">
-                <h3>XMaths Workshop 2019</h3>
-    
-                
-                <div class="history-buttons">
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/program_xmaths_workshop_2019_-_bari_19-20_dicembre.pdf" target="_blank" class="btn-pdf">
-                        📄 Programme
-                    </a>
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/abstracts_xmaths_workshop_2019_-_bari_19-20_dicembre.pdf" target="_blank" class="btn-pdf">
-                        📚 Book of abstracts
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="history-edition-card">
-            <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/locandina-xmaths2018-1_3_orig.png" target="_blank">
-                <img src="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/locandina-xmaths2018-1_3_orig.png" class="history-poster">
-            </a>
-            
-            <div class="history-content">
-                <h3>XMaths Workshop 2018</h3>
-    
-                
-                <div class="history-buttons">
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/abstract_xmaths_2018.pdf" target="_blank" class="btn-pdf">
-                        📄 Programme
-                    </a>
-                    <a href="https://xmathsworkshop.weebly.com/uploads/3/9/8/1/39816219/abstracts_xmaths_workshop_2019_-_bari_19-20_dicembre.pdf" target="_blank" class="btn-pdf">
-                        📚 Book of abstracts
-                    </a>
-                </div>
-            </div>
-        </div>
-        
     </section>
 
     <!-- Speakers Section -->
