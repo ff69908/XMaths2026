@@ -400,7 +400,7 @@
             color: var(--text-muted);
         }
 
-        /* Venue Card Box Styles */
+        /* Venue & Floating Map Overlay Styles */
         .venue-card-box {
             background: var(--bg-card);
             border: 1px solid var(--border-gold);
@@ -423,33 +423,38 @@
             color: var(--text-muted);
             font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .btn-venue-map {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--red-festive);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: background 0.3s ease;
-        }
-
-        .btn-venue-map:hover {
-            background: var(--red-dark);
+            margin-bottom: 20px;
         }
 
         .map-container {
+            position: relative;
             width: 100%;
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border-gold);
-            margin-top: 20px;
+            margin-top: 15px;
+        }
+
+        .map-overlay-btn {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--red-festive);
+            border: 1px solid var(--border-gold);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .map-overlay-btn:hover {
+            background: var(--red-festive);
+            color: white;
         }
 
         .register-section {
@@ -758,7 +763,6 @@
 
     <!-- 4. History Section -->
     <section id="history">
-        
         <div class="history-card-box">
             <h3>Looking for previous editions?</h3>
             <p>If you want to check the archive, programs, and materials from past editions, you can visit our previous historical website. <em>(Note: please remember to return to this current page if you wish to register for the upcoming 2026 edition).</em></p>
@@ -776,14 +780,17 @@
         <div class="venue-card-box">
             <h3>Aula XII</h3>
             <p>
-                <strong>Dipartimento di Matematica</strong><br>
+                <strong>Department of Mathematics</strong><br>
                 Università degli Studi di Bari<br>
                 Via Edoardo Orabona, 4<br>
                 70125 Bari BA, Italy
             </p>
             
-            <!-- Mappa Interattiva Centrata sul Dipartimento di Matematica, Bari -->
+            <!-- Mappa Interattiva con Link/Pulsante sovrapposto in alto -->
             <div class="map-container">
+                <a href="https://maps.app.goo.gl/DnXjgadbRsJnBF9A8" target="_blank" class="map-overlay-btn">
+                    📍 Open in Maps
+                </a>
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3007.828230232491!2d16.877800076595568!3d41.10986191340156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1347e8f5223a413d%3A0x6fb87c8008a0d01!2sDipartimento%20di%20Matematica%20-%20Universit%C3%A0%20degli%20Studi%20di%20Bari!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" 
                     width="100%" 
