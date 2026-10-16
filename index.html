@@ -561,6 +561,86 @@
             font-weight: 600;
         }
 
+
+        /* Supported By Section */
+        .supported-by-section {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-gold);
+            background: #FAFAFA;
+        }
+
+        .supported-by-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .supported-by-logo {
+            max-width: 180px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .supported-by-logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Red Footer Banner */
+        .red-footer {
+            background: var(--red-festive);
+            color: #FFFFFF;
+            padding: 30px 8%;
+            margin-top: 0;
+            border-top: none;
+        }
+
+        .red-footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .contact-info a {
+            color: #FFFFFF;
+            text-decoration: underline;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            opacity: 0.85;
+        }
+
+        .footer-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .red-footer-container {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
         footer {
             text-align: center;
             padding: 30px;
@@ -855,8 +935,25 @@
     </div>
 
     <!-- Footer -->
-    <footer>
-        <p>© 2026 Università degli Studi - Dipartimento di Informatica. Evento organizzato dagli studenti.</p>
+    <!-- Supported By Section -->
+    <div class="supported-by-section">
+        <p class="supported-by-title">Supported by</p>
+        <a href="https://www.uniba.it/" target="_blank" rel="noopener noreferrer">
+            <!-- Sostituisci l'URL dell'immagine se usi un logo locale come 'uniba-logo.png' -->
+            <img src="https://www.uniba.it/logo.png" alt="Università degli Studi di Bari Aldo Moro" class="supported-by-logo" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/it/thumb/a/a2/Logo_Universit%C3%A0_degli_Studi_di_Bari.svg/1200px-Logo_Universit%C3%A0_degli_Studi_di_Bari.svg.png';">
+        </a>
+    </div>
+
+    <!-- Red Footer Banner -->
+    <footer class="red-footer">
+        <div class="red-footer-container">
+            <div class="contact-info">
+                ✉️ Contact us at: <a href="mailto:xmaths@uniba.it">xmaths@uniba.it</a>
+            </div>
+            <div class="footer-brand">
+                XMaths 2026 Workshop
+            </div>
+        </div>
     </footer>
 
     <!-- JavaScript Code -->
