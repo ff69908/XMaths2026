@@ -69,15 +69,15 @@
         /* Ghirlanda Natalizia Orizzontale Sotto L'Header */
         .garland-banner {
             position: fixed;
-            top: 70px; /* Posizionata subito sotto l'header */
+            top: 75px; /* Subito sotto l'header */
             left: 0;
             width: 100%;
             height: 45px;
             pointer-events: none;
             z-index: 99;
-            opacity: 0.92;
+            opacity: 0.95;
             background-repeat: repeat-x;
-            background-size: contain;
+            background-size: auto 100%;
             filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.12));
             animation: garlandGlow 3s infinite alternate ease-in-out;
         }
@@ -327,7 +327,6 @@
             gap: 30px;
         }
 
-        /* Layout Organizzatori (Flex: 3 sopra, 2 sotto centrati) */
         .organizers-grid {
             display: flex;
             flex-wrap: wrap;
@@ -435,7 +434,6 @@
             color: var(--text-muted);
         }
 
-        /* Venue & Floating Map Overlay Styles */
         .venue-card-box {
             background: var(--bg-card);
             border: 1px solid var(--border-gold);
@@ -596,7 +594,6 @@
             font-weight: 600;
         }
 
-        /* Supported By Section */
         .supported-by-section {
             text-align: center;
             padding: 40px 20px;
@@ -623,7 +620,6 @@
             transform: scale(1.05);
         }
 
-        /* Red Footer Banner */
         .red-footer {
             background: var(--red-festive);
             color: #FFFFFF;
@@ -667,25 +663,6 @@
             letter-spacing: 0.5px;
         }
 
-        @media (max-width: 768px) {
-            .red-footer-container {
-                flex-direction: column;
-                text-align: center;
-                justify-content: center;
-            }
-            .garland-banner {
-                top: 110px; /* Adattamento per dispositivi mobili */
-            }
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            border-top: 1px solid var(--border-gold);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
         @media (max-width: 992px) {
             header {
                 flex-direction: column;
@@ -723,21 +700,16 @@
                 padding: 10px;
                 font-size: 0.9rem;
             }
+            .garland-banner {
+                top: 110px;
+            }
         }
 
         @media (max-width: 768px) {
-            .countdown-container {
-                gap: 8px;
-            }
-            .time-box {
-                min-width: 60px;
-                padding: 8px;
-            }
-            .time-box .num {
-                font-size: 1.3rem;
-            }
-            section {
-                padding: 60px 5%;
+            .red-footer-container {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
             }
         }
     </style>
@@ -753,7 +725,6 @@
                 <img src="XMaths.png" alt="XMaths 2026" class="logo-img">
                 <span>| XMaths 2026</span>
             </div>
-            <!-- Bottone tendina visibile solo su smartphone -->
             <button class="menu-toggle" onclick="toggleMenu()">MENU ☰</button>
         </div>
 
@@ -768,7 +739,7 @@
     </header>
 
     <!-- Ghirlanda Festiva Orizzontale (Sotto L'Header) -->
-    <div class="garland-banner" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 60\' preserveAspectRatio=\'none\'><path d=\'M0,0 Q150,45 300,0 Q450,45 600,0 Q750,45 900,0 Q1050,45 1200,0 L1200,0 L0,0 Z\' fill=\'%231e5128\' opacity=\'0.15\'/><path d=\'M0,0 Q150,35 300,0 Q450,35 600,0 Q750,35 900,0 Q1050,35 1200,0\' stroke=\'%23143f1e\' stroke-width=\'6\' fill=\'none\'/><circle cx=\'150\' cy=\'30\' r=\'8\' fill=\'%23c0392b\'/><circle cx=\'150\' cy=\'30\' r=\'3\' fill=\'%23f1c40f\'/><circle cx=\'450\' cy=\'30\' r=\'8\' fill=\'%23f1c40f\'/><circle cx=\'450\' cy=\'30\' r=\'3\' fill=\'%23ffffff\'/><circle cx=\'750\' cy=\'30\' r=\'8\' fill=\'%23c0392b\'/><circle cx=\'750\' cy=\'30\' r=\'3\' fill=\'%23f1c40f\'/><circle cx=\'1050\' cy=\'30\' r=\'8\' fill=\'%23f1c40f\'/><circle cx=\'75\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'225\' cy=\'18\' r=\ me4\' fill=\'%23f39c12\'/><circle cx=\'375\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'525\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/><circle cx=\'675\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'825\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/><circle cx=\'975\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'1125\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/></svg>');"></div>
+    <div class="garland-banner" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 60\' preserveAspectRatio=\'none\'><path d=\'M0,0 Q150,45 300,0 Q450,45 600,0 Q750,45 900,0 Q1050,45 1200,0 L1200,0 L0,0 Z\' fill=\'%231e5128\' opacity=\'0.15\'/><path d=\'M0,0 Q150,35 300,0 Q450,35 600,0 Q750,35 900,0 Q1050,35 1200,0\' stroke=\'%23143f1e\' stroke-width=\'6\' fill=\'none\'/><circle cx=\'150\' cy=\'30\' r=\'8\' fill=\'%23c0392b\'/><circle cx=\'150\' cy=\'30\' r=\'3\' fill=\'%23f1c40f\'/><circle cx=\'450\' cy=\'30\' r=\'8\' fill=\'%23f1c40f\'/><circle cx=\'450\' cy=\'30\' r=\'3\' fill=\'%23ffffff\'/><circle cx=\'750\' cy=\'30\' r=\'8\' fill=\'%23c0392b\'/><circle cx=\'750\' cy=\'30\' r=\'3\' fill=\'%23f1c40f\'/><circle cx=\'1050\' cy=\'30\' r=\'8\' fill=\'%23f1c40f\'/><circle cx=\'75\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'225\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/><circle cx=\'375\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'525\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/><circle cx=\'675\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'825\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/><circle cx=\'975\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'1125\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/></svg>');"></div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -880,7 +851,6 @@
             <p>Evento organizzato dal Dipartimento di Informatica in collaborazione con il Consiglio degli Studenti e i rappresentanti d'istituto.</p>
         </div>
 
-        <!-- Griglia Organizzatori (3 sopra, 2 in basso centrati) -->
         <div class="organizers-grid">
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
@@ -938,7 +908,6 @@
                 70125 Bari BA, Italy
             </p>
             
-            <!-- Mappa Interattiva con Link/Pulsante sovrapposto in alto -->
             <div class="map-container">
                 <a href="https://maps.app.goo.gl/DnXjgadbRsJnBF9A8" target="_blank" class="map-overlay-btn">
                     📍 Open in Maps
@@ -1006,7 +975,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <!-- Supported By Section -->
     <div class="supported-by-section">
         <p class="supported-by-title">Supported by</p>
@@ -1029,13 +997,11 @@
 
     <!-- JavaScript Code -->
     <script>
-        // --- Funzione per aprire/chiudere il menu a tendina su smartphone ---
         function toggleMenu() {
             const menu = document.getElementById('nav-menu');
             menu.classList.toggle('active');
         }
 
-        // --- Effetto Fiocchi di Neve "Frozen" (Temporaneo per 5 secondi) ---
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
         let snowActive = true;
@@ -1102,22 +1068,17 @@
 
         drawSnow();
 
-        // Arresta l'animazione della neve esattamente dopo 5 secondi (5000ms)
         setTimeout(() => {
             snowActive = false;
             cancelAnimationFrame(animationId);
-            
             canvas.style.transition = "opacity 1.5s ease";
             canvas.style.opacity = "0";
-            
             setTimeout(() => {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 canvas.style.display = "none";
             }, 1500);
-            
         }, 5000);
 
-        // --- Countdown Timer (17 Dicembre 2026 - 09:15) ---
         const eventDate = new Date('December 17, 2026 09:15:00').getTime();
 
         function updateCountdown() {
@@ -1145,7 +1106,6 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- Gestione Form e Modale ---
         function handleRegister(event) {
             event.preventDefault();
             document.getElementById('success-modal').style.display = 'flex';
