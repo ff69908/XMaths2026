@@ -66,25 +66,25 @@
             flex-wrap: wrap;
         }
 
-        /* Ghirlanda Natalizia Orizzontale Sotto L'Header */
+        /* Ghirlanda Natalizia Orizzontale Sotto L'Header (Ottimizzata) */
         .garland-banner {
             position: fixed;
-            top: 75px; /* Subito sotto l'header */
+            top: 75px; /* Sotto l'header su desktop */
             left: 0;
             width: 100%;
-            height: 45px;
+            height: 35px;
             pointer-events: none;
             z-index: 99;
-            opacity: 0.95;
+            opacity: 0.98;
             background-repeat: repeat-x;
-            background-size: auto 100%;
-            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.12));
+            background-size: 300px 35px; /* Si ripete fluidamente senza distorsioni */
+            filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.15));
             animation: garlandGlow 3s infinite alternate ease-in-out;
         }
 
         @keyframes garlandGlow {
-            0% { filter: drop-shadow(0px 3px 5px rgba(192, 57, 43, 0.2)); }
-            100% { filter: drop-shadow(0px 6px 12px rgba(241, 196, 15, 0.4)); }
+            0% { filter: drop-shadow(0px 2px 4px rgba(27, 94, 32, 0.3)); }
+            100% { filter: drop-shadow(0px 5px 10px rgba(192, 57, 43, 0.4)); }
         }
 
         .logo {
@@ -700,8 +700,9 @@
                 padding: 10px;
                 font-size: 0.9rem;
             }
+            /* Posizionamento ghirlanda flessibile esatto sotto l'header mobile a tendina */
             .garland-banner {
-                top: 110px;
+                top: 73px; 
             }
         }
 
@@ -738,8 +739,8 @@
         </div>
     </header>
 
-    <!-- Ghirlanda Festiva Orizzontale (Sotto L'Header) -->
-    <div class="garland-banner" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 60\' preserveAspectRatio=\'none\'><path d=\'M0,0 Q150,45 300,0 Q450,45 600,0 Q750,45 900,0 Q1050,45 1200,0 L1200,0 L0,0 Z\' fill=\'%231e5128\' opacity=\'0.15\'/><path d=\'M0,0 Q150,35 300,0 Q450,35 600,0 Q750,35 900,0 Q1050,35 1200,0\' stroke=\'%23143f1e\' stroke-width=\'6\' fill=\'none\'/><circle cx=\'150\' cy=\'30\' r=\'8\' fill=\'%23c0392b\'/><circle cx=\'150\' cy=\'30\' r=\'3\' fill=\'%23f1c40f\'/><circle cx=\'450\' cy=\'30\' r=\'8\' fill=\'%23f1c40f\'/><circle cx=\'450\' cy=\'30\' r=\'3\' fill=\'%23ffffff\'/><circle cx=\'750\' cy=\'30\' r=\'8\' fill=\'%23c0392b\'/><circle cx=\'750\' cy=\'30\' r=\'3\' fill=\'%23f1c40f\'/><circle cx=\'1050\' cy=\'30\' r=\'8\' fill=\'%23f1c40f\'/><circle cx=\'75\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'225\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/><circle cx=\'375\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'525\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/><circle cx=\'675\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'825\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/><circle cx=\'975\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'1125\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/></svg>');"></div>
+    <!-- Ghirlanda Festiva Orizzontale Migliorata e Pulita -->
+    <div class="garland-banner" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 300 35\' preserveAspectRatio=\'none\'><path d=\'M0,2 Q75,32 150,2 Q225,32 300,2\' stroke=\'%231b5e20\' stroke-width=\'7\' fill=\'none\' stroke-linecap=\'round\'/><path d=\'M0,6 Q75,34 150,6 Q225,34 300,6\' stroke=\'%232e7d32\' stroke-width=\'3\' fill=\'none\'/><circle cx=\'75\' cy=\'22\' r=\'4.5\' fill=\'%23c0392b\'/><circle cx=\'75\' cy=\'22\' r=\'1.5\' fill=\'%23ffffff\'/><circle cx=\'150\' cy=\'2\' r=\'5\' fill=\'%23f1c40f\'/><circle cx=\'150\' cy=\'2\' r=\'2\' fill=\'%23e74c3c\'/><circle cx=\'225\' cy=\'22\' r=\'4.5\' fill=\'%23c0392b\'/><circle cx=\'225\' cy=\'22\' r=\'1.5\' fill=\'%23ffffff\'/><circle cx=\'0\' cy=\'2\' r=\'4\' fill=\'%23f1c40f\'/><circle cx=\'300\' cy=\'2\' r=\'4\' fill=\'%23f1c40f\'/></svg>');"></div>
 
     <!-- Hero Section -->
     <section class="hero">
