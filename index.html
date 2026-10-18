@@ -329,6 +329,7 @@
             border: 3px solid var(--gold-accent);
             background-size: cover;
             background-position: center;
+            background-color: #e2e8f0; /* Sfera di fallback se l'immagine manca */
         }
 
         .speaker-card h3 {
@@ -835,8 +836,46 @@
     <section id="organizers">
         <h2 class="section-title">Organizzatori</h2>
         <p class="section-subtitle">Il team accademico e studentesco dietro l'evento</p>
-        <div style="text-align: center; max-width: 700px; margin: 0 auto; color: var(--text-muted);">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto 35px auto; color: var(--text-muted);">
             <p>Evento organizzato dal Dipartimento di Informatica in collaborazione con il Consiglio degli Studenti e i rappresentanti d'istituto.</p>
+        </div>
+
+        <!-- Griglia Organizzatori con spazi per le immagini -->
+        <div class="speakers-grid">
+            <div class="speaker-card">
+                <!-- Sostituisci l'URL dell'immagine dentro url('...') -->
+                <div class="speaker-avatar" style="background-image: url('');"></div>
+                <h3>Alessandro Cannone</h3>
+                <span class="role">Comitato Organizzatore</span>
+            </div>
+
+            <div class="speaker-card">
+                <!-- Sostituisci l'URL dell'immagine dentro url('...') -->
+                <div class="speaker-avatar" style="background-image: url('');"></div>
+                <h3>Elisabetta Erione</h3>
+                <span class="role">Comitato Organizzatore</span>
+            </div>
+
+            <div class="speaker-card">
+                <!-- Sostituisci l'URL dell'immagine dentro url('...') -->
+                <div class="speaker-avatar" style="background-image: url('');"></div>
+                <h3>Flavia Fazio</h3>
+                <span class="role">Comitato Organizzatore</span>
+            </div>
+
+            <div class="speaker-card">
+                <!-- Sostituisci l'URL dell'immagine dentro url('...') -->
+                <div class="speaker-avatar" style="background-image: url('');"></div>
+                <h3>Niccolò Maldera</h3>
+                <span class="role">Comitato Organizzatore</span>
+            </div>
+
+            <div class="speaker-card">
+                <!-- Sostituisci l'URL dell'immagine dentro url('...') -->
+                <div class="speaker-avatar" style="background-image: url('');"></div>
+                <h3>Taijin Zhao</h3>
+                <span class="role">Comitato Organizzatore</span>
+            </div>
         </div>
     </section>
 
@@ -975,21 +1014,21 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        const symbols = ['❄', '❅', '❆']; // Cristalli di neve definiti
+        const symbols = ['❄', '❅', '❆'];
 
         function createFlakes() {
             flakes = [];
-            const count = Math.floor(window.innerWidth / 35); // Numero bilanciato di fiocchi
+            const count = Math.floor(window.innerWidth / 35);
             for (let i = 0; i < count; i++) {
                 flakes.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    size: Math.random() * 16 + 12,      // Dimensione del cristallo
-                    speed: Math.random() * 1.2 + 0.6,   // Velocità di caduta
-                    wind: Math.random() * 0.4 - 0.2,    // Oscillazione del vento
+                    size: Math.random() * 16 + 12,
+                    speed: Math.random() * 1.2 + 0.6,
+                    wind: Math.random() * 0.4 - 0.2,
                     symbol: symbols[Math.floor(Math.random() * symbols.length)],
-                    angle: Math.random() * Math.PI * 2, // Rotazione
-                    spin: Math.random() * 0.03 - 0.015  // Velocità di rotazione
+                    angle: Math.random() * Math.PI * 2,
+                    spin: Math.random() * 0.03 - 0.015
                 });
             }
         }
@@ -999,7 +1038,7 @@
             if (!snowActive) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            ctx.fillStyle = 'rgba(70, 140, 210, 0.85)'; // Colore azzurro ghiaccio brillante
+            ctx.fillStyle = 'rgba(70, 140, 210, 0.85)';
             ctx.shadowColor = 'rgba(120, 180, 255, 0.5)';
             ctx.shadowBlur = 4;
 
@@ -1064,7 +1103,7 @@
                 document.getElementById('hours').innerText = "00";
                 document.getElementById('minutes').innerText = "00";
                 document.getElementById('seconds').innerText = "00";
-            }
+            11/1
         }
         
         setInterval(updateCountdown, 1000);
@@ -1082,4 +1121,4 @@
         }
     </script>
 </body>
-</html>
+</html>1 1 1
