@@ -66,25 +66,20 @@
             flex-wrap: wrap;
         }
 
-        /* Ghirlanda Natalizia Orizzontale Sotto L'Header (Ottimizzata) */
+        /* Ghirlanda Natalizia Professionale (Generata da AI / Stock ad altissima definizione) */
         .garland-banner {
             position: fixed;
             top: 75px; /* Sotto l'header su desktop */
             left: 0;
             width: 100%;
-            height: 35px;
+            height: 40px;
             pointer-events: none;
             z-index: 99;
-            opacity: 0.98;
+            background-image: url('https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&q=80&w=1200');
             background-repeat: repeat-x;
-            background-size: 300px 35px; /* Si ripete fluidamente senza distorsioni */
-            filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.15));
-            animation: garlandGlow 3s infinite alternate ease-in-out;
-        }
-
-        @keyframes garlandGlow {
-            0% { filter: drop-shadow(0px 2px 4px rgba(27, 94, 32, 0.3)); }
-            100% { filter: drop-shadow(0px 5px 10px rgba(192, 57, 43, 0.4)); }
+            background-size: auto 40px;
+            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.2));
+            opacity: 0.95;
         }
 
         .logo {
@@ -700,7 +695,7 @@
                 padding: 10px;
                 font-size: 0.9rem;
             }
-            /* Posizionamento ghirlanda flessibile esatto sotto l'header mobile a tendina */
+            /* Posizionamento ghirlanda su mobile sotto l'header esteso */
             .garland-banner {
                 top: 73px; 
             }
@@ -739,8 +734,8 @@
         </div>
     </header>
 
-    <!-- Ghirlanda Festiva Orizzontale Migliorata e Pulita -->
-    <div class="garland-banner" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 300 35\' preserveAspectRatio=\'none\'><path d=\'M0,2 Q75,32 150,2 Q225,32 300,2\' stroke=\'%231b5e20\' stroke-width=\'7\' fill=\'none\' stroke-linecap=\'round\'/><path d=\'M0,6 Q75,34 150,6 Q225,34 300,6\' stroke=\'%232e7d32\' stroke-width=\'3\' fill=\'none\'/><circle cx=\'75\' cy=\'22\' r=\'4.5\' fill=\'%23c0392b\'/><circle cx=\'75\' cy=\'22\' r=\'1.5\' fill=\'%23ffffff\'/><circle cx=\'150\' cy=\'2\' r=\'5\' fill=\'%23f1c40f\'/><circle cx=\'150\' cy=\'2\' r=\'2\' fill=\'%23e74c3c\'/><circle cx=\'225\' cy=\'22\' r=\'4.5\' fill=\'%23c0392b\'/><circle cx=\'225\' cy=\'22\' r=\'1.5\' fill=\'%23ffffff\'/><circle cx=\'0\' cy=\'2\' r=\'4\' fill=\'%23f1c40f\'/><circle cx=\'300\' cy=\'2\' r=\'4\' fill=\'%23f1c40f\'/></svg>');"></div>
+    <!-- Ghirlanda Festiva Grafica Professionale -->
+    <div class="garland-banner"></div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1106,6 +1101,8 @@
         
         setInterval(updateCountdown, 1000);
         updateCountdown();
+
+        function handlerRegister(event) { ... } // (già gestito sopra)
 
         function handleRegister(event) {
             event.preventDefault();
