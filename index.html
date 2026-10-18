@@ -66,6 +66,27 @@
             flex-wrap: wrap;
         }
 
+        /* Ghirlanda Natalizia Orizzontale Sotto L'Header */
+        .garland-banner {
+            position: fixed;
+            top: 70px; /* Posizionata subito sotto l'header */
+            left: 0;
+            width: 100%;
+            height: 45px;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.92;
+            background-repeat: repeat-x;
+            background-size: contain;
+            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.12));
+            animation: garlandGlow 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes garlandGlow {
+            0% { filter: drop-shadow(0px 3px 5px rgba(192, 57, 43, 0.2)); }
+            100% { filter: drop-shadow(0px 6px 12px rgba(241, 196, 15, 0.4)); }
+        }
+
         .logo {
             font-family: 'Cinzel', serif;
             font-size: 1.2rem;
@@ -151,7 +172,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 140px 20px 60px;
+            padding: 150px 20px 60px;
             background: radial-gradient(circle at center, rgba(192, 57, 43, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
         }
 
@@ -652,6 +673,9 @@
                 text-align: center;
                 justify-content: center;
             }
+            .garland-banner {
+                top: 110px; /* Adattamento per dispositivi mobili */
+            }
         }
 
         footer {
@@ -742,6 +766,9 @@
             <a href="#register" class="btn-nav-cta" onclick="toggleMenu()">Registration</a>
         </div>
     </header>
+
+    <!-- Ghirlanda Festiva Orizzontale (Sotto L'Header) -->
+    <div class="garland-banner" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1200 60\' preserveAspectRatio=\'none\'><path d=\'M0,0 Q150,45 300,0 Q450,45 600,0 Q750,45 900,0 Q1050,45 1200,0 L1200,0 L0,0 Z\' fill=\'%231e5128\' opacity=\'0.15\'/><path d=\'M0,0 Q150,35 300,0 Q450,35 600,0 Q750,35 900,0 Q1050,35 1200,0\' stroke=\'%23143f1e\' stroke-width=\'6\' fill=\'none\'/><circle cx=\'150\' cy=\'30\' r=\'8\' fill=\'%23c0392b\'/><circle cx=\'150\' cy=\'30\' r=\'3\' fill=\'%23f1c40f\'/><circle cx=\'450\' cy=\'30\' r=\'8\' fill=\'%23f1c40f\'/><circle cx=\'450\' cy=\'30\' r=\'3\' fill=\'%23ffffff\'/><circle cx=\'750\' cy=\'30\' r=\'8\' fill=\'%23c0392b\'/><circle cx=\'750\' cy=\'30\' r=\'3\' fill=\'%23f1c40f\'/><circle cx=\'1050\' cy=\'30\' r=\'8\' fill=\'%23f1c40f\'/><circle cx=\'75\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'225\' cy=\'18\' r=\ me4\' fill=\'%23f39c12\'/><circle cx=\'375\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'525\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/><circle cx=\'675\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'825\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/><circle cx=\'975\' cy=\'18\' r=\'4\' fill=\'%23e74c3c\'/><circle cx=\'1125\' cy=\'18\' r=\'4\' fill=\'%23f39c12\'/></svg>');"></div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1130,4 +1157,4 @@
         }
     </script>
 </body>
-</html>1
+</html>
