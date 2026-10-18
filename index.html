@@ -37,7 +37,7 @@
             position: relative;
         }
 
-        /* Canvas per Neve Ghiaccio */
+        /* Canvas per Fiocchi di Neve "Frozen" */
         #snow-canvas {
             position: fixed;
             top: 0;
@@ -961,7 +961,7 @@
             menu.classList.toggle('active');
         }
 
-        // --- Effetto Neve Colore Ghiaccio (Durata 5 secondi) ---
+        // --- Effetto Cristalli di Ghiaccio "Frozen" (Durata 5 secondi) ---
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
         let snowActive = true;
@@ -975,16 +975,21 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
+        const symbols = ['❄', '❅', '❆']; // Cristalli di neve definiti
+
         function createFlakes() {
             flakes = [];
-            const count = Math.floor(window.innerWidth / 10);
+            const count = Math.floor(window.innerWidth / 35); // Numero bilanciato di fiocchi
             for (let i = 0; i < count; i++) {
                 flakes.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    radius: Math.random() * 3.5 + 1.2, // Fiocchi leggermente più grandi
-                    speed: Math.random() * 1.5 + 0.8,
-                    wind: Math.random() * 0.6 - 0.3
+                    size: Math.random() * 16 + 12,      // Dimensione del cristallo
+                    speed: Math.random() * 1.2 + 0.6,   // Velocità di caduta
+                    wind: Math.random() * 0.4 - 0.2,    // Oscillazione del vento
+                    symbol: symbols[Math.floor(Math.random() * symbols.length)],
+                    angle: Math.random() * Math.PI * 2, // Rotazione
+                    spin: Math.random() * 0.03 - 0.015  // Velocità di rotazione
                 });
             }
         }
@@ -994,25 +999,30 @@
             if (!snowActive) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Colore blu-ghiaccio brillante con leggera trasparenza per risaltare sul fondo bianco
-            ctx.fillStyle = 'rgba(120, 165, 210, 0.85)';
-            ctx.shadowColor = 'rgba(150, 200, 255, 0.6)';
+            ctx.fillStyle = 'rgba(70, 140, 210, 0.85)'; // Colore azzurro ghiaccio brillante
+            ctx.shadowColor = 'rgba(120, 180, 255, 0.5)';
             ctx.shadowBlur = 4;
-            
-            ctx.beginPath();
-            
+
             flakes.forEach(f => {
-                ctx.moveTo(f.x, f.y);
-                ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+                ctx.save();
+                ctx.translate(f.x, f.y);
+                ctx.rotate(f.angle);
+                ctx.font = f.size + 'px serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(f.symbol, 0, 0);
+                ctx.restore();
+                
                 f.y += f.speed;
                 f.x += f.wind;
+                f.angle += f.spin;
 
-                if (f.y > canvas.height) {
-                    f.y = -5;
+                if (f.y > canvas.height + f.size) {
+                    f.y = -20;
                     f.x = Math.random() * canvas.width;
                 }
             });
-            ctx.fill();
+
             animationId = requestAnimationFrame(drawSnow);
         }
 
