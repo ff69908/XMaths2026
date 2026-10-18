@@ -37,7 +37,7 @@
             position: relative;
         }
 
-        /* Canvas per Neve */
+        /* Canvas per Neve Ghiaccio */
         #snow-canvas {
             position: fixed;
             top: 0;
@@ -561,7 +561,6 @@
             font-weight: 600;
         }
 
-
         /* Supported By Section */
         .supported-by-section {
             text-align: center;
@@ -938,7 +937,6 @@
     <div class="supported-by-section">
         <p class="supported-by-title">Supported by</p>
         <a href="https://www.uniba.it/it/" target="_blank" rel="noopener noreferrer">
-            <!-- Sostituisci l'URL dell'immagine se usi un logo locale come 'uniba-logo.png' -->
             <img src="https://numera-workshop.github.io/assets/theme/images/Logo-UNIBA.jpg" alt="Università degli Studi di Bari Aldo Moro" class="supported-by-logo" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/it/thumb/a/a2/Logo_Universit%C3%A0_degli_Studi_di_Bari.svg/1200px-Logo_Universit%C3%A0_degli_Studi_di_Bari.svg.png';">
         </a>
     </div>
@@ -963,7 +961,7 @@
             menu.classList.toggle('active');
         }
 
-        // --- Effetto Neve Temporaneo (5 secondi) ---
+        // --- Effetto Neve Colore Ghiaccio (Durata 5 secondi) ---
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
         let snowActive = true;
@@ -979,14 +977,14 @@
 
         function createFlakes() {
             flakes = [];
-            const count = Math.floor(window.innerWidth / 12);
+            const count = Math.floor(window.innerWidth / 10);
             for (let i = 0; i < count; i++) {
                 flakes.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    radius: Math.random() * 3 + 1,
-                    speed: Math.random() * 1 + 0.5,
-                    wind: Math.random() * 0.5 - 0.25
+                    radius: Math.random() * 3.5 + 1.2, // Fiocchi leggermente più grandi
+                    speed: Math.random() * 1.5 + 0.8,
+                    wind: Math.random() * 0.6 - 0.3
                 });
             }
         }
@@ -996,7 +994,11 @@
             if (!snowActive) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            ctx.fillStyle = 'rgba(192, 57, 43, 0.35)'; 
+            // Colore blu-ghiaccio brillante con leggera trasparenza per risaltare sul fondo bianco
+            ctx.fillStyle = 'rgba(120, 165, 210, 0.85)';
+            ctx.shadowColor = 'rgba(150, 200, 255, 0.6)';
+            ctx.shadowBlur = 4;
+            
             ctx.beginPath();
             
             flakes.forEach(f => {
