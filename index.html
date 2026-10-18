@@ -37,7 +37,7 @@
             position: relative;
         }
 
-        /* Canvas per Fiocchi di Neve "Frozen" */
+        /* Canvas per Neve a Fiocchi "Frozen" */
         #snow-canvas {
             position: fixed;
             top: 0;
@@ -306,6 +306,19 @@
             gap: 30px;
         }
 
+        /* Layout Organizzatori (Flex: 3 sopra, 2 sotto centrati) */
+        .organizers-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .organizers-grid .speaker-card {
+            flex: 1 1 260px;
+            max-width: 320px;
+        }
+
         .speaker-card {
             background: var(--bg-card);
             border: 1px solid var(--border-gold);
@@ -329,7 +342,7 @@
             border: 3px solid var(--gold-accent);
             background-size: cover;
             background-position: center;
-            background-color: #e2e8f0; /* Sfera di fallback se l'immagine manca */
+            background-color: #e2e8f0;
         }
 
         .speaker-card h3 {
@@ -840,38 +853,33 @@
             <p>Evento organizzato dal Dipartimento di Informatica in collaborazione con il Consiglio degli Studenti e i rappresentanti d'istituto.</p>
         </div>
 
-        <!-- Griglia Organizzatori con spazi per le immagini -->
-        <div class="speakers-grid">
+        <!-- Griglia Organizzatori (3 sopra, 2 in basso centrati) -->
+        <div class="organizers-grid">
             <div class="speaker-card">
-                <!-- Sostituisci l'URL dell'immagine dentro url('...') -->
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Alessandro Cannone</h3>
                 <span class="role">Comitato Organizzatore</span>
             </div>
 
             <div class="speaker-card">
-                <!-- Sostituisci l'URL dell'immagine dentro url('...') -->
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Elisabetta Erione</h3>
                 <span class="role">Comitato Organizzatore</span>
             </div>
 
             <div class="speaker-card">
-                <!-- Sostituisci l'URL dell'immagine dentro url('...') -->
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Flavia Fazio</h3>
                 <span class="role">Comitato Organizzatore</span>
             </div>
 
             <div class="speaker-card">
-                <!-- Sostituisci l'URL dell'immagine dentro url('...') -->
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Niccolò Maldera</h3>
                 <span class="role">Comitato Organizzatore</span>
             </div>
 
             <div class="speaker-card">
-                <!-- Sostituisci l'URL dell'immagine dentro url('...') -->
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Taijin Zhao</h3>
                 <span class="role">Comitato Organizzatore</span>
@@ -1000,7 +1008,7 @@
             menu.classList.toggle('active');
         }
 
-        // --- Effetto Cristalli di Ghiaccio "Frozen" (Durata 5 secondi) ---
+        // --- Effetto Fiocchi di Neve "Frozen" (Temporaneo per 5 secondi) ---
         const canvas = document.getElementById('snow-canvas');
         const ctx = canvas.getContext('2d');
         let snowActive = true;
@@ -1067,6 +1075,7 @@
 
         drawSnow();
 
+        // Arresta l'animazione della neve esattamente dopo 5 secondi (5000ms)
         setTimeout(() => {
             snowActive = false;
             cancelAnimationFrame(animationId);
@@ -1103,7 +1112,7 @@
                 document.getElementById('hours').innerText = "00";
                 document.getElementById('minutes').innerText = "00";
                 document.getElementById('seconds').innerText = "00";
-            11/1
+            }
         }
         
         setInterval(updateCountdown, 1000);
@@ -1121,4 +1130,4 @@
         }
     </script>
 </body>
-</html>1 1 1
+</html>1
