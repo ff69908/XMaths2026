@@ -20,7 +20,6 @@
             --text-light: #2C3E50;
             --text-muted: #7F8C8D;
             --border-gold: rgba(192, 57, 43, 0.2);
-            /* Colore specifico per il nuovo testo discorsivo e luci ghirlanda */
             --gold-text: #B8860B; 
         }
 
@@ -44,15 +43,15 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             pointer-events: none;
-            z-index: 10;
+            z-index: 999; /* Garanzia che sia sopra tutto durante i primi 5 secondi */
         }
 
         /* Header & Nav */
         header {
-            position: fixed; /* Header fisso */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -60,7 +59,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 4%;
-            background: rgba(255, 255, 255, 0.98); /* Leggermente più opaco per coprire meglio */
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 100;
             border-bottom: 1px solid var(--border-gold);
@@ -68,21 +67,19 @@
             flex-wrap: wrap;
         }
 
-        /* --- NUOVA GHIRLANDA CANVAS ESTETICA E ADATTIVA --- */
+        /* CONTENITORE GHIRLANDA CANVAS */
         .garland-banner-container {
-            position: fixed; /* Fisso sotto l'header */
-            top: 75px; /* Altezza media dell'header desktop */
+            position: fixed;
+            top: 75px; /* Verrà aggiornato dinamicamente via JS per non lasciare spazi */
             left: 0;
             width: 100%;
-            height: 40px; /* Altezza fissa della decorazione */
+            height: 38px;
             pointer-events: none;
-            z-index: 99; /* Subito sotto l'header */
+            z-index: 99;
             opacity: 0.98;
-            filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.1));
-            overflow: hidden; /* Evita che il disegno esca */
+            filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.15));
         }
 
-        /* Il canvas occupa tutto il contenitore */
         #garland-canvas {
             width: 100%;
             height: 100%;
@@ -174,7 +171,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 160px 20px 60px; /* Aumentato padding top per la ghirlanda */
+            padding: 160px 20px 60px;
             background: radial-gradient(circle at center, rgba(192, 57, 43, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
         }
 
@@ -210,7 +207,7 @@
             margin-bottom: 30px;
         }
 
-        /* --- NUOVO STILE PER TESTO DISCORSIVO CENTRALE --- */
+        /* TESTO DISCORSIVO INGLESE CENTRALE */
         .discursive-info-container {
             max-width: 800px;
             margin: 0 auto 35px auto;
@@ -219,10 +216,9 @@
 
         .discursive-info-text {
             font-size: clamp(1rem, 2vw, 1.15rem);
-            color: var(--gold-text); /* Colore oro scuro */
-            font-weight: 500;
+            color: var(--gold-text);
+            font-weight: 600;
             line-height: 1.6;
-            font-style: italic; /* Opzionale, per distinguerlo */
             padding: 0 15px;
         }
 
@@ -662,7 +658,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- ADATTAMENTO MOBILE HEADER E GHIRLANDA --- */
+        /* Responsive Mobile Layout */
         @media (max-width: 992px) {
             header {
                 flex-direction: column;
@@ -700,11 +696,8 @@
                 padding: 10px;
                 font-size: 0.9rem;
             }
-            
-            /* --- Ricalcolo posizione ghirlanda su mobile --- */
             .garland-banner-container {
-                top: 73px; /* Altezza header mobile stimata */
-                height: 30px; /* Più sottile su mobile */
+                height: 28px;
             }
         }
 
@@ -719,7 +712,7 @@
 </head>
 <body>
 
-    <!-- Canvas Neve "Frozen" (attivo per i primi 5 secondi) -->
+    <!-- 1. CANVAS NEVE FROZEN (Attivo 5 Secondi) -->
     <canvas id="snow-canvas"></canvas>
 
     <!-- Header Navigation -->
@@ -742,7 +735,7 @@
         </div>
     </header>
 
-    <!-- Contenitore Ghirlanda Estetica Canvas -->
+    <!-- 2. GHIRLANDA CANVAS DINAMICA -->
     <div class="garland-banner-container" id="garland-container">
         <canvas id="garland-canvas"></canvas>
     </div>
@@ -753,7 +746,7 @@
         <h1>Workshop Natalizio: <br><span>AI & Futuro Digitale</span></h1>
         <p class="subtitle">Un pomeriggio di seminari, dibattiti e networking natalizio organizzato per studenti e docenti. Partecipazione gratuita con rilascio attestato CFU.</p>
 
-        <!-- --- NUOVO TESTO DISCORSIVO INGLESE CENTRALE --- -->
+        <!-- Testo Discorsivo Inglese -->
         <div class="discursive-info-container">
             <p class="discursive-info-text">
                 December 17, 2026 — 09:15 to 13:00 <br>
@@ -1008,32 +1001,31 @@
         function toggleMenu() {
             const menu = document.getElementById('nav-menu');
             menu.classList.toggle('active');
+            setTimeout(resizeGarland, 200);
         }
 
-        // --- Effetto Fiocchi di Neve "Frozen" (Attivo esattamente per 5 secondi) ---
-        const canvas = document.getElementById('snow-canvas');
-        const ctx = canvas.getContext('2d');
+        // --- 1. NEVE FROZEN (Attiva 5 Secondi) ---
+        const snowCanvas = document.getElementById('snow-canvas');
+        const sctx = snowCanvas.getContext('2d');
         let snowActive = true;
         let flakes = [];
-        let animationId = null;
+        let snowAnimId = null;
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            if (flakes.length > 0) createFlakes(); // Rigenera se esistono già
+        function resizeSnowCanvas() {
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+            createFlakes();
         }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
 
         const symbols = ['❄', '❅', '❆'];
 
         function createFlakes() {
             flakes = [];
-            const count = Math.floor(window.innerWidth / 35);
+            const count = Math.floor(window.innerWidth / 30);
             for (let i = 0; i < count; i++) {
                 flakes.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
+                    x: Math.random() * snowCanvas.width,
+                    y: Math.random() * snowCanvas.height,
                     size: Math.random() * 16 + 12,
                     speed: Math.random() * 1.2 + 0.6,
                     wind: Math.random() * 0.4 - 0.2,
@@ -1043,57 +1035,55 @@
                 });
             }
         }
-        createFlakes();
 
         function drawSnow() {
             if (!snowActive) return;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
             
-            ctx.fillStyle = 'rgba(70, 140, 210, 0.85)';
-            ctx.shadowColor = 'rgba(120, 180, 255, 0.5)';
-            ctx.shadowBlur = 4;
+            sctx.fillStyle = 'rgba(70, 140, 210, 0.85)';
+            sctx.shadowColor = 'rgba(120, 180, 255, 0.5)';
+            sctx.shadowBlur = 4;
 
             flakes.forEach(f => {
-                ctx.save();
-                ctx.translate(f.x, f.y);
-                ctx.rotate(f.angle);
-                ctx.font = f.size + 'px serif';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillText(f.symbol, 0, 0);
-                ctx.restore();
+                sctx.save();
+                sctx.translate(f.x, f.y);
+                sctx.rotate(f.angle);
+                sctx.font = f.size + 'px serif';
+                sctx.textAlign = 'center';
+                sctx.textBaseline = 'middle';
+                sctx.fillText(f.symbol, 0, 0);
+                sctx.restore();
                 
                 f.y += f.speed;
                 f.x += f.wind;
                 f.angle += f.spin;
 
-                if (f.y > canvas.height + f.size) {
+                if (f.y > snowCanvas.height + f.size) {
                     f.y = -20;
-                    f.x = Math.random() * canvas.width;
+                    f.x = Math.random() * snowCanvas.width;
                 }
             });
 
-            animationId = requestAnimationFrame(drawSnow);
+            snowAnimId = requestAnimationFrame(drawSnow);
         }
 
+        // Avvio neve
+        resizeSnowCanvas();
         drawSnow();
 
-        // Arresta l'animazione della neve dopo esattamente 5 secondi (5000ms)
+        // Stop Neve dopo 5 secondi
         setTimeout(() => {
             snowActive = false;
-            cancelAnimationFrame(animationId);
-            
-            canvas.style.transition = "opacity 1.5s ease";
-            canvas.style.opacity = "0";
-            
+            cancelAnimationFrame(snowAnimId);
+            snowCanvas.style.transition = "opacity 1.5s ease";
+            snowCanvas.style.opacity = "0";
             setTimeout(() => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                canvas.style.display = "none";
+                sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+                snowCanvas.style.display = "none";
             }, 1500);
-            
         }, 5000);
 
-        // --- Countdown Timer (17 Dicembre 2026 - 09:15) ---
+        // --- Countdown Timer ---
         const eventDate = new Date('December 17, 2026 09:15:00').getTime();
 
         function updateCountdown() {
@@ -1121,7 +1111,7 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- Gestione Form e Modale ---
+        // --- Gestione Form & Modal ---
         function handleRegister(event) {
             event.preventDefault();
             document.getElementById('success-modal').style.display = 'flex';
@@ -1132,28 +1122,21 @@
             document.getElementById('workshop-form').reset();
         }
 
-        // --- NUOVA GHIRLANDA ESTETICA CANVAS (AI-inspired, adattiva) ---
+        // --- 2. GHIRLANDA CANVAS DINAMICA (Sotto Header) ---
         const garlandCanvas = document.getElementById('garland-canvas');
         const gctx = garlandCanvas.getContext('2d');
         const garlandContainer = document.getElementById('garland-container');
         const mainHeader = document.getElementById('main-header');
 
         function resizeGarland() {
-            // Sincronizza dinamicamente la posizione 'top' del contenitore con l'altezza reale dell'header
-            // per evitare spazi bianchi su qualsiasi dispositivo.
             const headerHeight = mainHeader.offsetHeight;
-            garlandContainer.style.top = (headerHeight - 1) + 'px'; // -1px per sovrapporre leggermente il bordo
+            garlandContainer.style.top = (headerHeight - 1) + 'px';
 
-            // Adatta il canvas alle dimensioni del contenitore
             garlandCanvas.width = garlandContainer.offsetWidth;
             garlandCanvas.height = garlandContainer.offsetHeight;
             
-            drawGarland(); // Ridisegna
+            drawGarland();
         }
-        window.addEventListener('resize', resizeGarland);
-        // Esegui subito e anche al caricamento completo per calcolare l'altezza esatta
-        resizeGarland(); 
-        window.addEventListener('load', resizeGarland);
 
         function drawGarland() {
             const w = garlandCanvas.width;
@@ -1162,29 +1145,28 @@
 
             gctx.clearRect(0, 0, w, h);
 
-            // Costanti di stile
-            const colorPine = '#1A472A'; // Verde pino scuro
-            const colorPineDark = '#0D2B19'; // Verde pino ombra
-            const colorBerry = '#C0392B'; // Rosso bacca
-            const colorGold = '#F1C40F';   // Oro luci
+            const colorPine = '#1A472A';
+            const colorPineDark = '#0D2B19';
+            const colorBerry = '#C0392B';
+            const colorGold = '#F1C40F';
 
-            // --- 1. Sfondo sfumato base ghirlanda ---
+            // Gradiente Pino di fondo
             const baseGradient = gctx.createLinearGradient(0, 0, 0, h);
-            baseGradient.addColorStop(0, 'rgba(255, 255, 255, 0)'); // Trasparente sopra
-            baseGradient.addColorStop(0.3, colorPineDark); // Pino scuro centrale
-            baseGradient.addColorStop(0.7, colorPine);     // Pino base
-            baseGradient.addColorStop(1, 'rgba(255, 255, 255, 0)'); // Trasparente sotto
+            baseGradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
+            baseGradient.addColorStop(0.3, colorPineDark);
+            baseGradient.addColorStop(0.7, colorPine);
+            baseGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
             gctx.fillStyle = baseGradient;
             gctx.fillRect(0, 0, w, h);
 
-            // --- 2. Disegno rami intrecciati ---
+            // Rami intrecciati
             gctx.strokeStyle = colorPineDark;
             gctx.lineWidth = 1.5;
             gctx.lineCap = 'round';
             gctx.beginPath();
             
-            const amplitude = h * 0.25; // Ampiezza intreccio
-            const period = w / (w < 768 ? 4 : 8); // Numero di intrecci in base alla larghezza
+            const amplitude = h * 0.25;
+            const period = w / (w < 768 ? 4 : 8);
 
             for (let x = 0; x <= w; x += 2) {
                 const y1 = h/2 + Math.sin(x * period * Math.PI * 2 / w) * amplitude;
@@ -1194,28 +1176,28 @@
                 else gctx.lineTo(x, y1);
                 
                 gctx.moveTo(x, y2);
-                gctx.lineTo(x + 1, y2); // Piccola linea per intreccio
+                gctx.lineTo(x + 1, y2);
             }
             gctx.stroke();
 
-            // --- 3. Aggiunta dettagli (Bacche e Luci) ---
-            const step Bacche = (w < 768 ? 40 : 60); // Distanza bacche
+            // Bacche e Luci
+            const stepBacche = (w < 768 ? 40 : 60);
             
             for (let x = stepBacche/2; x < w; x += stepBacche) {
                 const y = h/2 + Math.sin(x * period * Math.PI * 2 / w + Math.PI/2) * (amplitude * 0.6);
                 
-                // Disegna cluster di bacche (Red)
+                // Bacche rosse
                 gctx.fillStyle = colorBerry;
                 gctx.shadowColor = 'rgba(0,0,0,0.2)';
                 gctx.shadowBlur = 2;
                 gctx.beginPath();
-                gctx.arc(x, y, 2.5, 0, Math.PI * 2); // Bacca centrale
-                gctx.arc(x - 3, y + 2, 2, 0, Math.PI * 2); // Bacca laterale 1
-                gctx.arc(x + 3, y + 1, 2, 0, Math.PI * 2); // Bacca laterale 2
+                gctx.arc(x, y, 2.5, 0, Math.PI * 2);
+                gctx.arc(x - 3, y + 2, 2, 0, Math.PI * 2);
+                gctx.arc(x + 3, y + 1, 2, 0, Math.PI * 2);
                 gctx.fill();
-                gctx.shadowBlur = 0; // Reset
+                gctx.shadowBlur = 0;
 
-                // Disegna luce dorata (Gold) centrale all'intreccio
+                // Luci dorate
                 if (x % (stepBacche * 2) === 0) {
                     const yLight = h/2 + Math.cos(x * period * Math.PI * 2 / w) * (amplitude * 0.4);
                     gctx.fillStyle = colorGold;
@@ -1224,10 +1206,19 @@
                     gctx.beginPath();
                     gctx.arc(x, yLight, 2, 0, Math.PI * 2);
                     gctx.fill();
-                    gctx.shadowBlur = 0; // Reset
+                    gctx.shadowBlur = 0;
                 }
             }
         }
+
+        window.addEventListener('resize', () => {
+            resizeSnowCanvas();
+            resizeGarland();
+        });
+
+        // Inizializzazione garantita dopo il caricamento della pagina
+        window.addEventListener('load', resizeGarland);
+        resizeGarland();
     </script>
 </body>
 </html>
