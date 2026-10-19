@@ -49,7 +49,7 @@
             z-index: 999;
         }
 
-        /* Header Navigation con Festone integrato nello sfondo */
+        /* Header Navigation */
         header {
             position: fixed;
             top: 0;
@@ -65,19 +65,18 @@
             border-bottom: 1px solid var(--border-gold);
             gap: 15px;
             flex-wrap: wrap;
-            overflow: hidden;
         }
 
-        /* CANVA FESTONE DIETRO GLI ELEMENTI DELL'HEADER */
+        /* CANVAS FESTONE DEDICATO SOTTO L'HEADER */
         #garland-canvas {
-            position: absolute;
-            top: 0;
+            position: fixed;
+            top: 70px; /* Posizionato subito sotto l'header */
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 45px;
             pointer-events: none;
-            z-index: 1;
-            opacity: 0.65;
+            z-index: 99;
+            opacity: 0.9;
         }
 
         .logo {
@@ -483,7 +482,7 @@
             color: white;
         }
 
-        /* Sezione Registrazione tramite Google Form Esterno */
+        /* Sezione Registrazione (In Inglese) */
         .register-external-box {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(192, 57, 43, 0.05));
             border-radius: 20px;
@@ -605,6 +604,9 @@
                 align-items: stretch;
                 padding: 12px 5%;
             }
+            #garland-canvas {
+                top: 70px;
+            }
             .logo {
                 justify-content: space-between;
                 width: 100%;
@@ -654,9 +656,6 @@
 
     <!-- Header Navigation -->
     <header id="main-header">
-        <!-- CANVAS FESTONE INTEGRATO DENTRO L'HEADER (IN TRASPARENZA) -->
-        <canvas id="garland-canvas"></canvas>
-
         <div class="logo">
             <div style="display: flex; align-items: center; gap: 10px;">
                 <img src="XMaths.png" alt="XMaths 2026" class="logo-img">
@@ -674,6 +673,9 @@
             <a href="#register" class="btn-nav-cta" onclick="toggleMenu()">Registration</a>
         </div>
     </header>
+
+    <!-- CANVAS FESTONE SOTTO L'HEADER -->
+    <canvas id="garland-canvas"></canvas>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -842,15 +844,15 @@
         </div>
     </section>
 
-    <!-- 6. Registration Section (Collegata al Google Form Esterno) -->
+    <!-- 6. Registration Section (IN INGLESE CON LA NOTA RICHIESTA) -->
     <section id="register">
         <div class="register-external-box">
-            <h3>Riserva il tuo Posto</h3>
-            <p>I posti per l'evento in Aula XII sono limitati. Compila il modulo online ufficiale per confermare la tua presenza alle giornate e indicare le tue preferenze di catering.</p>
+            <h3>Reserve Your Spot</h3>
+            <p>Seats for the event in Aula XII are limited. Please complete the official registration form to confirm your participation.</p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeAfs0O-w9_OsUMqZhsqGJpszIV6-kJAWO95ZUBy5YoZFQCHw/viewform?usp=header" target="_blank" class="btn-external-register">
-                Compila il Google Form 📋
+                Complete Google Form 📋
             </a>
-            <p class="info-note" style="margin-top: 20px;">📜 L'iscrizione è gratuita e aperta a studenti e docenti.</p>
+            <p class="info-note" style="margin-top: 20px;">📜 Registration is free of charge (but mandatory) for all participants.</p>
         </div>
     </section>
 
@@ -960,99 +962,53 @@
             }, 1500);
         }, 5000);
 
-        // --- Countdown Timer ---
-        const eventDate = new Date('December 17, 2026 09:15:00').getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const difference = eventDate - now;
-
-            if (difference > 0) {
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-                document.getElementById('days').innerText = String(days).padStart(2, '0');
-                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-            } else {
-                document.getElementById('days').innerText = "00";
-                document.getElementById('hours').innerText = "00";
-                document.getElementById('minutes').innerText = "00";
-                document.getElementById('seconds').innerText = "00";
-            }
-        }
-        
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // --- 2. FESTONE CANVAS INTEGRATO IN TRASPARENZA NELL'HEADER ---
+        // --- 2. FESTONE NATALIZIO SOTTO HEADER ---
         const garlandCanvas = document.getElementById('garland-canvas');
         const gctx = garlandCanvas.getContext('2d');
-        const mainHeader = document.getElementById('main-header');
 
         function resizeGarland() {
-            if (!mainHeader || !garlandCanvas) return;
-
-            const dpr = window.devicePixelRatio || 1;
-            const rect = mainHeader.getBoundingClientRect();
-
-            garlandCanvas.width = rect.width * dpr;
-            garlandCanvas.height = rect.height * dpr;
-
-            gctx.scale(dpr, dpr);
-            drawGarland(rect.width, rect.height);
+            const header = document.getElementById('main-header');
+            garlandCanvas.width = window.innerWidth;
+            garlandCanvas.height = 45;
+            garlandCanvas.style.top = header.offsetHeight + 'px';
+            drawGarland();
         }
 
-        function drawGarland(w, h) {
-            if (w === 0 || h === 0) return;
-
+        function drawGarland() {
+            const w = garlandCanvas.width;
+            const h = garlandCanvas.height;
             gctx.clearRect(0, 0, w, h);
 
             const isMobile = w < 768;
-            const colorFestoon = '#27AE60';
-            const colorFestoonDark = '#1E8449'; 
-            const colorBerry = '#C0392B';
+            const waveLength = isMobile ? 60 : 90;
+            const amplitude = isMobile ? 12 : 18;
+
+            const colorPine = '#1E5631';
+            const colorRed = '#C0392B';
             const colorGold = '#F1C40F';
 
-            // 1. Filo/Cordone Festone
-            gctx.strokeStyle = colorFestoonDark;
-            gctx.lineWidth = 2.5;
-            gctx.lineCap = 'round';
+            // Ramo Festone Verde
             gctx.beginPath();
-            
-            const amplitude = h * 0.25;
-            const waveLength = isMobile ? 70 : 100;
+            gctx.strokeStyle = colorPine;
+            gctx.lineWidth = isMobile ? 3 : 4.5;
+            gctx.lineCap = 'round';
 
-            for (let x = 0; x <= w; x += 2) {
+            for (let x = 0; x <= w; x += 5) {
                 const y = (h / 2) + Math.sin(x / waveLength * Math.PI) * amplitude;
                 if (x === 0) gctx.moveTo(x, y);
                 else gctx.lineTo(x, y);
             }
             gctx.stroke();
 
-            gctx.strokeStyle = colorFestoon;
-            gctx.lineWidth = 1.5;
-            gctx.beginPath();
-            for (let x = 0; x <= w; x += 2) {
-                const y = (h / 2) + Math.sin(x / waveLength * Math.PI) * amplitude + 1;
-                if (x === 0) gctx.moveTo(x, y);
-                else gctx.lineTo(x, y);
-            }
-            gctx.stroke();
-
-            // 2. Palline Sferiche 3D e Lucine Scintillanti
-            const ornamentRadius = isMobile ? 3.5 : 4.5;
-
+            // Decorazioni: Palline 3D e Lucine Dorate
             for (let x = waveLength / 2; x < w; x += waveLength) {
                 const yCurve = (h / 2) + Math.sin(x / waveLength * Math.PI) * amplitude;
+                const ornamentRadius = isMobile ? 4 : 5.5;
 
                 // Pallina Rossa
                 gctx.save();
-                gctx.fillStyle = colorBerry;
-                gctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
+                gctx.fillStyle = colorRed;
+                gctx.shadowColor = 'rgba(192, 57, 43, 0.6)';
                 gctx.shadowBlur = 3;
                 
                 gctx.beginPath();
@@ -1089,6 +1045,34 @@
 
         window.addEventListener('load', resizeGarland);
         resizeGarland();
+
+        // --- 3. Countdown Timer ---
+        const eventDate = new Date('December 17, 2026 09:15:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = eventDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            } else {
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
     </script>
 </body>
 </html>
