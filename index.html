@@ -46,7 +46,7 @@
             width: 100vw;
             height: 100vh;
             pointer-events: none;
-            z-index: 999; /* Garanzia sopra tutto nei primi 5 secondi */
+            z-index: 999;
         }
 
         /* Header & Nav */
@@ -67,17 +67,15 @@
             flex-wrap: wrap;
         }
 
-        /* CONTENITORE GHIRLANDA CANVAS CON ALTEZZA FLUIDA MOBILE */
+        /* CONTENITORE GHIRLANDA PULITO E ORDINATO */
         .garland-banner-container {
             position: fixed;
-            top: 75px; /* Aggiornato via JS per zero spazi */
+            top: 75px;
             left: 0;
             width: 100%;
-            height: 42px;
+            height: 36px;
             pointer-events: none;
             z-index: 99;
-            opacity: 0.98;
-            filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.12));
             overflow: hidden;
         }
 
@@ -697,9 +695,6 @@
                 padding: 10px;
                 font-size: 0.9rem;
             }
-            .garland-banner-container {
-                height: 38px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -736,7 +731,7 @@
         </div>
     </header>
 
-    <!-- 2. GHIRLANDA CANVAS AD ALTA RISOLUZIONE -->
+    <!-- 2. GHIRLANDA CANVAS PULITA E ORDINATA -->
     <div class="garland-banner-container" id="garland-container">
         <canvas id="garland-canvas"></canvas>
     </div>
@@ -1119,7 +1114,7 @@
             document.getElementById('workshop-form').reset();
         }
 
-        // --- 2. GHIRLANDA CANVAS DPI-SCALED PER MOBILE ---
+        // --- 2. GHIRLANDA SOTTILE ED ELEGANTE (Senza sfondi verdi pesanti) ---
         const garlandCanvas = document.getElementById('garland-canvas');
         const gctx = garlandCanvas.getContext('2d');
         const garlandContainer = document.getElementById('garland-container');
@@ -1145,82 +1140,66 @@
             gctx.clearRect(0, 0, w, h);
 
             const isMobile = w < 768;
-            const colorPine = '#1A472A';
-            const colorPineDark = '#0D2B19';
+            const colorPine = '#27AE60'; // Verde pino pulito e brillante
             const colorBerry = '#C0392B';
             const colorGold = '#F1C40F';
 
-            // Gradiente Pino
-            const baseGradient = gctx.createLinearGradient(0, 0, 0, h);
-            baseGradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
-            baseGradient.addColorStop(0.3, colorPineDark);
-            baseGradient.addColorStop(0.7, colorPine);
-            baseGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-            gctx.fillStyle = baseGradient;
-            gctx.fillRect(0, 0, w, h);
-
-            // Rami intrecciati
-            gctx.strokeStyle = colorPineDark;
-            gctx.lineWidth = 1.5;
+            // Filo sottile sinuoso ed elegante
+            gctx.strokeStyle = colorPine;
+            gctx.lineWidth = 2;
             gctx.lineCap = 'round';
             gctx.beginPath();
             
-            const amplitude = h * 0.22;
-            const period = w / (isMobile ? 5 : 9);
+            const amplitude = h * 0.25;
+            const period = w / (isMobile ? 6 : 12);
 
             for (let x = 0; x <= w; x += 2) {
-                const y1 = h / 2.2 + Math.sin(x * period * Math.PI * 2 / w) * amplitude;
-                const y2 = h / 2.2 + Math.cos(x * period * Math.PI * 2 / w + Math.PI) * (amplitude * 0.8);
-                
-                if (x === 0) gctx.moveTo(x, y1);
-                else gctx.lineTo(x, y1);
-                
-                gctx.moveTo(x, y2);
-                gctx.lineTo(x + 1, y2);
+                const y = h / 2 + Math.sin(x * period * Math.PI * 2 / w) * amplitude;
+                if (x === 0) gctx.moveTo(x, y);
+                else gctx.lineTo(x, y);
             }
             gctx.stroke();
 
-            // Palline e Luce
-            const step = isMobile ? 35 : 55;
+            // Palline e Luci ben distanziate e ordinate
+            const step = isMobile ? 40 : 65;
             const ornamentRadius = isMobile ? 3.5 : 4.5;
 
             for (let x = step / 2; x < w; x += step) {
-                const yCenter = h / 2.2 + Math.sin(x * period * Math.PI * 2 / w + Math.PI / 2) * (amplitude * 0.6);
+                const y = h / 2 + Math.sin(x * period * Math.PI * 2 / w) * amplitude;
                 
-                // Filo dorato
-                gctx.strokeStyle = 'rgba(212, 175, 55, 0.7)';
+                // Filetto di supporto della pallina
+                gctx.strokeStyle = 'rgba(212, 175, 55, 0.6)';
                 gctx.lineWidth = 0.8;
                 gctx.beginPath();
-                gctx.moveTo(x, yCenter);
-                gctx.lineTo(x, yCenter + 5);
+                gctx.moveTo(x, y);
+                gctx.lineTo(x, y + 5);
                 gctx.stroke();
 
-                // Pallina Sferica
+                // Pallina Rossa Sferica Ordinata
                 gctx.save();
                 gctx.fillStyle = colorBerry;
-                gctx.shadowColor = 'rgba(0, 0, 0, 0.25)';
+                gctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
                 gctx.shadowBlur = 3;
                 
                 gctx.beginPath();
-                gctx.arc(x, yCenter + 5 + ornamentRadius, ornamentRadius, 0, Math.PI * 2);
+                gctx.arc(x, y + 5 + ornamentRadius, ornamentRadius, 0, Math.PI * 2);
                 gctx.fill();
 
                 // Riflesso di luce 3D
                 gctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
                 gctx.beginPath();
-                gctx.arc(x - ornamentRadius * 0.3, yCenter + 5 + ornamentRadius - ornamentRadius * 0.3, ornamentRadius * 0.3, 0, Math.PI * 2);
+                gctx.arc(x - ornamentRadius * 0.3, y + 5 + ornamentRadius - ornamentRadius * 0.3, ornamentRadius * 0.3, 0, Math.PI * 2);
                 gctx.fill();
                 gctx.restore();
 
-                // Luce dorata
+                // Luce dorata alternata
                 if (Math.floor(x / step) % 2 === 0) {
-                    const yLight = h / 2.2 + Math.cos(x * period * Math.PI * 2 / w) * (amplitude * 0.4);
                     gctx.save();
                     gctx.fillStyle = colorGold;
-                    gctx.shadowColor = 'rgba(241, 196, 15, 0.9)';
-                    gctx.shadowBlur = isMobile ? 4 : 8;
+                    gctx.shadowColor = 'rgba(241, 196, 15, 0.8)';
+                    gctx.shadowBlur = 6;
                     gctx.beginPath();
-                    gctx.arc(x, yLight, isMobile ? 2 : 2.5, 0, Math.PI * 2);
+                    gctx.arc(x, y - 4, isMobile ? 2 : 2.5, 0, Math.PI * 2);
                     gctx.fill();
                     gctx.restore();
                 }
