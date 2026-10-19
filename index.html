@@ -50,7 +50,7 @@
 
         /* Header & Nav */
         header {
-            position: fixed;
+            position: fixed; /* RIPRISTINATO FISSO */
             top: 0;
             left: 0;
             width: 100%;
@@ -60,59 +60,30 @@
             padding: 1rem 4%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            /* Modifica qui per il posizionamento delle ghirlande */
             z-index: 100;
-            position: relative; 
             border-bottom: 1px solid var(--border-gold);
             gap: 15px;
             flex-wrap: wrap;
         }
 
-        /* --- NUOVA GHIRLANDA NATALIZIA GENERATA DA CSS (Sostituisce l'immagine) --- */
+        /* NUOVA GHIRLANDA NATALIZIA GENERATA DA CANVAS - RIPRISTINATA POSIZIONE FISSA SOTTO HEADER */
         .garland-banner {
-            position: absolute; /* Posizionata RELATIVA all'header */
-            bottom: -16px;      /* Metà fuori dall'header in basso */
+            position: fixed; /* RIPRISTINATO POSIZIONAMENTO FISSO SOTTO HEADER */
+            top: 75px; /* Posizionata subito sotto l'header su desktop */
             left: 0;
             width: 100%;
-            height: 32px;       /* Altezza totale della fascia decorativa */
+            height: 32px; /* Dimensione piccola e discreta */
             pointer-events: none;
-            z-index: 101;       /* Sopra l'header */
-            opacity: 1;
-            
-            /* SFONDO: Un gradiente circolare che simula rami di pino scuri */
-            background: radial-gradient(circle at 50% -20%, #1a472a 0%, #0d2b19 60%, transparent 80%);
-            
-            /* OMBRA: Per dare profondità sullo sfondo bianco */
-            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
-            
-            /* Allineamento degli elementi interni (emoji) */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+            z-index: 99;
+            opacity: 0.98;
+            filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.15));
+            background: #FAFAFA; /* Un colore di fondo molto chiaro per il canvas */
         }
 
-        /* ELEMENTI DECORATIVI INTERNI (Rami intrecciati) */
-        .garland-banner::before {
-            /* Usiamo il carattere speciale 'Ghirlanda' 🍥 ripetuto */
-            content: '🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥';
-            font-size: 24px; /* Dimensione delle ghirlande */
-            letter-spacing: -5px; /* Sovrappone leggermente le icone per l'intreccio */
-            color: #2e7d32; /* Verde pino */
-            opacity: 0.7;
-            white-space: nowrap;
-        }
-
-        /* ELEMENTI DECORATIVI INTERNI (Palline rosse) */
-        .garland-banner::after {
-            /* Usiamo il carattere speciale 'Pallina' 🎈 ripetuto e distanziato */
-            content: '🎈 🎈 🎈 🎈 🎈 🎈 🎈 🎈 🎈 ';
-            position: absolute;
-            font-size: 14px; /* Palline più piccole */
-            color: var(--red-festive); /* Usiamo il tuo rosso festivo */
-            word-spacing: 50px; /* Distanzia le palline lungo la fascia */
-            top: 8px;
-            opacity: 0.9;
+        #garland-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
         .logo {
@@ -691,21 +662,15 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- ADATTAMENTO MOBILE --- */
         @media (max-width: 992px) {
             header {
                 flex-direction: column;
                 align-items: stretch;
                 padding: 12px 5%;
-                /* Rimuoviamo il bottom border per non interferire con la ghirlanda */
-                border-bottom: none; 
             }
             .logo {
                 justify-content: space-between;
                 width: 100%;
-                /* Aggiungiamo un border inferiore qui per separare il logo dal menu */
-                padding-bottom: 10px;
-                border-bottom: 1px solid var(--border-gold);
             }
             .logo span {
                 display: none;
@@ -722,6 +687,7 @@
                 width: 100%;
                 gap: 8px;
                 padding-top: 10px;
+                border-top: 1px solid var(--border-gold);
                 margin-top: 5px;
             }
             .nav-controls.active {
@@ -733,20 +699,10 @@
                 padding: 10px;
                 font-size: 0.9rem;
             }
-            
-            /* --- Adattamento ghirlanda su mobile: ancora più sottile --- */
+            /* Adattamento ghirlanda su mobile: RIPRISTINATO POSIZIONAMENTO FISSO SOTTO HEADER */
             .garland-banner {
-                /* top: 73px; <-- Rimuoviamo questa regola, usiamo bottom: -12px */
+                top: 73px;
                 height: 25px; 
-                bottom: -12px;
-            }
-            .garland-banner::before {
-                font-size: 18px;
-            }
-            .garland-banner::after {
-                font-size: 10px;
-                word-spacing: 30px;
-                top: 6px;
             }
         }
 
@@ -782,10 +738,12 @@
             <a href="#venue" class="btn-nav-link" onclick="toggleMenu()">Venue</a>
             <a href="#register" class="btn-nav-cta" onclick="toggleMenu()">Registration</a>
         </div>
-        
-        <!-- --- NUOVA GHIRLANDA NATALIZIA CSS (Non serve immagine vuota) --- -->
-        <div class="garland-banner"></div>
     </header>
+
+    <!-- Ghirlanda Festiva via Canvas -->
+    <div class="garland-banner">
+        <canvas id="garland-canvas"></canvas>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1058,6 +1016,7 @@
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            if (flakes.length > 0) createFlakes(); // Rigenera se già esistono
         }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
@@ -1167,6 +1126,88 @@
         function closeModal() {
             document.getElementById('success-modal').style.display = 'none';
             document.getElementById('workshop-form').reset();
+        }
+
+        // --- NUOVA Ghirlanda Festiva via Canvas ---
+        const garlandCanvas = document.getElementById('garland-canvas');
+        const gctx = garlandCanvas.getContext('2d');
+
+        function resizeGarland() {
+            const container = garlandCanvas.parentElement;
+            garlandCanvas.width = container.offsetWidth;
+            garlandCanvas.height = container.offsetHeight;
+            drawGarland(); // Ridisegna al ridimensionamento
+        }
+        window.addEventListener('resize', resizeGarland);
+        resizeGarland(); // Chiamata iniziale
+
+        function drawGarland() {
+            const w = garlandCanvas.width;
+            const h = garlandCanvas.height;
+            const yCenter = h / 2;
+            const colorFestive = '#C0392B'; // Rosso festivo
+            const colorGold = '#F1C40F';   // Oro
+
+            gctx.clearRect(0, 0, w, h);
+
+            // 1. Disegna una linea base festiva (Verde scuro)
+            gctx.beginPath();
+            gctx.lineWidth = 1;
+            gctx.strokeStyle = '#1A472A'; // Verde scuro pino
+            gctx.moveTo(0, yCenter);
+            gctx.lineTo(w, yCenter);
+            gctx.stroke();
+
+            // 2. Aggiungi punti orpelli (Oro e Rosso)
+            gctx.fillStyle = colorGold;
+            gctx.shadowColor = 'rgba(212, 175, 55, 0.4)';
+            gctx.shadowBlur = 4;
+
+            const baseStep = 60; // Distanza tra orpelli principali
+            const secondaryStep = baseStep / 2;
+
+            for (let x = baseStep / 2; x < w; x += secondaryStep) {
+                // Alterna tra punto Oro e punto Rosso
+                if ((x / secondaryStep) % 2 === 0) {
+                     // Punto Oro principale
+                     gctx.fillStyle = colorGold;
+                     gctx.shadowColor = 'rgba(212, 175, 55, 0.6)';
+                     gctx.shadowBlur = 6;
+                     drawPoint(x, yCenter, 3.5);
+                } else {
+                    // Punto Rosso secondario
+                    gctx.fillStyle = colorFestive;
+                    gctx.shadowColor = 'rgba(192, 57, 43, 0.3)';
+                    gctx.shadowBlur = 2;
+                    drawPoint(x, yCenter, 2.5);
+                }
+            }
+
+            // Aggiungi un piccolo orpello più grande ogni baseStep
+            gctx.fillStyle = colorFestive;
+            gctx.shadowBlur = 0; // Disabilita ombra per questo
+            for (let x = baseStep; x < w; x += baseStep) {
+                 drawTinsel(x, yCenter);
+            }
+        }
+
+        function drawPoint(x, y, r) {
+            gctx.beginPath();
+            gctx.arc(x, y, r, 0, Math.PI * 2);
+            gctx.fill();
+        }
+
+        function drawTinsel(x, y) {
+            const size = 6;
+            gctx.fillStyle = '#C0392B'; // Rosso
+            gctx.beginPath();
+            gctx.moveTo(x - size/2, y - size/2);
+            gctx.lineTo(x + size/2, y + size/2);
+            gctx.moveTo(x + size/2, y - size/2);
+            gctx.lineTo(x - size/2, y + size/2);
+            gctx.lineWidth = 2;
+            gctx.strokeStyle = gctx.fillStyle;
+            gctx.stroke();
         }
     </script>
 </body>
