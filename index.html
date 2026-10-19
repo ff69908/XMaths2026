@@ -60,26 +60,59 @@
             padding: 1rem 4%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            /* Modifica qui per il posizionamento delle ghirlande */
             z-index: 100;
+            position: relative; 
             border-bottom: 1px solid var(--border-gold);
             gap: 15px;
             flex-wrap: wrap;
         }
 
-        /* Ghirlanda Natalizia Generata da AI */
+        /* --- NUOVA GHIRLANDA NATALIZIA GENERATA DA CSS (Sostituisce l'immagine) --- */
         .garland-banner {
-            position: fixed;
-            top: 75px; /* Posizionata subito sotto l'header su desktop */
+            position: absolute; /* Posizionata RELATIVA all'header */
+            bottom: -16px;      /* Metà fuori dall'header in basso */
             left: 0;
             width: 100%;
-            height: 32px; /* Dimensione piccola e discreta */
+            height: 32px;       /* Altezza totale della fascia decorativa */
             pointer-events: none;
-            z-index: 99;
-            opacity: 0.98;
-            background-image: url('Gemini_Generated_Image_4ykr6k4ykr6k4ykr.jpeg');
-            background-repeat: repeat-x;
-            background-size: auto 100%; /* Mantiene le proporzioni originali senza schiacciare le palline */
-            filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.15));
+            z-index: 101;       /* Sopra l'header */
+            opacity: 1;
+            
+            /* SFONDO: Un gradiente circolare che simula rami di pino scuri */
+            background: radial-gradient(circle at 50% -20%, #1a472a 0%, #0d2b19 60%, transparent 80%);
+            
+            /* OMBRA: Per dare profondità sullo sfondo bianco */
+            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
+            
+            /* Allineamento degli elementi interni (emoji) */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* ELEMENTI DECORATIVI INTERNI (Rami intrecciati) */
+        .garland-banner::before {
+            /* Usiamo il carattere speciale 'Ghirlanda' 🍥 ripetuto */
+            content: '🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥🍥';
+            font-size: 24px; /* Dimensione delle ghirlande */
+            letter-spacing: -5px; /* Sovrappone leggermente le icone per l'intreccio */
+            color: #2e7d32; /* Verde pino */
+            opacity: 0.7;
+            white-space: nowrap;
+        }
+
+        /* ELEMENTI DECORATIVI INTERNI (Palline rosse) */
+        .garland-banner::after {
+            /* Usiamo il carattere speciale 'Pallina' 🎈 ripetuto e distanziato */
+            content: '🎈 🎈 🎈 🎈 🎈 🎈 🎈 🎈 🎈 ';
+            position: absolute;
+            font-size: 14px; /* Palline più piccole */
+            color: var(--red-festive); /* Usiamo il tuo rosso festivo */
+            word-spacing: 50px; /* Distanzia le palline lungo la fascia */
+            top: 8px;
+            opacity: 0.9;
         }
 
         .logo {
@@ -658,15 +691,21 @@
             letter-spacing: 0.5px;
         }
 
+        /* --- ADATTAMENTO MOBILE --- */
         @media (max-width: 992px) {
             header {
                 flex-direction: column;
                 align-items: stretch;
                 padding: 12px 5%;
+                /* Rimuoviamo il bottom border per non interferire con la ghirlanda */
+                border-bottom: none; 
             }
             .logo {
                 justify-content: space-between;
                 width: 100%;
+                /* Aggiungiamo un border inferiore qui per separare il logo dal menu */
+                padding-bottom: 10px;
+                border-bottom: 1px solid var(--border-gold);
             }
             .logo span {
                 display: none;
@@ -683,7 +722,6 @@
                 width: 100%;
                 gap: 8px;
                 padding-top: 10px;
-                border-top: 1px solid var(--border-gold);
                 margin-top: 5px;
             }
             .nav-controls.active {
@@ -695,10 +733,20 @@
                 padding: 10px;
                 font-size: 0.9rem;
             }
-            /* Adattamento ghirlanda su mobile: ancora più sottile e posizionata esattamente sotto l'header */
+            
+            /* --- Adattamento ghirlanda su mobile: ancora più sottile --- */
             .garland-banner {
-                top: 73px;
+                /* top: 73px; <-- Rimuoviamo questa regola, usiamo bottom: -12px */
                 height: 25px; 
+                bottom: -12px;
+            }
+            .garland-banner::before {
+                font-size: 18px;
+            }
+            .garland-banner::after {
+                font-size: 10px;
+                word-spacing: 30px;
+                top: 6px;
             }
         }
 
@@ -734,10 +782,10 @@
             <a href="#venue" class="btn-nav-link" onclick="toggleMenu()">Venue</a>
             <a href="#register" class="btn-nav-cta" onclick="toggleMenu()">Registration</a>
         </div>
+        
+        <!-- --- NUOVA GHIRLANDA NATALIZIA CSS (Non serve immagine vuota) --- -->
+        <div class="garland-banner"></div>
     </header>
-
-    <!-- Ghirlanda Festiva AI -->
-    <div class="garland-banner"></div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -976,7 +1024,7 @@
     <!-- Supported By Section -->
     <div class="supported-by-section">
         <p class="supported-by-title">Supported by</p>
-        <a href="https://www.uniba.it/it/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.uniba.it/it/" target="_blank">
             <img src="https://numera-workshop.github.io/assets/theme/images/Logo-UNIBA.jpg" alt="Università degli Studi di Bari Aldo Moro" class="supported-by-logo" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/it/thumb/a/a2/Logo_Universit%C3%A0_degli_Studi_di_Bari.svg/1200px-Logo_Universit%C3%A0_degli_Studi_di_Bari.svg.png';">
         </a>
     </div>
