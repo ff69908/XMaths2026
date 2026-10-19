@@ -49,7 +49,7 @@
             z-index: 999;
         }
 
-        /* Header & Nav */
+        /* Header Navigation */
         header {
             position: fixed;
             top: 0;
@@ -67,13 +67,13 @@
             flex-wrap: wrap;
         }
 
-        /* CONTENITORE GHIRLANDA PULITO E ORDINATO */
+        /* CONTENITORE FESTONE CON PALLINE E LUCINE */
         .garland-banner-container {
             position: fixed;
-            top: 75px;
+            top: 75px; /* Sincronizzato al millimetro via JS */
             left: 0;
             width: 100%;
-            height: 36px;
+            height: 48px;
             pointer-events: none;
             z-index: 99;
             overflow: hidden;
@@ -695,6 +695,9 @@
                 padding: 10px;
                 font-size: 0.9rem;
             }
+            .garland-banner-container {
+                height: 44px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -731,7 +734,7 @@
         </div>
     </header>
 
-    <!-- 2. GHIRLANDA CANVAS PULITA E ORDINATA -->
+    <!-- 2. FESTONE CANVAS AD ALTA DEFINIZIONE (ZERO SPAGHI/SPAZI E DEFORMAZIONI) -->
     <div class="garland-banner-container" id="garland-container">
         <canvas id="garland-canvas"></canvas>
     </div>
@@ -1114,13 +1117,16 @@
             document.getElementById('workshop-form').reset();
         }
 
-        // --- 2. GHIRLANDA SOTTILE ED ELEGANTE (Senza sfondi verdi pesanti) ---
+        // --- 2. FESTONE CANVAS AD ALTA RISOLUZIONE (ZERO DEFORMAZIONI SU MOBILE / RETINA) ---
         const garlandCanvas = document.getElementById('garland-canvas');
         const gctx = garlandCanvas.getContext('2d');
         const garlandContainer = document.getElementById('garland-container');
         const mainHeader = document.getElementById('main-header');
 
         function resizeGarland() {
+            if (!mainHeader || !garlandContainer) return;
+
+            // Fissaggio perfetto al bordo dell'header per azzerare lo spazio bianco
             const headerHeight = mainHeader.offsetHeight;
             garlandContainer.style.top = (headerHeight - 1) + 'px';
 
@@ -1140,66 +1146,70 @@
             gctx.clearRect(0, 0, w, h);
 
             const isMobile = w < 768;
-            const colorPine = '#27AE60'; // Verde pino pulito e brillante
+            const colorFestoon = '#1E8449'; // Verde festone vibrante
+            const colorFestoonDark = '#145A32'; 
             const colorBerry = '#C0392B';
             const colorGold = '#F1C40F';
 
-            // Filo sottile sinuoso ed elegante
-            gctx.strokeStyle = colorPine;
-            gctx.lineWidth = 2;
+            // 1. Filo/Cordone Festone intrecciato
+            gctx.strokeStyle = colorFestoonDark;
+            gctx.lineWidth = 3;
             gctx.lineCap = 'round';
             gctx.beginPath();
             
-            const amplitude = h * 0.25;
-            const period = w / (isMobile ? 6 : 12);
+            const amplitude = h * 0.28;
+            const waveLength = isMobile ? 65 : 95; // Passo fisso per non schiacciare il festone su mobile
 
             for (let x = 0; x <= w; x += 2) {
-                const y = h / 2 + Math.sin(x * period * Math.PI * 2 / w) * amplitude;
+                const y = 8 + Math.sin(x / waveLength * Math.PI) * amplitude;
                 if (x === 0) gctx.moveTo(x, y);
                 else gctx.lineTo(x, y);
             }
             gctx.stroke();
 
-            // Palline e Luci ben distanziate e ordinate
-            const step = isMobile ? 40 : 65;
-            const ornamentRadius = isMobile ? 3.5 : 4.5;
+            gctx.strokeStyle = colorFestoon;
+            gctx.lineWidth = 1.8;
+            gctx.beginPath();
+            for (let x = 0; x <= w; x += 2) {
+                const y = 8 + Math.sin(x / waveLength * Math.PI) * amplitude + 1.5;
+                if (x === 0) gctx.moveTo(x, y);
+                else gctx.lineTo(x, y);
+            }
+            gctx.stroke();
 
-            for (let x = step / 2; x < w; x += step) {
-                const y = h / 2 + Math.sin(x * period * Math.PI * 2 / w) * amplitude;
-                
-                // Filetto di supporto della pallina
-                gctx.strokeStyle = 'rgba(212, 175, 55, 0.6)';
-                gctx.lineWidth = 0.8;
-                gctx.beginPath();
-                gctx.moveTo(x, y);
-                gctx.lineTo(x, y + 5);
-                gctx.stroke();
+            // 2. Palline Sferiche 3D e Lucine Scintillanti nei punti di avvallamento
+            const ornamentRadius = isMobile ? 4 : 5;
 
-                // Pallina Rossa Sferica Ordinata
+            for (let x = waveLength / 2; x < w; x += waveLength) {
+                const yCurve = 8 + Math.sin(x / waveLength * Math.PI) * amplitude;
+
+                // Pallina Rossa Sferica
                 gctx.save();
                 gctx.fillStyle = colorBerry;
-                gctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
-                gctx.shadowBlur = 3;
+                gctx.shadowColor = 'rgba(0, 0, 0, 0.25)';
+                gctx.shadowBlur = 4;
                 
                 gctx.beginPath();
-                gctx.arc(x, y + 5 + ornamentRadius, ornamentRadius, 0, Math.PI * 2);
+                gctx.arc(x, yCurve + ornamentRadius + 1, ornamentRadius, 0, Math.PI * 2);
                 gctx.fill();
 
-                // Riflesso di luce 3D
-                gctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                // Punto di luce 3D (Riflesso sferico)
+                gctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
                 gctx.beginPath();
-                gctx.arc(x - ornamentRadius * 0.3, y + 5 + ornamentRadius - ornamentRadius * 0.3, ornamentRadius * 0.3, 0, Math.PI * 2);
+                gctx.arc(x - ornamentRadius * 0.35, yCurve + ornamentRadius + 1 - ornamentRadius * 0.35, ornamentRadius * 0.3, 0, Math.PI * 2);
                 gctx.fill();
                 gctx.restore();
 
-                // Luce dorata alternata
-                if (Math.floor(x / step) % 2 === 0) {
+                // Lucina Dorata
+                const xLight = x + waveLength / 2;
+                if (xLight < w) {
+                    const yLight = 8 + Math.sin(xLight / waveLength * Math.PI) * amplitude;
                     gctx.save();
                     gctx.fillStyle = colorGold;
-                    gctx.shadowColor = 'rgba(241, 196, 15, 0.8)';
-                    gctx.shadowBlur = 6;
+                    gctx.shadowColor = 'rgba(241, 196, 15, 0.9)';
+                    gctx.shadowBlur = 7;
                     gctx.beginPath();
-                    gctx.arc(x, y - 4, isMobile ? 2 : 2.5, 0, Math.PI * 2);
+                    gctx.arc(xLight, yLight, isMobile ? 2.2 : 2.8, 0, Math.PI * 2);
                     gctx.fill();
                     gctx.restore();
                 }
@@ -1215,4 +1225,4 @@
         resizeGarland();
     </script>
 </body>
-</html>
+</html>1 1
