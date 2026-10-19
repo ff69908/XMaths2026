@@ -69,15 +69,14 @@
 
         /* CANVAS FESTONE FISSO SUBITO SOTTO L'HEADER */
         #garland-canvas {
-            position: fixed;
-            left: 0;
-            width: 100%;
-            height: 45px;
-            pointer-events: none;
-            z-index: 99;
-            display: block;
-        }
-
+    position: absolute; /* <--- Cambia fixed con absolute */
+    left: 0;
+    width: 100%;
+    height: 45px;
+    pointer-events: none;
+    z-index: 99;
+    display: block;
+}
         .logo {
             font-family: 'Cinzel', serif;
             font-size: 1.2rem;
@@ -963,24 +962,24 @@
         const gctx = garlandCanvas.getContext('2d');
 
         function resizeGarland() {
-            const header = document.getElementById('main-header');
-            if (!header) return;
+    const header = document.getElementById('main-header');
+    if (!header) return;
 
-            const w = window.innerWidth;
-            const h = 45; // Altezza visibile del festone
-            const dpr = window.devicePixelRatio || 1;
+    const w = window.innerWidth;
+    const h = 45;
+    const dpr = window.devicePixelRatio || 1;
 
-            // Mantiene il festone fisso e attaccato subito sotto l'header
-            garlandCanvas.style.top = header.offsetHeight + 'px';
-            garlandCanvas.style.width = w + 'px';
-            garlandCanvas.style.height = h + 'px';
+    // Con position: absolute, si posiziona subito sotto l'header all'avvio della pagina:
+    garlandCanvas.style.top = header.offsetHeight + 'px';
+    garlandCanvas.style.width = w + 'px';
+    garlandCanvas.style.height = h + 'px';
 
-            garlandCanvas.width = w * dpr;
-            garlandCanvas.height = h * dpr;
+    garlandCanvas.width = w * dpr;
+    garlandCanvas.height = h * dpr;
 
-            gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            drawGarland(w, h);
-        }
+    gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    drawGarland(w, h);
+}
 
         function drawGarland(w, h) {
             gctx.clearRect(0, 0, w, h);
