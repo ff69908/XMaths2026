@@ -67,11 +67,12 @@
             flex-wrap: wrap;
         }
 
-        /* CANVAS FESTONE AD ALTA DEFINIZIONE (Ancorato perfettamente sotto l'header) */
+        /* CANVAS FESTONE FISSO SUBITO SOTTO L'HEADER */
         #garland-canvas {
             position: fixed;
             left: 0;
             width: 100%;
+            height: 45px;
             pointer-events: none;
             z-index: 99;
             display: block;
@@ -669,7 +670,7 @@
         </div>
     </header>
 
-    <!-- CANVAS FESTONE SOTTO L'HEADER -->
+    <!-- CANVAS FESTONE SOTTO L'HEADER FISSO -->
     <canvas id="garland-canvas"></canvas>
 
     <!-- Hero Section -->
@@ -876,7 +877,7 @@
         function toggleMenu() {
             const menu = document.getElementById('nav-menu');
             menu.classList.toggle('active');
-            setTimeout(resizeGarland, 200);
+            setTimeout(resizeGarland, 150);
         }
 
         // --- 1. NEVE FROZEN (Attiva esattamente 5 Secondi) ---
@@ -957,7 +958,7 @@
             }, 1500);
         }, 5000);
 
-        // --- 2. FESTONE NATALIZIO AD ALTA DEFINIZIONE (Sotto Header) ---
+        // --- 2. FESTONE NATALIZIO AD ALTA DEFINIZIONE (Fisso sotto l'Header) ---
         const garlandCanvas = document.getElementById('garland-canvas');
         const gctx = garlandCanvas.getContext('2d');
 
@@ -965,30 +966,29 @@
             const header = document.getElementById('main-header');
             if (!header) return;
 
-            const headerHeight = header.offsetHeight;
-            const garlandVisualHeight = window.innerWidth < 768 ? 45 : 55;
+            const w = window.innerWidth;
+            const h = 45; // Altezza visibile del festone
             const dpr = window.devicePixelRatio || 1;
 
-            garlandCanvas.style.top = headerHeight + 'px';
-            garlandCanvas.style.height = garlandVisualHeight + 'px';
-            garlandCanvas.style.width = '100%';
+            // Mantiene il festone fisso e attaccato subito sotto l'header
+            garlandCanvas.style.top = header.offsetHeight + 'px';
+            garlandCanvas.style.width = w + 'px';
+            garlandCanvas.style.height = h + 'px';
 
-            // Imposta dimensioni retina in scala per massima nitidezza
-            garlandCanvas.width = window.innerWidth * dpr;
-            garlandCanvas.height = garlandVisualHeight * dpr;
+            garlandCanvas.width = w * dpr;
+            garlandCanvas.height = h * dpr;
 
-            gctx.resetTransform();
-            gctx.scale(dpr, dpr);
-
-            drawGarland(window.innerWidth, garlandVisualHeight);
+            gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            drawGarland(w, h);
         }
 
         function drawGarland(w, h) {
             gctx.clearRect(0, 0, w, h);
 
             const isMobile = w < 768;
-            const waveLength = isMobile ? 70 : 110;
-            const amplitude = isMobile ? 14 : 22;
+            const waveLength = isMobile ? 65 : 100;
+            const amplitude = isMobile ? 10 : 14; 
+            const yOffset = 10;
 
             const colorPineDark = '#143B1D';
             const colorPineMed = '#1E5631';
@@ -996,14 +996,14 @@
             const colorRed = '#C0392B';
             const colorGold = '#F1C40F';
 
-            // 1. Aghi di pino realistici dietro il ramo principale
+            // 1. Aghi di pino tridimensionali
             const step = isMobile ? 3 : 2;
             for (let x = 0; x <= w; x += step) {
-                const yCurve = Math.sin(x / waveLength * Math.PI) * amplitude + 12;
+                const yCurve = Math.sin(x / waveLength * Math.PI) * amplitude + yOffset;
                 
-                for (let needle = 0; needle < 4; needle++) {
-                    const angle = (Math.sin(x + needle) * 0.8) + Math.PI / 2;
-                    const length = (Math.random() * 8 + 6) * (isMobile ? 0.75 : 1);
+                for (let needle = 0; needle < 3; needle++) {
+                    const angle = (Math.sin(x + needle) * 0.7) + Math.PI / 2;
+                    const length = (Math.random() * 6 + 5) * (isMobile ? 0.8 : 1);
                     
                     gctx.beginPath();
                     gctx.strokeStyle = needle % 2 === 0 ? colorPineMed : colorPineLight;
@@ -1014,70 +1014,64 @@
                 }
             }
 
-            // 2. Ramo principale scuro di struttura
+            // 2. Ramo principale di struttura
             gctx.beginPath();
             gctx.strokeStyle = colorPineDark;
-            gctx.lineWidth = isMobile ? 4 : 6;
+            gctx.lineWidth = isMobile ? 3.5 : 5;
             gctx.lineCap = 'round';
 
             for (let x = 0; x <= w; x += 5) {
-                const y = Math.sin(x / waveLength * Math.PI) * amplitude + 12;
+                const y = Math.sin(x / waveLength * Math.PI) * amplitude + yOffset;
                 if (x === 0) gctx.moveTo(x, y);
                 else gctx.lineTo(x, y);
             }
             gctx.stroke();
 
-            // 3. Decorazioni: Fiocchi, Palline 3D e Lucine Dorate
+            // 3. Decorazioni: Palline 3D e Lucine Dorate
             for (let x = waveLength / 2; x < w; x += waveLength) {
-                const yCurve = Math.sin(x / waveLength * Math.PI) * amplitude + 12;
-                const ornamentRadius = isMobile ? 5 : 7;
+                const yCurve = Math.sin(x / waveLength * Math.PI) * amplitude + yOffset;
+                const ornamentRadius = isMobile ? 4.5 : 6;
 
                 // Pallina Rossa 3D con ombreggiatura e punto luce speculare
                 gctx.save();
                 gctx.fillStyle = colorRed;
-                gctx.shadowColor = 'rgba(192, 57, 43, 0.5)';
-                gctx.shadowBlur = 4;
+                gctx.shadowColor = 'rgba(192, 57, 43, 0.4)';
+                gctx.shadowBlur = 3;
                 
                 gctx.beginPath();
-                gctx.arc(x, yCurve + ornamentRadius + 2, ornamentRadius, 0, Math.PI * 2);
+                gctx.arc(x, yCurve + ornamentRadius + 1, ornamentRadius, 0, Math.PI * 2);
                 gctx.fill();
 
                 // Riflesso 3D
                 gctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
                 gctx.beginPath();
-                gctx.arc(x - ornamentRadius * 0.35, yCurve + ornamentRadius + 2 - ornamentRadius * 0.35, ornamentRadius * 0.28, 0, Math.PI * 2);
+                gctx.arc(x - ornamentRadius * 0.35, yCurve + ornamentRadius + 1 - ornamentRadius * 0.35, ornamentRadius * 0.28, 0, Math.PI * 2);
                 gctx.fill();
                 gctx.restore();
 
                 // Lucine dorate nei punti elevati della curva
                 const xLight = x + waveLength / 2;
                 if (xLight < w) {
-                    const yLight = Math.sin(xLight / waveLength * Math.PI) * amplitude + 12;
+                    const yLight = Math.sin(xLight / waveLength * Math.PI) * amplitude + yOffset;
                     gctx.save();
                     gctx.fillStyle = colorGold;
-                    gctx.shadowColor = 'rgba(241, 196, 15, 0.9)';
-                    gctx.shadowBlur = 8;
+                    gctx.shadowColor = 'rgba(241, 196, 15, 0.8)';
+                    gctx.shadowBlur = 6;
                     gctx.beginPath();
-                    gctx.arc(xLight, yLight, isMobile ? 2.5 : 3.5, 0, Math.PI * 2);
+                    gctx.arc(xLight, yLight, isMobile ? 2 : 2.8, 0, Math.PI * 2);
                     gctx.fill();
                     gctx.restore();
                 }
             }
 
-            // 4. Nastri rossi sui punti di ancoraggio
+            // 4. Nastri rossi sui punti di ancoraggio superiori
             for (let x = 0; x <= w; x += waveLength) {
-                const yAnchor = Math.sin(x / waveLength * Math.PI) * amplitude + 12;
+                const yAnchor = Math.sin(x / waveLength * Math.PI) * amplitude + yOffset;
                 gctx.fillStyle = colorRed;
                 gctx.beginPath();
-                gctx.arc(x, yAnchor, isMobile ? 3 : 4, 0, Math.PI * 2);
+                gctx.arc(x, yAnchor, isMobile ? 2.5 : 3.5, 0, Math.PI * 2);
                 gctx.fill();
             }
-        }
-
-        // Monitora le variazioni dell'header per prevenire spazi bianchi
-        const headerElem = document.getElementById('main-header');
-        if (window.ResizeObserver && headerElem) {
-            new ResizeObserver(() => resizeGarland()).observe(headerElem);
         }
 
         window.addEventListener('resize', () => {
