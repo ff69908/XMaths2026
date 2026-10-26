@@ -31,28 +31,28 @@
             scroll-behavior: smooth;
         }
 
-        /* Sfondo con fiocchi di neve fissi ed eleganti (stile immagine di riferimento senza elfi o luci) */
         body {
-            background-color: #F8FBFC;
-            background-image: 
-                radial-gradient(circle at 15% 20%, rgba(135, 206, 250, 0.18) 0%, transparent 25%),
-                radial-gradient(circle at 85% 60%, rgba(135, 206, 250, 0.15) 0%, transparent 30%),
-                radial-gradient(circle at 50% 85%, rgba(176, 224, 230, 0.2) 0%, transparent 35%),
-                radial-gradient(circle at 30% 50%, rgba(200, 230, 255, 0.12) 0%, transparent 40%);
+            background-color: #FAFCFF;
             color: var(--text-light);
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Canvas per Fiocchi di Neve Geometrici di Sfondo */
-        #snow-canvas {
+        /* Canvas Sfondo Fiocchi di Neve Fissi e Differenti */
+        #bg-snow-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             pointer-events: none;
-            z-index: 999;
+            z-index: 1; /* Dietro a tutto ma sopra lo sfondo */
+        }
+
+        /* Assicuriamoci che i contenuti stiano sopra il canvas dello sfondo */
+        header, section, .supported-by-section, footer {
+            position: relative;
+            z-index: 2;
         }
 
         /* Header Navigation */
@@ -174,7 +174,7 @@
             align-items: center;
             text-align: center;
             padding: 150px 20px 60px;
-            background: radial-gradient(circle at center, rgba(192, 57, 43, 0.06) 0%, rgba(248, 251, 252, 0.8) 70%);
+            background: radial-gradient(circle at center, rgba(192, 57, 43, 0.05) 0%, rgba(250, 252, 255, 0.9) 70%);
         }
 
         .badge-uni {
@@ -693,8 +693,8 @@
 </head>
 <body>
 
-    <!-- 1. CANVAS FIOCCHI DI NEVE FISSI DI SFONDO -->
-    <canvas id="snow-canvas"></canvas>
+    <!-- 1. CANVAS PER SFONDO DI FIOCCHI DI NEVE FISSI E DI DIVERSE DIMENSIONI -->
+    <canvas id="bg-snow-canvas"></canvas>
 
     <!-- Header Navigation -->
     <header id="main-header">
@@ -1083,39 +1083,41 @@
             setTimeout(resizeGarland, 150);
         }
 
-        // --- 1. DISEGNO FIOCCHI DI NEVE GEOMETRICI FISSI DI SFONDO ---
-        const snowCanvas = document.getElementById('snow-canvas');
-        const sctx = snowCanvas.getContext('2d');
+        // --- 1. GENERATORE DI FIOCCHI DI NEVE FISSI E DIFFERENTI (Sfondo) ---
+        const bgSnowCanvas = document.getElementById('bg-snow-canvas');
+        const bctx = bgSnowCanvas.getContext('2d');
         const symbols = ['❄', '❅', '❆'];
 
-        function drawStaticSnow() {
-            snowCanvas.width = window.innerWidth;
-            snowCanvas.height = window.innerHeight;
-            
-            sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-            sctx.fillStyle = 'rgba(70, 130, 180, 0.22)'; // Tonalità delicata ed elegante ispirata all'immagine
-            sctx.shadowColor = 'rgba(100, 150, 200, 0.2)';
-            sctx.shadowBlur = 2;
+        function drawBackgroundSnow() {
+            const w = window.innerWidth;
+            const h = document.documentElement.scrollHeight; // Copre tutta l'altezza della pagina
+            bgSnowCanvas.width = w;
+            bgSnowCanvas.height = h;
 
-            const count = Math.floor(window.innerWidth / 40);
+            bctx.clearRect(0, 0, w, h);
+            bctx.fillStyle = 'rgba(70, 130, 180, 0.25);'; // Colore azzurro ghiaccio delicato ed elegante
+            bctx.shadowColor = 'rgba(100, 150, 200, 0.3)';
+            bctx.shadowBlur = 4;
+
+            // Distribuisce fiocchi di dimensioni differenti in posizioni sparse e casuali ma fisse
+            const count = Math.floor((w * h) / 25000); // Densità bilanciata in base alla pagina
             
             for (let i = 0; i < count; i++) {
-                const x = (i * 145.5) % snowCanvas.width;
-                const y = (i * 105.3) % snowCanvas.height;
-                const size = (i % 7) + 14;
+                // Calcolo posizioni pseudo-casuali stabili
+                const x = (Math.sin(i * 99) + 1) * 0.5 * w;
+                const y = (Math.cos(i * 33) + 1) * 0.5 * h;
+                const size = (i % 12) + 10; // Dimensioni differenti da 10px a 22px
                 const symbol = symbols[i % symbols.length];
 
-                sctx.save();
-                sctx.translate(x, y);
-                sctx.font = size + 'px serif';
-                sctx.textAlign = 'center';
-                sctx.textBaseline = 'middle';
-                sctx.fillText(symbol, 0, 0);
-                sctx.restore();
+                bctx.save();
+                bctx.translate(x, y);
+                bctx.font = size + 'px serif';
+                bctx.textAlign = 'center';
+                bctx.textBaseline = 'middle';
+                bctx.fillText(symbol, 0, 0);
+                bctx.restore();
             }
         }
-
-        drawStaticSnow();
 
         // --- 2. FESTONE NATALIZIO AD ALTA DEFINIZIONE (Fisso sotto l'Header) ---
         const garlandCanvas = document.getElementById('garland-canvas');
@@ -1226,12 +1228,14 @@
         }
 
         window.addEventListener('resize', () => {
-            drawStaticSnow();
+            drawBackgroundSnow();
             resizeGarland();
         });
 
-        window.addEventListener('load', resizeGarland);
-        resizeGarland();
+        window.addEventListener('load', () => {
+            drawBackgroundSnow();
+            resizeGarland();
+        });
 
         // --- 3. Countdown Timer ---
         const eventDate = new Date('December 17, 2026 09:00:00').getTime();
