@@ -38,7 +38,7 @@
             position: relative;
         }
 
-        /* Canvas per Neve a Fiocchi "Frozen" */
+        /* Canvas per Fiocchi di Neve Fissi */
         #snow-canvas {
             position: fixed;
             top: 0;
@@ -376,61 +376,95 @@
             line-height: 1.5;
         }
 
-        /* Timeline & Programma Giornaliero */
+        /* Timeline & Programma Giornaliero Ottimizzato */
         .timeline {
             max-width: 850px;
             margin: 0 auto;
             position: relative;
-            border-left: 2px solid var(--gold-accent);
-            padding-left: 30px;
+            border-left: 3px solid var(--gold-accent);
+            padding-left: 35px;
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -37px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
+            left: -42px;
+            top: 14px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             background: var(--red-festive);
-            border: 2px solid var(--gold-accent);
+            border: 2px solid #FFFFFF;
+            box-shadow: 0 0 0 2px var(--gold-accent);
         }
 
         .timeline-date-header {
             font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--red-festive);
-            margin: 40px 0 20px -10px;
+            margin: 50px 0 25px -12px;
             font-weight: 700;
-        }
-
-        .timeline-time {
-            font-weight: 700;
-            color: var(--gold-accent);
-            font-size: 0.95rem;
-            margin-bottom: 5px;
+            border-bottom: 2px dashed var(--border-gold);
+            padding-bottom: 8px;
         }
 
         .timeline-content {
             background: var(--bg-card);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 16px 22px;
+            border-radius: 12px;
             border: 1px solid var(--border-gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: transform 0.2s ease;
         }
 
-        .timeline-content h4 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+        .timeline-content:hover {
+            transform: translateX(4px);
         }
 
-        .timeline-content p {
-            font-size: 0.9rem;
+        .session-time {
+            background: rgba(192, 57, 43, 0.1);
+            color: var(--red-festive);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .session-details {
+            flex-grow: 1;
+        }
+
+        .session-details h4 {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .session-details span.speaker-tag {
+            font-size: 0.85rem;
+            color: var(--gold-text);
+            font-weight: 600;
+        }
+
+        /* Stile speciale per pause / pitch / closing */
+        .timeline-item.special .timeline-content {
+            background: #FAFAFA;
+            border-color: #E2E8F0;
+        }
+        .timeline-item.special .session-time {
+            background: rgba(127, 140, 141, 0.15);
             color: var(--text-muted);
         }
 
@@ -654,7 +688,7 @@
 </head>
 <body>
 
-    <!-- 1. CANVAS NEVE FROZEN -->
+    <!-- 1. CANVAS FIOCCHI DI NEVE FISSI -->
     <canvas id="snow-canvas"></canvas>
 
     <!-- Header Navigation -->
@@ -715,7 +749,7 @@
         </div>
     </section>
 
-    <!-- 1. Program Agenda Section AGGIORNATA -->
+    <!-- 1. Program Agenda Section (Ottimizzata e ordinata) -->
     <section id="agenda">
         <h2 class="section-title">Programma dell'Evento (2 Giornate)</h2>
         <p class="section-subtitle">University of Bari Aldo Moro | Department of Mathematics (Aula XII)</p>
@@ -724,93 +758,174 @@
             <!-- Day 1 -->
             <div class="timeline-date-header">📅 17 December 2026 (Thursday)</div>
             
-            <div class="timeline-item">
-                <div class="timeline-time">09:00 – 09:15</div>
-                <div class="timeline-content"><h4>Registration</h4></div>
+            <div class="timeline-item special">
+                <div class="timeline-content">
+                    <div class="session-time">09:00 – 09:15</div>
+                    <div class="session-details"><h4>Registration</h4></div>
+                </div>
+            </div>
+            <div class="timeline-item special">
+                <div class="timeline-content">
+                    <div class="session-time">09:15 – 09:30</div>
+                    <div class="session-details"><h4>Welcome remarks & Introduction</h4></div>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">09:15 – 09:30</div>
-                <div class="timeline-content"><h4>Welcome remarks & Introduction</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">09:30 – 10:00</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Natalino Borgia</span>
+                    </div>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">09:30 – 10:00</div>
-                <div class="timeline-content"><h4>Natalino Borgia</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">10:00 – 10:30</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Margherita d’Alessandro</span>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item special">
+                <div class="timeline-content">
+                    <div class="session-time">10:30 – 11:00</div>
+                    <div class="session-details"><h4>☕ Coffee Break</h4></div>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">10:00 – 10:30</div>
-                <div class="timeline-content"><h4>Margherita d’Alessandro</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">11:00 – 11:30</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Samantha Bove</span>
+                    </div>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">10:30 – 11:00</div>
-                <div class="timeline-content"><h4>Coffee Break</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">11:30 – 12:00</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Paolo Cosentino</span>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item special">
+                <div class="timeline-content">
+                    <div class="session-time">12:00 – 12:45</div>
+                    <div class="session-details"><h4>🚀 Pitch (Session 1)</h4></div>
+                </div>
+            </div>
+            <div class="timeline-item special">
+                <div class="timeline-content">
+                    <div class="session-time">13:00 – 14:30</div>
+                    <div class="session-details"><h4>🍽️ Lunch Break</h4></div>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">11:00 – 11:30</div>
-                <div class="timeline-content"><h4>Samantha Bove</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">14:30 – 15:00</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Donato Mancini</span>
+                    </div>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">11:30 – 12:00</div>
-                <div class="timeline-content"><h4>Paolo Cosentino</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">15:00 – 15:30</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Giuseppe Rago</span>
+                    </div>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">12:00 – 12:45</div>
-                <div class="timeline-content"><h4>Pitch (1 session)</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">15:30 – 16:00</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Andrea Albano</span>
+                    </div>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">13:00 – 14:30</div>
-                <div class="timeline-content"><h4>Lunch Break</h4></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-time">14:30 – 15:00</div>
-                <div class="timeline-content"><h4>Donato Mancini</h4></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-time">15:00 – 15:30</div>
-                <div class="timeline-content"><h4>Giuseppe Rago</h4></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-time">15:30 – 16:00</div>
-                <div class="timeline-content"><h4>Andrea Albano</h4></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-time">16:00 – 16:30</div>
-                <div class="timeline-content"><h4>Malte Schulz</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">16:00 – 16:30</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Malte Schulz</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Day 2 -->
-            <div class="timeline-date-header" style="margin-top: 60px;">📅 18 December 2026 (Friday)</div>
+            <div class="timeline-date-header">📅 18 December 2026 (Friday)</div>
             
             <div class="timeline-item">
-                <div class="timeline-time">09:00 – 09:30</div>
-                <div class="timeline-content"><h4>Michele Paolicelli</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">09:00 – 09:30</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Michele Paolicelli</span>
+                    </div>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">09:30 – 10:00</div>
-                <div class="timeline-content"><h4>Rubén Fiñana Aránega</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">09:30 – 10:00</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Rubén Fiñana Aránega</span>
+                    </div>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">10:00 – 10:30</div>
-                <div class="timeline-content"><h4>Loredana Saliceto</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">10:00 – 10:30</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Loredana Saliceto</span>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item special">
+                <div class="timeline-content">
+                    <div class="session-time">10:30 – 11:00</div>
+                    <div class="session-details"><h4>☕ Coffee Break</h4></div>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">10:30 – 11:00</div>
-                <div class="timeline-content"><h4>Coffee Break</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">11:00 – 11:30</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Helena dell’Anna</span>
+                    </div>
+                </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-time">11:00 – 11:30</div>
-                <div class="timeline-content"><h4>Helena dell’Anna</h4></div>
+                <div class="timeline-content">
+                    <div class="session-time">11:30 – 12:00</div>
+                    <div class="session-details">
+                        <h4>Talk / Presentation</h4>
+                        <span class="speaker-tag">Speaker: Mingchao Chen</span>
+                    </div>
+                </div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-time">11:30 – 12:00</div>
-                <div class="timeline-content"><h4>Mingchao Chen</h4></div>
+            <div class="timeline-item special">
+                <div class="timeline-content">
+                    <div class="session-time">12:00 – 12:45</div>
+                    <div class="session-details"><h4>🚀 Pitch (Session 2)</h4></div>
+                </div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-time">12:00 – 12:45</div>
-                <div class="timeline-content"><h4>Pitch (2 session)</h4></div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-time">12:45 – 13:00</div>
-                <div class="timeline-content"><h4>Closing</h4></div>
+            <div class="timeline-item special">
+                <div class="timeline-content">
+                    <div class="session-time">12:45 – 13:00</div>
+                    <div class="session-details"><h4>🎉 Closing</h4></div>
+                </div>
             </div>
         </div>
     </section>
@@ -963,83 +1078,39 @@
             setTimeout(resizeGarland, 150);
         }
 
-        // --- 1. NEVE FROZEN (Attiva esattamente 5 Secondi) ---
+        // --- 1. SFONDO FIOCCHI DI NEVE FISSI ---
         const snowCanvas = document.getElementById('snow-canvas');
         const sctx = snowCanvas.getContext('2d');
-        let snowActive = true;
-        let flakes = [];
-        let snowAnimId = null;
-
-        function resizeSnowCanvas() {
-            snowCanvas.width = window.innerWidth;
-            snowCanvas.height = window.innerHeight;
-            createFlakes();
-        }
-
         const symbols = ['❄', '❅', '❆'];
 
-        function createFlakes() {
-            flakes = [];
-            const count = Math.floor(window.innerWidth / 30);
+        function drawStaticSnow() {
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+            
+            sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            sctx.fillStyle = 'rgba(70, 140, 210, 0.35)';
+            sctx.shadowColor = 'rgba(120, 180, 255, 0.3)';
+            sctx.shadowBlur = 3;
+
+            const count = Math.floor(window.innerWidth / 35);
+            
             for (let i = 0; i < count; i++) {
-                flakes.push({
-                    x: Math.random() * snowCanvas.width,
-                    y: Math.random() * snowCanvas.height,
-                    size: Math.random() * 16 + 12,
-                    speed: Math.random() * 1.2 + 0.6,
-                    wind: Math.random() * 0.4 - 0.2,
-                    symbol: symbols[Math.floor(Math.random() * symbols.length)],
-                    angle: Math.random() * Math.PI * 2,
-                    spin: Math.random() * 0.03 - 0.015
-                });
+                const x = (i * 137.5) % snowCanvas.width;
+                const y = (i * 93.3) % snowCanvas.height;
+                const size = (i % 8) + 12;
+                const symbol = symbols[i % symbols.length];
+
+                sctx.save();
+                sctx.translate(x, y);
+                sctx.font = size + 'px serif';
+                sctx.textAlign = 'center';
+                sctx.textBaseline = 'middle';
+                sctx.fillText(symbol, 0, 0);
+                sctx.restore();
             }
         }
 
-        function drawSnow() {
-            if (!snowActive) return;
-            sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-            
-            sctx.fillStyle = 'rgba(70, 140, 210, 0.85)';
-            sctx.shadowColor = 'rgba(120, 180, 255, 0.5)';
-            sctx.shadowBlur = 4;
-
-            flakes.forEach(f => {
-                sctx.save();
-                sctx.translate(f.x, f.y);
-                sctx.rotate(f.angle);
-                sctx.font = f.size + 'px serif';
-                sctx.textAlign = 'center';
-                sctx.textBaseline = 'middle';
-                sctx.fillText(f.symbol, 0, 0);
-                sctx.restore();
-                
-                f.y += f.speed;
-                f.x += f.wind;
-                f.angle += f.spin;
-
-                if (f.y > snowCanvas.height + f.size) {
-                    f.y = -20;
-                    f.x = Math.random() * snowCanvas.width;
-                }
-            });
-
-            snowAnimId = requestAnimationFrame(drawSnow);
-        }
-
-        resizeSnowCanvas();
-        drawSnow();
-
-        // Stop Neve dopo 5 secondi
-        setTimeout(() => {
-            snowActive = false;
-            cancelAnimationFrame(snowAnimId);
-            snowCanvas.style.transition = "opacity 1.5s ease";
-            snowCanvas.style.opacity = "0";
-            setTimeout(() => {
-                sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-                snowCanvas.style.display = "none";
-            }, 1500);
-        }, 5000);
+        drawStaticSnow();
 
         // --- 2. FESTONE NATALIZIO AD ALTA DEFINIZIONE (Fisso sotto l'Header) ---
         const garlandCanvas = document.getElementById('garland-canvas');
@@ -1150,7 +1221,7 @@
         }
 
         window.addEventListener('resize', () => {
-            resizeSnowCanvas();
+            drawStaticSnow();
             resizeGarland();
         });
 
