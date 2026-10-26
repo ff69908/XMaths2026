@@ -31,14 +31,20 @@
             scroll-behavior: smooth;
         }
 
+        /* Sfondo con fiocchi di neve fissi ed eleganti (stile immagine di riferimento senza elfi o luci) */
         body {
-            background-color: var(--bg-dark);
+            background-color: #F8FBFC;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(135, 206, 250, 0.18) 0%, transparent 25%),
+                radial-gradient(circle at 85% 60%, rgba(135, 206, 250, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 50% 85%, rgba(176, 224, 230, 0.2) 0%, transparent 35%),
+                radial-gradient(circle at 30% 50%, rgba(200, 230, 255, 0.12) 0%, transparent 40%);
             color: var(--text-light);
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Canvas per Fiocchi di Neve Fissi */
+        /* Canvas per Fiocchi di Neve Geometrici di Sfondo */
         #snow-canvas {
             position: fixed;
             top: 0;
@@ -168,7 +174,7 @@
             align-items: center;
             text-align: center;
             padding: 150px 20px 60px;
-            background: radial-gradient(circle at center, rgba(192, 57, 43, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
+            background: radial-gradient(circle at center, rgba(192, 57, 43, 0.06) 0%, rgba(248, 251, 252, 0.8) 70%);
         }
 
         .badge-uni {
@@ -458,7 +464,6 @@
             font-weight: 600;
         }
 
-        /* Stile speciale per pause / pitch / closing */
         .timeline-item.special .timeline-content {
             background: #FAFAFA;
             border-color: #E2E8F0;
@@ -688,7 +693,7 @@
 </head>
 <body>
 
-    <!-- 1. CANVAS FIOCCHI DI NEVE FISSI -->
+    <!-- 1. CANVAS FIOCCHI DI NEVE FISSI DI SFONDO -->
     <canvas id="snow-canvas"></canvas>
 
     <!-- Header Navigation -->
@@ -749,7 +754,7 @@
         </div>
     </section>
 
-    <!-- 1. Program Agenda Section (Ottimizzata e ordinata) -->
+    <!-- 1. Program Agenda Section -->
     <section id="agenda">
         <h2 class="section-title">Programma dell'Evento (2 Giornate)</h2>
         <p class="section-subtitle">University of Bari Aldo Moro | Department of Mathematics (Aula XII)</p>
@@ -1078,7 +1083,7 @@
             setTimeout(resizeGarland, 150);
         }
 
-        // --- 1. SFONDO FIOCCHI DI NEVE FISSI ---
+        // --- 1. DISEGNO FIOCCHI DI NEVE GEOMETRICI FISSI DI SFONDO ---
         const snowCanvas = document.getElementById('snow-canvas');
         const sctx = snowCanvas.getContext('2d');
         const symbols = ['❄', '❅', '❆'];
@@ -1088,16 +1093,16 @@
             snowCanvas.height = window.innerHeight;
             
             sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-            sctx.fillStyle = 'rgba(70, 140, 210, 0.35)';
-            sctx.shadowColor = 'rgba(120, 180, 255, 0.3)';
-            sctx.shadowBlur = 3;
+            sctx.fillStyle = 'rgba(70, 130, 180, 0.22)'; // Tonalità delicata ed elegante ispirata all'immagine
+            sctx.shadowColor = 'rgba(100, 150, 200, 0.2)';
+            sctx.shadowBlur = 2;
 
-            const count = Math.floor(window.innerWidth / 35);
+            const count = Math.floor(window.innerWidth / 40);
             
             for (let i = 0; i < count; i++) {
-                const x = (i * 137.5) % snowCanvas.width;
-                const y = (i * 93.3) % snowCanvas.height;
-                const size = (i % 8) + 12;
+                const x = (i * 145.5) % snowCanvas.width;
+                const y = (i * 105.3) % snowCanvas.height;
+                const size = (i % 7) + 14;
                 const symbol = symbols[i % symbols.length];
 
                 sctx.save();
