@@ -12,7 +12,7 @@
     <style>
         :root {
             --bg-dark: #FFFFFF;
-            --bg-card: rgba(255, 245, 245, 0.95);
+            --bg-card: #FFF5F5;
             --red-festive: #C0392B;
             --red-dark: #962D22;
             --gold-accent: #C0392B;
@@ -32,26 +32,21 @@
         }
 
         body {
-            background-color: #F6F9FC;
+            background-color: var(--bg-dark);
             color: var(--text-light);
             overflow-x: hidden;
             position: relative;
         }
 
         /* Canvas per Fiocchi di Neve Fissi */
-        #snow-bg-canvas {
+        #snow-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             pointer-events: none;
-            z-index: 0;
-        }
-
-        header, section, .supported-by-section, footer {
-            position: relative;
-            z-index: 2;
+            z-index: 999;
         }
 
         /* Header Navigation */
@@ -173,7 +168,7 @@
             align-items: center;
             text-align: center;
             padding: 150px 20px 60px;
-            background: radial-gradient(circle at center, rgba(192, 57, 43, 0.05) 0%, rgba(246, 249, 252, 0.85) 70%);
+            background: radial-gradient(circle at center, rgba(192, 57, 43, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
         }
 
         .badge-uni {
@@ -463,8 +458,9 @@
             font-weight: 600;
         }
 
+        /* Stile speciale per pause / pitch / closing */
         .timeline-item.special .timeline-content {
-            background: rgba(250, 250, 250, 0.95);
+            background: #FAFAFA;
             border-color: #E2E8F0;
         }
         .timeline-item.special .session-time {
@@ -529,7 +525,7 @@
         }
 
         .register-external-box {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(192, 57, 43, 0.05));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(192, 57, 43, 0.05));
             border-radius: 20px;
             border: 1px solid var(--border-gold);
             padding: 50px 30px;
@@ -692,8 +688,8 @@
 </head>
 <body>
 
-    <!-- Canvas per i Fiocchi di Neve Fissi di Sfondo -->
-    <canvas id="snow-bg-canvas"></canvas>
+    <!-- 1. CANVAS FIOCCHI DI NEVE FISSI -->
+    <canvas id="snow-canvas"></canvas>
 
     <!-- Header Navigation -->
     <header id="main-header">
@@ -753,7 +749,7 @@
         </div>
     </section>
 
-    <!-- 1. Program Agenda Section -->
+    <!-- 1. Program Agenda Section (Ottimizzata e ordinata) -->
     <section id="agenda">
         <h2 class="section-title">Programma dell'Evento (2 Giornate)</h2>
         <p class="section-subtitle">University of Bari Aldo Moro | Department of Mathematics (Aula XII)</p>
@@ -1082,93 +1078,39 @@
             setTimeout(resizeGarland, 150);
         }
 
-        // --- 1. DISEGNO NATIVO FIOCCHI DI NEVE DI DIVERSE DIMENSIONI ---
-        const snowCanvas = document.getElementById('snow-bg-canvas');
+        // --- 1. SFONDO FIOCCHI DI NEVE FISSI ---
+        const snowCanvas = document.getElementById('snow-canvas');
         const sctx = snowCanvas.getContext('2d');
-
-        function drawFlake(x, y, radius, opacity) {
-            sctx.save();
-            sctx.translate(x, y);
-            sctx.strokeStyle = `rgba(164, 203, 234, ${opacity})`;
-            sctx.lineWidth = Math.max(1, radius / 8);
-            sctx.lineCap = 'round';
-
-            for (let i = 0; i < 6; i++) {
-                sctx.beginPath();
-                sctx.moveTo(0, 0);
-                sctx.lineTo(0, -radius);
-                sctx.stroke();
-
-                // Piccoli rametti sui fiocchi più grandi
-                if (radius > 14) {
-                    sctx.beginPath();
-                    sctx.moveTo(0, -radius * 0.5);
-                    sctx.lineTo(radius * 0.3, -radius * 0.7);
-                    sctx.moveTo(0, -radius * 0.5);
-                    sctx.lineTo(-radius * 0.3, -radius * 0.7);
-                    sctx.stroke();
-                }
-
-                sctx.rotate(Math.PI / 3);
-            }
-            sctx.restore();
-        }
+        const symbols = ['❄', '❅', '❆'];
 
         function drawStaticSnow() {
-            const w = window.innerWidth;
-            const h = window.innerHeight;
-            snowCanvas.width = w;
-            snowCanvas.height = h;
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+            
+            sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            sctx.fillStyle = 'rgba(70, 140, 210, 0.35)';
+            sctx.shadowColor = 'rgba(120, 180, 255, 0.3)';
+            sctx.shadowBlur = 3;
 
-            sctx.clearRect(0, 0, w, h);
+            const count = Math.floor(window.innerWidth / 35);
+            
+            for (let i = 0; i < count; i++) {
+                const x = (i * 137.5) % snowCanvas.width;
+                const y = (i * 93.3) % snowCanvas.height;
+                const size = (i % 8) + 12;
+                const symbol = symbols[i % symbols.length];
 
-            // 32 fiocchi posizionati in punti ben bilanciati e di 4 dimensioni diverse
-            const flakesData = [
-                // Fiocchi Piccoli (sfondo distante)
-                { x: 0.08, y: 0.15, size: 10, op: 0.35 },
-                { x: 0.22, y: 0.38, size: 12, op: 0.40 },
-                { x: 0.35, y: 0.12, size: 9,  op: 0.30 },
-                { x: 0.48, y: 0.45, size: 11, op: 0.35 },
-                { x: 0.62, y: 0.18, size: 10, op: 0.30 },
-                { x: 0.78, y: 0.40, size: 12, op: 0.40 },
-                { x: 0.90, y: 0.22, size: 9,  op: 0.35 },
-                { x: 0.14, y: 0.72, size: 11, op: 0.35 },
-                { x: 0.30, y: 0.85, size: 10, op: 0.30 },
-                { x: 0.55, y: 0.78, size: 12, op: 0.40 },
-                { x: 0.70, y: 0.88, size: 9,  op: 0.35 },
-                { x: 0.86, y: 0.68, size: 11, op: 0.30 },
-
-                // Fiocchi Medi
-                { x: 0.05, y: 0.42, size: 16, op: 0.45 },
-                { x: 0.18, y: 0.25, size: 18, op: 0.50 },
-                { x: 0.40, y: 0.28, size: 15, op: 0.42 },
-                { x: 0.58, y: 0.32, size: 17, op: 0.48 },
-                { x: 0.72, y: 0.12, size: 16, op: 0.45 },
-                { x: 0.94, y: 0.48, size: 18, op: 0.50 },
-                { x: 0.08, y: 0.88, size: 15, op: 0.40 },
-                { x: 0.25, y: 0.62, size: 17, op: 0.45 },
-                { x: 0.42, y: 0.90, size: 16, op: 0.42 },
-                { x: 0.65, y: 0.60, size: 18, op: 0.48 },
-                { x: 0.82, y: 0.82, size: 15, op: 0.40 },
-
-                // Fiocchi Grandi (primo piano elegante)
-                { x: 0.12, y: 0.55, size: 24, op: 0.55 },
-                { x: 0.28, y: 0.08, size: 22, op: 0.50 },
-                { x: 0.50, y: 0.62, size: 25, op: 0.52 },
-                { x: 0.82, y: 0.28, size: 23, op: 0.55 },
-                { x: 0.92, y: 0.85, size: 26, op: 0.48 },
-                { x: 0.38, y: 0.75, size: 22, op: 0.50 },
-
-                // Fiocchi Extra Grandi per decorare i bordi lateralmente
-                { x: 0.02, y: 0.20, size: 30, op: 0.60 },
-                { x: 0.97, y: 0.10, size: 32, op: 0.60 },
-                { x: 0.96, y: 0.92, size: 28, op: 0.55 }
-            ];
-
-            flakesData.forEach(f => {
-                drawFlake(f.x * w, f.y * h, f.size, f.op);
-            });
+                sctx.save();
+                sctx.translate(x, y);
+                sctx.font = size + 'px serif';
+                sctx.textAlign = 'center';
+                sctx.textBaseline = 'middle';
+                sctx.fillText(symbol, 0, 0);
+                sctx.restore();
+            }
         }
+
+        drawStaticSnow();
 
         // --- 2. FESTONE NATALIZIO AD ALTA DEFINIZIONE (Fisso sotto l'Header) ---
         const garlandCanvas = document.getElementById('garland-canvas');
@@ -1283,12 +1225,10 @@
             resizeGarland();
         });
 
-        window.addEventListener('load', () => {
-            drawStaticSnow();
-            resizeGarland();
-        });
+        window.addEventListener('load', resizeGarland);
+        resizeGarland();
 
-        // --- Countdown Timer ---
+        // --- 3. Countdown Timer ---
         const eventDate = new Date('December 17, 2026 09:00:00').getTime();
 
         function updateCountdown() {
