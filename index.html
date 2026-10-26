@@ -69,14 +69,15 @@
 
         /* CANVAS FESTONE FISSO SUBITO SOTTO L'HEADER */
         #garland-canvas {
-    position: absolute; /* <--- Cambia fixed con absolute */
-    left: 0;
-    width: 100%;
-    height: 45px;
-    pointer-events: none;
-    z-index: 99;
-    display: block;
-}
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 45px;
+            pointer-events: none;
+            z-index: 99;
+            display: block;
+        }
+
         .logo {
             font-family: 'Cinzel', serif;
             font-size: 1.2rem;
@@ -375,8 +376,9 @@
             line-height: 1.5;
         }
 
+        /* Timeline & Programma Giornaliero */
         .timeline {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             position: relative;
             border-left: 2px solid var(--gold-accent);
@@ -398,6 +400,14 @@
             border-radius: 50%;
             background: var(--red-festive);
             border: 2px solid var(--gold-accent);
+        }
+
+        .timeline-date-header {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--red-festive);
+            margin: 40px 0 20px -10px;
+            font-weight: 700;
         }
 
         .timeline-time {
@@ -480,7 +490,6 @@
             color: white;
         }
 
-        /* Sezione Registrazione (In Inglese) */
         .register-external-box {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(192, 57, 43, 0.05));
             border-radius: 20px;
@@ -595,7 +604,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Responsive Mobile Layout */
         @media (max-width: 992px) {
             header {
                 flex-direction: column;
@@ -646,7 +654,7 @@
 </head>
 <body>
 
-    <!-- 1. CANVAS NEVE FROZEN (Attivo esattamente 5 Secondi) -->
+    <!-- 1. CANVAS NEVE FROZEN -->
     <canvas id="snow-canvas"></canvas>
 
     <!-- Header Navigation -->
@@ -681,7 +689,7 @@
         <!-- Testo Discorsivo Inglese -->
         <div class="discursive-info-container">
             <p class="discursive-info-text">
-                December 17–18, 2026 — 09:15 to 13:00 <br>
+                December 17–18, 2026 — 09:00 to 16:30 <br>
                 Department of Mathematics, Aula XII, Via Edoardo Orabona, 4, Bari, Italy
             </p>
         </div>
@@ -707,26 +715,102 @@
         </div>
     </section>
 
-    <!-- 1. Program Agenda Section -->
+    <!-- 1. Program Agenda Section AGGIORNATA -->
     <section id="agenda">
         <h2 class="section-title">Programma dell'Evento (2 Giornate)</h2>
-        <p class="section-subtitle">Interventi accademici, sessioni di networking e brindisi di buone feste</p>
+        <p class="section-subtitle">University of Bari Aldo Moro | Department of Mathematics (Aula XII)</p>
 
         <div class="timeline">
+            <!-- Day 1 -->
+            <div class="timeline-date-header">📅 17 December 2026 (Thursday)</div>
+            
             <div class="timeline-item">
-                <div class="timeline-time">Day 1 — 09:15 - 13:00</div>
-                <div class="timeline-content">
-                    <h4>Accoglienza, Keynote & Coffee Break</h4>
-                    <p>Apertura lavori in Aula XII e interventi sull'intelligenza artificiale e le nuove professioni.</p>
-                </div>
+                <div class="timeline-time">09:00 – 09:15</div>
+                <div class="timeline-content"><h4>Registration</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">09:15 – 09:30</div>
+                <div class="timeline-content"><h4>Welcome remarks & Introduction</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">09:30 – 10:00</div>
+                <div class="timeline-content"><h4>Natalino Borgia</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">10:00 – 10:30</div>
+                <div class="timeline-content"><h4>Margherita d’Alessandro</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">10:30 – 11:00</div>
+                <div class="timeline-content"><h4>Coffee Break</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">11:00 – 11:30</div>
+                <div class="timeline-content"><h4>Samantha Bove</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">11:30 – 12:00</div>
+                <div class="timeline-content"><h4>Paolo Cosentino</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">12:00 – 12:45</div>
+                <div class="timeline-content"><h4>Pitch (1 session)</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">13:00 – 14:30</div>
+                <div class="timeline-content"><h4>Lunch Break</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">14:30 – 15:00</div>
+                <div class="timeline-content"><h4>Donato Mancini</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">15:00 – 15:30</div>
+                <div class="timeline-content"><h4>Giuseppe Rago</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">15:30 – 16:00</div>
+                <div class="timeline-content"><h4>Andrea Albano</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">16:00 – 16:30</div>
+                <div class="timeline-content"><h4>Malte Schulz</h4></div>
             </div>
 
+            <!-- Day 2 -->
+            <div class="timeline-date-header" style="margin-top: 60px;">📅 18 December 2026 (Friday)</div>
+            
             <div class="timeline-item">
-                <div class="timeline-time">Day 2 — 09:15 - 13:00</div>
-                <div class="timeline-content">
-                    <h4>Tavole Rotonde & Networking</h4>
-                    <p>Sessioni di approfondimento, dibattito con gli esperti e conclusione con brindisi natalizio.</p>
-                </div>
+                <div class="timeline-time">09:00 – 09:30</div>
+                <div class="timeline-content"><h4>Michele Paolicelli</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">09:30 – 10:00</div>
+                <div class="timeline-content"><h4>Rubén Fiñana Aránega</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">10:00 – 10:30</div>
+                <div class="timeline-content"><h4>Loredana Saliceto</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">10:30 – 11:00</div>
+                <div class="timeline-content"><h4>Coffee Break</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">11:00 – 11:30</div>
+                <div class="timeline-content"><h4>Helena dell’Anna</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">11:30 – 12:00</div>
+                <div class="timeline-content"><h4>Mingchao Chen</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">12:00 – 12:45</div>
+                <div class="timeline-content"><h4>Pitch (2 session)</h4></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">12:45 – 13:00</div>
+                <div class="timeline-content"><h4>Closing</h4></div>
             </div>
         </div>
     </section>
@@ -839,7 +923,7 @@
         </div>
     </section>
 
-    <!-- 6. Registration Section (IN INGLESE CON LA NOTA RICHIESTA) -->
+    <!-- 6. Registration Section -->
     <section id="register">
         <div class="register-external-box">
             <h3>Reserve Your Spot</h3>
@@ -962,24 +1046,23 @@
         const gctx = garlandCanvas.getContext('2d');
 
         function resizeGarland() {
-    const header = document.getElementById('main-header');
-    if (!header) return;
+            const header = document.getElementById('main-header');
+            if (!header) return;
 
-    const w = window.innerWidth;
-    const h = 45;
-    const dpr = window.devicePixelRatio || 1;
+            const w = window.innerWidth;
+            const h = 45;
+            const dpr = window.devicePixelRatio || 1;
 
-    // Con position: absolute, si posiziona subito sotto l'header all'avvio della pagina:
-    garlandCanvas.style.top = header.offsetHeight + 'px';
-    garlandCanvas.style.width = w + 'px';
-    garlandCanvas.style.height = h + 'px';
+            garlandCanvas.style.top = header.offsetHeight + 'px';
+            garlandCanvas.style.width = w + 'px';
+            garlandCanvas.style.height = h + 'px';
 
-    garlandCanvas.width = w * dpr;
-    garlandCanvas.height = h * dpr;
+            garlandCanvas.width = w * dpr;
+            garlandCanvas.height = h * dpr;
 
-    gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    drawGarland(w, h);
-}
+            gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            drawGarland(w, h);
+        }
 
         function drawGarland(w, h) {
             gctx.clearRect(0, 0, w, h);
@@ -995,7 +1078,6 @@
             const colorRed = '#C0392B';
             const colorGold = '#F1C40F';
 
-            // 1. Aghi di pino tridimensionali
             const step = isMobile ? 3 : 2;
             for (let x = 0; x <= w; x += step) {
                 const yCurve = Math.sin(x / waveLength * Math.PI) * amplitude + yOffset;
@@ -1013,7 +1095,6 @@
                 }
             }
 
-            // 2. Ramo principale di struttura
             gctx.beginPath();
             gctx.strokeStyle = colorPineDark;
             gctx.lineWidth = isMobile ? 3.5 : 5;
@@ -1026,12 +1107,10 @@
             }
             gctx.stroke();
 
-            // 3. Decorazioni: Palline 3D e Lucine Dorate
             for (let x = waveLength / 2; x < w; x += waveLength) {
                 const yCurve = Math.sin(x / waveLength * Math.PI) * amplitude + yOffset;
                 const ornamentRadius = isMobile ? 4.5 : 6;
 
-                // Pallina Rossa 3D con ombreggiatura e punto luce speculare
                 gctx.save();
                 gctx.fillStyle = colorRed;
                 gctx.shadowColor = 'rgba(192, 57, 43, 0.4)';
@@ -1041,14 +1120,12 @@
                 gctx.arc(x, yCurve + ornamentRadius + 1, ornamentRadius, 0, Math.PI * 2);
                 gctx.fill();
 
-                // Riflesso 3D
                 gctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
                 gctx.beginPath();
                 gctx.arc(x - ornamentRadius * 0.35, yCurve + ornamentRadius + 1 - ornamentRadius * 0.35, ornamentRadius * 0.28, 0, Math.PI * 2);
                 gctx.fill();
                 gctx.restore();
 
-                // Lucine dorate nei punti elevati della curva
                 const xLight = x + waveLength / 2;
                 if (xLight < w) {
                     const yLight = Math.sin(xLight / waveLength * Math.PI) * amplitude + yOffset;
@@ -1063,7 +1140,6 @@
                 }
             }
 
-            // 4. Nastri rossi sui punti di ancoraggio superiori
             for (let x = 0; x <= w; x += waveLength) {
                 const yAnchor = Math.sin(x / waveLength * Math.PI) * amplitude + yOffset;
                 gctx.fillStyle = colorRed;
@@ -1082,7 +1158,7 @@
         resizeGarland();
 
         // --- 3. Countdown Timer ---
-        const eventDate = new Date('December 17, 2026 09:15:00').getTime();
+        const eventDate = new Date('December 17, 2026 09:00:00').getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
