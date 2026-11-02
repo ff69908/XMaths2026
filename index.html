@@ -38,13 +38,13 @@
             position: relative;
         }
 
-        /* Fixed Snow Canvas */
+        /* Canvas per Fiocchi di Neve (partono da About in poi) */
         #snow-canvas {
-            position: fixed;
-            top: 0;
+            position: absolute;
+            top: 100vh; /* Inizia dopo la Hero section */
             left: 0;
             width: 100vw;
-            height: 100vh;
+            height: calc(100% - 100vh);
             pointer-events: none;
             z-index: 999;
         }
@@ -159,9 +159,9 @@
             background: #e74c3c;
         }
 
-        /* Hero Section (Sfondo con Immagine in Trasparenza Solo in Testa) */
+        /* Hero Section (Sfondo con Immagine in Trasparenza) */
         .hero {
-            min-height: 85vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -184,7 +184,7 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
-            opacity: 0.15; /* Trasparenza sfumata dell'immagine nella sezione Hero */
+            opacity: 0.15;
             z-index: -1;
             pointer-events: none;
         }
@@ -192,7 +192,7 @@
         .hero h1 {
             font-family: 'Cinzel', serif;
             font-size: clamp(2rem, 4.5vw, 3.5rem);
-            color: var(--red-festive);
+            color: var(--text-light); /* Modificato in nero/scuro come richiesto */
             margin-bottom: 20px;
             line-height: 1.3;
             max-width: 950px;
@@ -240,6 +240,8 @@
             padding: 80px 8%;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .section-title {
@@ -317,15 +319,23 @@
         .speaker-card h3 {
             font-size: 1.2rem;
             color: var(--text-light);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
-        .speaker-card .role {
-            color: var(--gold-accent);
-            font-size: 0.85rem;
+        .email-link {
+            color: var(--red-festive);
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 15px;
-            display: block;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.3s ease;
+        }
+
+        .email-link:hover {
+            opacity: 0.8;
+            text-decoration: underline;
         }
 
         /* Timeline & Accordion Program */
@@ -608,6 +618,8 @@
             padding: 40px 20px;
             border-top: 1px solid var(--border-gold);
             background: #FAFAFA;
+            position: relative;
+            z-index: 2;
         }
 
         .supported-by-title {
@@ -635,6 +647,8 @@
             padding: 30px 8%;
             margin-top: 0;
             border-top: none;
+            position: relative;
+            z-index: 2;
         }
 
         .red-footer-container {
@@ -722,7 +736,7 @@
 </head>
 <body id="top">
 
-    <!-- 1. FIXED SNOW CANVAS -->
+    <!-- 1. FIXED SNOW CANVAS (Parte da About in poi) -->
     <canvas id="snow-canvas"></canvas>
 
     <!-- Header Navigation -->
@@ -1109,31 +1123,31 @@
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Alessandro Cannone</h3>
-                <span class="role">Organizing Committee</span>
+                <a href="mailto:alessandro.cannone@uniba.it" class="email-link">✉️ Contact</a>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Elisabetta Erione</h3>
-                <span class="role">Organizing Committee</span>
+                <a href="mailto:elisabetta.erione@uniba.it" class="email-link">✉️ Contact</a>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('https://raw.githubusercontent.com/ff69908/XMaths2026/main/photo_5899779348410517796_y.jpg');"></div>
                 <h3>Flavia Fazio</h3>
-                <span class="role">Organizing Committee</span>
+                <a href="mailto:f.fazio11@phd.uniba.it" class="email-link">✉️ Contact</a>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Niccolò Maldera</h3>
-                <span class="role">Organizing Committee</span>
+                <a href="mailto:niccolo.maldera@uniba.it" class="email-link">✉️ Contact</a>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Taijin Zhao</h3>
-                <span class="role">Organizing Committee</span>
+                <a href="mailto:taijin.zhao@uniba.it" class="email-link">✉️ Contact</a>
             </div>
         </div>
     </section>
@@ -1223,14 +1237,14 @@
             element.classList.toggle('active');
         }
 
-        // --- 1. STATIC SNOW CANVAS ---
+        // --- 1. STATIC SNOW CANVAS (Parte da About in poi) ---
         const snowCanvas = document.getElementById('snow-canvas');
         const sctx = snowCanvas.getContext('2d');
         const symbols = ['❄', '❅', '❆'];
 
         function drawStaticSnow() {
             snowCanvas.width = window.innerWidth;
-            snowCanvas.height = window.innerHeight;
+            snowCanvas.height = document.body.scrollHeight - window.innerHeight;
             
             sctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
             sctx.fillStyle = 'rgba(70, 140, 210, 0.35)';
@@ -1370,8 +1384,10 @@
             resizeGarland();
         });
 
-        window.addEventListener('load', resizeGarland);
-        resizeGarland();
+        window.addEventListener('load', () => {
+            resizeGarland();
+            drawStaticSnow();
+        });
 
         // --- 3. COUNTDOWN TIMER ---
         const eventDate = new Date('December 17, 2026 09:00:00').getTime();
