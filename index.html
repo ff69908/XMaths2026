@@ -41,7 +41,7 @@
         /* Canvas per Fiocchi di Neve (partono da About in poi) */
         #snow-canvas {
             position: absolute;
-            top: 100vh; /* Inizia dopo la Hero section */
+            top: 100vh;
             left: 0;
             width: 100vw;
             height: calc(100% - 100vh);
@@ -159,7 +159,7 @@
             background: #e74c3c;
         }
 
-        /* Hero Section (Sfondo con Immagine in Trasparenza) */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -191,20 +191,20 @@
 
         .hero h1 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 4.5vw, 3.5rem);
-            color: var(--text-light); /* Modificato in nero/scuro come richiesto */
-            margin-bottom: 20px;
-            line-height: 1.3;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            color: var(--red-festive); /* Titolo principale in rosso */
+            margin-bottom: 15px;
+            line-height: 1.2;
             max-width: 950px;
         }
 
         .hero p.subtitle-dept {
-            font-size: clamp(1.1rem, 2.2vw, 1.4rem);
-            color: var(--text-light);
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-light); /* Sottotitolo e Data in formato uguale */
             font-weight: 600;
             max-width: 850px;
             margin-bottom: 35px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* Countdown */
@@ -319,23 +319,20 @@
         .speaker-card h3 {
             font-size: 1.2rem;
             color: var(--text-light);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        .email-link {
+        .email-icon-link {
             color: var(--red-festive);
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 1.3rem;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: opacity 0.3s ease;
+            display: inline-block;
+            transition: transform 0.2s ease, opacity 0.2s ease;
         }
 
-        .email-link:hover {
+        .email-icon-link:hover {
+            transform: scale(1.2);
             opacity: 0.8;
-            text-decoration: underline;
         }
 
         /* Timeline & Accordion Program */
@@ -763,10 +760,13 @@
     <!-- CANVAS GARLAND BELOW HEADER -->
     <canvas id="garland-canvas"></canvas>
 
-    <!-- Hero Section (con Immagine Matematica in Trasparenza) -->
+    <!-- Hero Section -->
     <section class="hero">
-        <h1>XMaths Workshop<br>December 17–18, 2026</h1>
-        <p class="subtitle-dept">Department of Mathematics, University of Bari Aldo Moro</p>
+        <h1>XMaths Workshop</h1>
+        <p class="subtitle-dept">
+            December 17–18, 2026<br>
+            Department of Mathematics, University of Bari Aldo Moro
+        </p>
 
         <!-- Countdown Timer -->
         <div class="countdown-container">
@@ -1123,31 +1123,31 @@
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Alessandro Cannone</h3>
-                <a href="mailto:alessandro.cannone@uniba.it" class="email-link">✉️ Contact</a>
+                <a href="mailto:alessandro.cannone@uniba.it" class="email-icon-link" title="Send Email">✉️</a>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Elisabetta Erione</h3>
-                <a href="mailto:elisabetta.erione@uniba.it" class="email-link">✉️ Contact</a>
+                <a href="mailto:elisabetta.erione@uniba.it" class="email-icon-link" title="Send Email">✉️</a>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('https://raw.githubusercontent.com/ff69908/XMaths2026/main/photo_5899779348410517796_y.jpg');"></div>
                 <h3>Flavia Fazio</h3>
-                <a href="mailto:f.fazio11@phd.uniba.it" class="email-link">✉️ Contact</a>
+                <a href="mailto:f.fazio11@phd.uniba.it" class="email-icon-link" title="Send Email">✉️</a>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Niccolò Maldera</h3>
-                <a href="mailto:niccolo.maldera@uniba.it" class="email-link">✉️ Contact</a>
+                <a href="mailto:niccolo.maldera@uniba.it" class="email-icon-link" title="Send Email">✉️</a>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Taijin Zhao</h3>
-                <a href="mailto:taijin.zhao@uniba.it" class="email-link">✉️ Contact</a>
+                <a href="mailto:taijin.zhao@uniba.it" class="email-icon-link" title="Send Email">✉️</a>
             </div>
         </div>
     </section>
