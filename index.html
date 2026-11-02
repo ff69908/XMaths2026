@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workshop Natalizio Universitario | Innovazione & Creatività</title>
-    <!-- Font Google -->
+    <title>XMaths 2026 Workshop | Department of Mathematics</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
             position: relative;
         }
 
-        /* Canvas per Fiocchi di Neve Fissi */
+        /* Fixed Snow Canvas */
         #snow-canvas {
             position: fixed;
             top: 0;
@@ -67,7 +67,7 @@
             flex-wrap: wrap;
         }
 
-        /* CANVAS FESTONE FISSO SUBITO SOTTO L'HEADER */
+        /* Fixed Garland Canvas below Header */
         #garland-canvas {
             position: absolute;
             left: 0;
@@ -159,70 +159,46 @@
             background: #e74c3c;
         }
 
-        /* Hero Section */
+        /* Hero Section with Math Watermark Pattern */
         .hero {
-            min-height: 100vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 150px 20px 60px;
-            background: radial-gradient(circle at center, rgba(192, 57, 43, 0.08) 0%, rgba(255, 255, 255, 1) 70%);
-        }
-
-        .badge-uni {
-            background: rgba(192, 57, 43, 0.08);
-            border: 1px solid var(--red-festive);
-            color: var(--red-festive);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
+            padding: 160px 20px 60px;
+            position: relative;
+            background-color: #FFFFFF;
+            background-image: 
+                radial-gradient(circle at center, rgba(192, 57, 43, 0.05) 0%, rgba(255, 255, 255, 0.95) 75%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" opacity="0.06"><text x="30" y="50" font-family="serif" font-size="28" fill="%232C3E50">∫ f(x)dx = ∑ a_n</text><text x="220" y="120" font-family="serif" font-size="32" fill="%23C0392B">e^{iπ} + 1 = 0</text><text x="40" y="200" font-family="serif" font-size="30" fill="%232C3E50">∇ × E = -∂B/∂t</text><text x="200" y="280" font-family="serif" font-size="34" fill="%232C3E50">A = π r²</text><text x="80" y="340" font-family="serif" font-size="26" fill="%23C0392B">lim_{n→∞} (1 + 1/n)^n</text><text x="250" y="370" font-family="serif" font-size="28" fill="%232C3E50">det(A - λI) = 0</text></svg>');
+            background-repeat: repeat;
         }
 
         .hero h1 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            color: var(--red-festive);
+            margin-bottom: 20px;
+            line-height: 1.3;
+            max-width: 950px;
+        }
+
+        .hero p.subtitle-dept {
+            font-size: clamp(1.1rem, 2.2vw, 1.4rem);
             color: var(--text-light);
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-
-        .hero h1 span {
-            color: var(--gold-accent);
-        }
-
-        .hero p.subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-muted);
-            max-width: 700px;
-            margin-bottom: 30px;
-        }
-
-        /* TESTO DISCORSIVO INGLESE CENTRALE */
-        .discursive-info-container {
-            max-width: 800px;
-            margin: 0 auto 35px auto;
-            text-align: center;
-        }
-
-        .discursive-info-text {
-            font-size: clamp(1rem, 2vw, 1.15rem);
-            color: var(--gold-text);
             font-weight: 600;
-            line-height: 1.6;
-            padding: 0 15px;
+            max-width: 850px;
+            margin-bottom: 35px;
+            line-height: 1.5;
         }
 
         /* Countdown */
         .countdown-container {
             display: flex;
             gap: 15px;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
 
         .time-box {
@@ -268,54 +244,23 @@
             font-size: 1rem;
         }
 
-        /* History Card Styles */
-        .history-card-box {
+        /* About Section Box */
+        .about-card-box {
             background: var(--bg-card);
             border: 1px solid var(--border-gold);
             border-radius: 20px;
             padding: 40px;
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            line-height: 1.7;
         }
 
-        .history-card-box h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: var(--red-festive);
+        .about-card-box p {
+            color: var(--text-light);
+            font-size: 1rem;
             margin-bottom: 15px;
-        }
-
-        .history-card-box p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .btn-history-external {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--red-festive);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: background 0.3s ease;
-        }
-
-        .btn-history-external:hover {
-            background: var(--red-dark);
-        }
-
-        .speakers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
         }
 
         .organizers-grid {
@@ -370,13 +315,7 @@
             display: block;
         }
 
-        .speaker-card p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* Timeline & Programma Giornaliero Ottimizzato */
+        /* Timeline & Accordion Program */
         .timeline {
             max-width: 850px;
             margin: 0 auto;
@@ -394,7 +333,7 @@
             content: '';
             position: absolute;
             left: -42px;
-            top: 14px;
+            top: 18px;
             width: 14px;
             height: 14px;
             border-radius: 50%;
@@ -415,20 +354,28 @@
 
         .timeline-content {
             background: var(--bg-card);
-            padding: 16px 22px;
+            padding: 18px 22px;
             border-radius: 12px;
             border: 1px solid var(--border-gold);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item.clickable .timeline-content {
+            cursor: pointer;
+        }
+
+        .timeline-item.clickable .timeline-content:hover {
+            transform: translateX(4px);
+            border-color: var(--red-festive);
+        }
+
+        .timeline-header-flex {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            transition: transform 0.2s ease;
-        }
-
-        .timeline-content:hover {
-            transform: translateX(4px);
         }
 
         .session-time {
@@ -458,17 +405,73 @@
             font-weight: 600;
         }
 
-        /* Stile speciale per pause / pitch / closing */
+        .toggle-icon {
+            font-size: 0.8rem;
+            color: var(--red-festive);
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .timeline-item.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Abstract / Details Collapsible Body */
+        .session-abstract {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-top: 0;
+            border-top: 1px transparent solid;
+        }
+
+        .timeline-item.active .session-abstract {
+            max-height: 1000px;
+            transition: max-height 0.4s ease-in-out;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top-color: rgba(192, 57, 43, 0.15);
+        }
+
+        .pitch-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .pitch-list li {
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed rgba(192, 57, 43, 0.1);
+        }
+
+        .pitch-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .pitch-speaker {
+            font-weight: 700;
+            color: var(--text-light);
+            display: block;
+        }
+
+        /* Special Items */
         .timeline-item.special .timeline-content {
             background: #FAFAFA;
             border-color: #E2E8F0;
         }
+
         .timeline-item.special .session-time {
             background: rgba(127, 140, 141, 0.15);
             color: var(--text-muted);
         }
 
-        .venue-card-box {
+        /* History, Venue & Register */
+        .history-card-box, .venue-card-box {
             background: var(--bg-card);
             border: 1px solid var(--border-gold);
             border-radius: 20px;
@@ -479,18 +482,36 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
 
-        .venue-card-box h3 {
+        .history-card-box h3, .venue-card-box h3 {
             font-family: 'Cinzel', serif;
             font-size: 1.5rem;
             color: var(--red-festive);
             margin-bottom: 15px;
         }
 
-        .venue-card-box p {
+        .history-card-box p, .venue-card-box p {
             color: var(--text-muted);
             font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .btn-history-external {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--red-festive);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn-history-external:hover {
+            background: var(--red-dark);
         }
 
         .map-container {
@@ -686,24 +707,25 @@
         }
     </style>
 </head>
-<body>
+<body id="top">
 
-    <!-- 1. CANVAS FIOCCHI DI NEVE FISSI -->
+    <!-- 1. FIXED SNOW CANVAS -->
     <canvas id="snow-canvas"></canvas>
 
     <!-- Header Navigation -->
     <header id="main-header">
         <div class="logo">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <img src="XMaths.png" alt="XMaths 2026" class="logo-img">
+                <img src="XMaths.png" alt="XMaths 2026" class="logo-img" onerror="this.style.display='none'">
                 <span>| XMaths 2026</span>
             </div>
             <button class="menu-toggle" onclick="toggleMenu()">MENU ☰</button>
         </div>
 
         <div class="nav-controls" id="nav-menu">
+            <a href="#top" class="btn-nav-link" onclick="toggleMenu()">Home</a>
+            <a href="#about" class="btn-nav-link" onclick="toggleMenu()">About</a>
             <a href="#agenda" class="btn-nav-link" onclick="toggleMenu()">Program</a>
-            <a href="#speakers" class="btn-nav-link" onclick="toggleMenu()">Speakers</a>
             <a href="#organizers" class="btn-nav-link" onclick="toggleMenu()">Organizers</a>
             <a href="#history" class="btn-nav-link" onclick="toggleMenu()">History</a>
             <a href="#venue" class="btn-nav-link" onclick="toggleMenu()">Venue</a>
@@ -711,47 +733,50 @@
         </div>
     </header>
 
-    <!-- CANVAS FESTONE SOTTO L'HEADER FISSO -->
+    <!-- CANVAS GARLAND BELOW HEADER -->
     <canvas id="garland-canvas"></canvas>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="badge-uni">Dipartimento di Informatica & Innovazione</div>
-        <h1>Workshop Natalizio: <br><span>AI & Futuro Digitale</span></h1>
-        <p class="subtitle">Un evento di due giornate con seminari, dibattiti e networking natalizio organizzato per studenti e docenti. Partecipazione gratuita con rilascio attestato CFU.</p>
-
-        <!-- Testo Discorsivo Inglese -->
-        <div class="discursive-info-container">
-            <p class="discursive-info-text">
-                December 17–18, 2026 — 09:00 to 16:30 <br>
-                Department of Mathematics, Aula XII, Via Edoardo Orabona, 4, Bari, Italy
-            </p>
-        </div>
+        <h1>XMaths Workshop<br>December 17–18, 2026</h1>
+        <p class="subtitle-dept">Department of Mathematics, University of Bari Aldo Moro</p>
 
         <!-- Countdown Timer -->
         <div class="countdown-container">
             <div class="time-box">
                 <span class="num" id="days">00</span>
-                <span class="label">Giorni</span>
+                <span class="label">Days</span>
             </div>
             <div class="time-box">
                 <span class="num" id="hours">00</span>
-                <span class="label">Ore</span>
+                <span class="label">Hours</span>
             </div>
             <div class="time-box">
                 <span class="num" id="minutes">00</span>
-                <span class="label">Minuti</span>
+                <span class="label">Minutes</span>
             </div>
             <div class="time-box">
                 <span class="num" id="seconds">00</span>
-                <span class="label">Secondi</span>
+                <span class="label">Seconds</span>
             </div>
         </div>
     </section>
 
-    <!-- 1. Program Agenda Section (Ottimizzata e ordinata) -->
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About the Workshop</h2>
+        <p class="section-subtitle">Fostering collaboration & research in mathematical sciences</p>
+        
+        <div class="about-card-box">
+            <p>Welcome to the annual <strong>XMaths Workshop 2026</strong> organized by the Department of Mathematics at the University of Bari Aldo Moro.</p>
+            <p>This two-day festive workshop brings together international researchers, professors, PhD candidates, and students to discuss cutting-edge advances in pure and applied mathematics, data science, and theoretical computer physics.</p>
+            <p>Join us for insightful keynotes, pitch presentations, and networking sessions in a collaborative holiday atmosphere.</p>
+        </div>
+    </section>
+
+    <!-- Program Agenda Section -->
     <section id="agenda">
-        <h2 class="section-title">Programma dell'Evento (2 Giornate)</h2>
+        <h2 class="section-title">Event Program (2 Days)</h2>
         <p class="section-subtitle">University of Bari Aldo Moro | Department of Mathematics (Aula XII)</p>
 
         <div class="timeline">
@@ -760,103 +785,183 @@
             
             <div class="timeline-item special">
                 <div class="timeline-content">
-                    <div class="session-time">09:00 – 09:15</div>
-                    <div class="session-details"><h4>Registration</h4></div>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">09:00 – 09:15</div>
+                        <div class="session-details"><h4>Registration</h4></div>
+                    </div>
                 </div>
             </div>
+
             <div class="timeline-item special">
                 <div class="timeline-content">
-                    <div class="session-time">09:15 – 09:30</div>
-                    <div class="session-details"><h4>Welcome remarks & Introduction</h4></div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="session-time">09:30 – 10:00</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Natalino Borgia</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">09:15 – 09:30</div>
+                        <div class="session-details"><h4>Welcome remarks & Introduction</h4></div>
                     </div>
                 </div>
             </div>
-            <div class="timeline-item">
+
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
                 <div class="timeline-content">
-                    <div class="session-time">10:00 – 10:30</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Margherita d’Alessandro</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">09:30 – 10:00</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Natalino Borgia</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> Detailed abstract regarding the research topic presented by Natalino Borgia. This talk will explore fundamental mathematical structures and their practical applications.
                     </div>
                 </div>
             </div>
+
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
+                <div class="timeline-content">
+                    <div class="timeline-header-flex">
+                        <div class="session-time">10:00 – 10:30</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Margherita d’Alessandro</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> In-depth discussion on advanced analytical methods and modern numerical solutions presented by Margherita d’Alessandro.
+                    </div>
+                </div>
+            </div>
+
             <div class="timeline-item special">
                 <div class="timeline-content">
-                    <div class="session-time">10:30 – 11:00</div>
-                    <div class="session-details"><h4>☕ Coffee Break</h4></div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="session-time">11:00 – 11:30</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Samantha Bove</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">10:30 – 11:00</div>
+                        <div class="session-details"><h4>☕ Coffee Break</h4></div>
                     </div>
                 </div>
             </div>
-            <div class="timeline-item">
+
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
                 <div class="timeline-content">
-                    <div class="session-time">11:30 – 12:00</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Paolo Cosentino</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">11:00 – 11:30</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Samantha Bove</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> Overview of theoretical modeling and stochastic differential equations presented by Samantha Bove.
                     </div>
                 </div>
             </div>
+
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
+                <div class="timeline-content">
+                    <div class="timeline-header-flex">
+                        <div class="session-time">11:30 – 12:00</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Paolo Cosentino</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> Insights into algebraic topology and geometrical computational paradigms presented by Paolo Cosentino.
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item special clickable" onclick="toggleAbstract(this)">
+                <div class="timeline-content">
+                    <div class="timeline-header-flex">
+                        <div class="session-time">12:00 – 12:45</div>
+                        <div class="session-details">
+                            <h4>🚀 Pitch (Session 1) <span class="toggle-icon">▼</span></h4>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <ul class="pitch-list">
+                            <li>
+                                <span class="pitch-speaker">Speaker A — Title of Pitch Presentation A</span>
+                                Short summary of the short research presentation.
+                            </li>
+                            <li>
+                                <span class="pitch-speaker">Speaker B — Title of Pitch Presentation B</span>
+                                Short summary of the short research presentation.
+                            </li>
+                            <li>
+                                <span class="pitch-speaker">Speaker C — Title of Pitch Presentation C</span>
+                                Short summary of the short research presentation.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <div class="timeline-item special">
                 <div class="timeline-content">
-                    <div class="session-time">12:00 – 12:45</div>
-                    <div class="session-details"><h4>🚀 Pitch (Session 1)</h4></div>
-                </div>
-            </div>
-            <div class="timeline-item special">
-                <div class="timeline-content">
-                    <div class="session-time">13:00 – 14:30</div>
-                    <div class="session-details"><h4>🍽️ Lunch Break</h4></div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="session-time">14:30 – 15:00</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Donato Mancini</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">13:00 – 14:30</div>
+                        <div class="session-details"><h4>🍽️ Lunch Break</h4></div>
                     </div>
                 </div>
             </div>
-            <div class="timeline-item">
+
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
                 <div class="timeline-content">
-                    <div class="session-time">15:00 – 15:30</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Giuseppe Rago</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">14:30 – 15:00</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Donato Mancini</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> Presentation covering computational fluid dynamics and mathematical biology models by Donato Mancini.
                     </div>
                 </div>
             </div>
-            <div class="timeline-item">
+
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
                 <div class="timeline-content">
-                    <div class="session-time">15:30 – 16:00</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Andrea Albano</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">15:00 – 15:30</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Giuseppe Rago</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> Mathematical optimization and graph theory applications presented by Giuseppe Rago.
                     </div>
                 </div>
             </div>
-            <div class="timeline-item">
+
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
                 <div class="timeline-content">
-                    <div class="session-time">16:00 – 16:30</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Malte Schulz</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">15:30 – 16:00</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Andrea Albano</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> Dynamical systems and chaos theory analysis presented by Andrea Albano.
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
+                <div class="timeline-content">
+                    <div class="timeline-header-flex">
+                        <div class="session-time">16:00 – 16:30</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Malte Schulz</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> Modern approaches to matrix theory and linear operators presented by Malte Schulz.
                     </div>
                 </div>
             </div>
@@ -864,140 +969,163 @@
             <!-- Day 2 -->
             <div class="timeline-date-header">📅 18 December 2026 (Friday)</div>
             
-            <div class="timeline-item">
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
                 <div class="timeline-content">
-                    <div class="session-time">09:00 – 09:30</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Michele Paolicelli</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">09:00 – 09:30</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Michele Paolicelli</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> Theoretical aspects of functional analysis presented by Michele Paolicelli.
                     </div>
                 </div>
             </div>
-            <div class="timeline-item">
+
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
                 <div class="timeline-content">
-                    <div class="session-time">09:30 – 10:00</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Rubén Fiñana Aránega</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">09:30 – 10:00</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Rubén Fiñana Aránega</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> Geometric measure theory and variational methods presented by Rubén Fiñana Aránega.
                     </div>
                 </div>
             </div>
-            <div class="timeline-item">
+
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
                 <div class="timeline-content">
-                    <div class="session-time">10:00 – 10:30</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Loredana Saliceto</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">10:00 – 10:30</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Loredana Saliceto</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> Statistical learning models and high-dimensional data analysis presented by Loredana Saliceto.
                     </div>
                 </div>
             </div>
+
             <div class="timeline-item special">
                 <div class="timeline-content">
-                    <div class="session-time">10:30 – 11:00</div>
-                    <div class="session-details"><h4>☕ Coffee Break</h4></div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="session-time">11:00 – 11:30</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Helena dell’Anna</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">10:30 – 11:00</div>
+                        <div class="session-details"><h4>☕ Coffee Break</h4></div>
                     </div>
                 </div>
             </div>
-            <div class="timeline-item">
+
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
                 <div class="timeline-content">
-                    <div class="session-time">11:30 – 12:00</div>
-                    <div class="session-details">
-                        <h4>Talk / Presentation</h4>
-                        <span class="speaker-tag">Speaker: Mingchao Chen</span>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">11:00 – 11:30</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Helena dell’Anna</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> Partial differential equations in physics applications presented by Helena dell’Anna.
                     </div>
                 </div>
             </div>
-            <div class="timeline-item special">
+
+            <div class="timeline-item clickable" onclick="toggleAbstract(this)">
                 <div class="timeline-content">
-                    <div class="session-time">12:00 – 12:45</div>
-                    <div class="session-details"><h4>🚀 Pitch (Session 2)</h4></div>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">11:30 – 12:00</div>
+                        <div class="session-details">
+                            <h4>Talk / Presentation <span class="toggle-icon">▼</span></h4>
+                            <span class="speaker-tag">Speaker: Mingchao Chen</span>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <strong>Abstract:</strong> Quantum information theory and tensor networks presented by Mingchao Chen.
+                    </div>
                 </div>
             </div>
+
+            <div class="timeline-item special clickable" onclick="toggleAbstract(this)">
+                <div class="timeline-content">
+                    <div class="timeline-header-flex">
+                        <div class="session-time">12:00 – 12:45</div>
+                        <div class="session-details">
+                            <h4>🚀 Pitch (Session 2) <span class="toggle-icon">▼</span></h4>
+                        </div>
+                    </div>
+                    <div class="session-abstract">
+                        <ul class="pitch-list">
+                            <li>
+                                <span class="pitch-speaker">Speaker D — Title of Pitch Presentation D</span>
+                                Short summary of the short research presentation.
+                            </li>
+                            <li>
+                                <span class="pitch-speaker">Speaker E — Title of Pitch Presentation E</span>
+                                Short summary of the short research presentation.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <div class="timeline-item special">
                 <div class="timeline-content">
-                    <div class="session-time">12:45 – 13:00</div>
-                    <div class="session-details"><h4>🎉 Closing</h4></div>
+                    <div class="timeline-header-flex">
+                        <div class="session-time">12:45 – 13:00</div>
+                        <div class="session-details"><h4>🎉 Closing Ceremony</h4></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 2. Speakers Section -->
-    <section id="speakers">
-        <h2 class="section-title">I Nostri Speaker</h2>
-        <p class="section-subtitle">Esperti del settore accademico e industriale condivideranno la loro visione</p>
-
-        <div class="speakers-grid">
-            <div class="speaker-card">
-                <div class="speaker-avatar" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300');"></div>
-                <h3>Prof.ssa Elena Rossi</h3>
-                <span class="role">Docente di Intelligenza Artificiale</span>
-                <p>Specializzata in Modelli Generativi e impatto dell'AI sulla società del futuro.</p>
-            </div>
-
-            <div class="speaker-card">
-                <div class="speaker-avatar" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300');"></div>
-                <h3>Ing. Marco Bianchi</h3>
-                <span class="role">Senior Tech Lead @ TechCorp</span>
-                <p>Guida lo sviluppo di architetture cloud scalabili ed etica del codice.</p>
-            </div>
-
-            <div class="speaker-card">
-                <div class="speaker-avatar" style="background-image: url('https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300');"></div>
-                <h3>Dr.ssa Sofia Moretti</h3>
-                <span class="role">Ricercatrice in Cybersecurity</span>
-                <p>Esperta di protezione dati e sicurezza nei sistemi distribuiti moderni.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. Organizers Section -->
+    <!-- Organizers Section -->
     <section id="organizers">
-        <h2 class="section-title">Organizzatori</h2>
-        <p class="section-subtitle">Il team accademico e studentesco dietro l'evento</p>
+        <h2 class="section-title">Organizers</h2>
+        <p class="section-subtitle">The organizing committee behind the event</p>
 
         <div class="organizers-grid">
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Alessandro Cannone</h3>
-                <span class="role">Comitato Organizzatore</span>
+                <span class="role">Organizing Committee</span>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Elisabetta Erione</h3>
-                <span class="role">Comitato Organizzatore</span>
+                <span class="role">Organizing Committee</span>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('https://raw.githubusercontent.com/ff69908/XMaths2026/main/photo_5899779348410517796_y.jpg');"></div>
                 <h3>Flavia Fazio</h3>
-                <span class="role">Comitato Organizzatore</span>
+                <span class="role">Organizing Committee</span>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Niccolò Maldera</h3>
-                <span class="role">Comitato Organizzatore</span>
+                <span class="role">Organizing Committee</span>
             </div>
 
             <div class="speaker-card">
                 <div class="speaker-avatar" style="background-image: url('');"></div>
                 <h3>Taijin Zhao</h3>
-                <span class="role">Comitato Organizzatore</span>
+                <span class="role">Organizing Committee</span>
             </div>
         </div>
     </section>
 
-    <!-- 4. History Section -->
+    <!-- History Section -->
     <section id="history">
         <div class="history-card-box">
             <h3>Looking for previous editions?</h3>
@@ -1008,7 +1136,7 @@
         </div>
     </section>
 
-    <!-- 5. Venue Section -->
+    <!-- Venue Section -->
     <section id="venue">
         <h2 class="section-title">Venue</h2>
         
@@ -1016,7 +1144,7 @@
             <h3>Aula XII</h3>
             <p>
                 <strong>Department of Mathematics</strong><br>
-                Università degli Studi di Bari<br>
+                Università degli Studi di Bari Aldo Moro<br>
                 Via Edoardo Orabona, 4<br>
                 70125 Bari BA, Italy
             </p>
@@ -1038,7 +1166,7 @@
         </div>
     </section>
 
-    <!-- 6. Registration Section -->
+    <!-- Registration Section -->
     <section id="register">
         <div class="register-external-box">
             <h3>Reserve Your Spot</h3>
@@ -1078,7 +1206,11 @@
             setTimeout(resizeGarland, 150);
         }
 
-        // --- 1. SFONDO FIOCCHI DI NEVE FISSI ---
+        function toggleAbstract(element) {
+            element.classList.toggle('active');
+        }
+
+        // --- 1. STATIC SNOW CANVAS ---
         const snowCanvas = document.getElementById('snow-canvas');
         const sctx = snowCanvas.getContext('2d');
         const symbols = ['❄', '❅', '❆'];
@@ -1112,7 +1244,7 @@
 
         drawStaticSnow();
 
-        // --- 2. FESTONE NATALIZIO AD ALTA DEFINIZIONE (Fisso sotto l'Header) ---
+        // --- 2. HIGH DEFINITION GARLAND CANVAS ---
         const garlandCanvas = document.getElementById('garland-canvas');
         const gctx = garlandCanvas.getContext('2d');
 
@@ -1228,7 +1360,7 @@
         window.addEventListener('load', resizeGarland);
         resizeGarland();
 
-        // --- 3. Countdown Timer ---
+        // --- 3. COUNTDOWN TIMER ---
         const eventDate = new Date('December 17, 2026 09:00:00').getTime();
 
         function updateCountdown() {
