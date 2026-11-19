@@ -1,1 +1,1 @@
-# XMaths2026
+https://xmaths2026.netlify.app/
